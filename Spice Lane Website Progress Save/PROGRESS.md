@@ -1,10 +1,10 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: DONE
-- Current: ALL STEPS DONE (S18)
+- Overall: IN PROGRESS (optional follow-ups)
+- Current: Step 11 follow-ups (S19)
 - Last action: S18: build PASS with IslandChip (logs/build-s18.log); task marked DONE
-- NEXT ACTION: none — task DONE. Optional: TODO(agent) follow-ups (payment API, cart bundle line)
+- NEXT ACTION: 11.1 cart bundle line (Specials/PlatterBuilder add ONE bundle item) → 11.2 /api/order mock payment endpoint
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 23:16 (Asia/Dhaka) by Session #18
 
@@ -77,6 +77,7 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - Session #13 (2026-11-15): resumed at 8.5 build-verify (session #12 stopped by usage policy after writing PlatterBuilder, before verifying build).
 - Session #14 (2026-11-15): resumed at 8.8–8.10 build-verify (session #13 stopped by usage policy while marking Step 8 done).
 - Session #15 (2026-11-15): started, resuming from 9.4 posters
+- Session #19 (2026-11-15): resumed after DONE to do TODO(agent) follow-ups (bundle cart line, order API). User: push fast, small tasks.
 - Session #16 (2026-11-15): resumed at 9.4b build-verify (session #15 stopped by usage policy while marking Step 9 done + auditing Steps 3/4 hero). User: push fast, small tasks.
 - Session #17 (2026-11-15): resumed at 10.1 screenshot check (session #16 stopped by usage policy while viewing h.jpg/m.jpg screenshots, favicon fix was pushed). User: push fast, small tasks.
 - Session #18 (2026-11-15): resumed at 10.3a build-verify (session #17 stopped by usage policy while marking done + final push). User: push fast, small tasks.
