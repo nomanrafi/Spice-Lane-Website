@@ -3,8 +3,8 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 10 → final screenshots + README
-- Last action: S17 resumed; autopush started
-- NEXT ACTION: view hero-s16.png/menu-s16.png; 10.2 README polish; 10.3 acceptance check (prompt §14)
+- Last action: S17: viewed hero-s16/menu-s16 — hero belt + menu grid render OK (hero table slightly clipped at right edge of canvas, minor)
+- NEXT ACTION: 10.2 README polish; 10.3 acceptance check (prompt §14)
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 23:10 (Asia/Dhaka) by Session #17
 
