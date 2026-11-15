@@ -6,7 +6,7 @@
 - Last action: 1.1 scaffold files written (package.json, tsconfig, tailwind, src/app)
 - NEXT ACTION: 1.2 run `npm install` in this folder, then `npm run build`; fix errors
 - Project runs?: NO app code yet
-- Last updated: 2026-11-15 21:40 (Asia/Dhaka) by Session #3
+- Last updated: 2026-11-15 21:40 (Asia/Dhaka) by Session #4 (resumed)
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -22,7 +22,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 ## Plan  (app root = this folder; paths below are relative to it)
 - [x] Step 0: setup (scripts, logs, plan)
 - [ ] Step 1: Scaffold
-  - [ ] 1.1 package.json, tsconfig, next/tailwind/postcss config, src/app layout+page
+  - [x] 1.1 package.json, tsconfig, next/tailwind/postcss config, src/app layout+page
   - [ ] 1.2 npm install + first build OK
 - [ ] Step 2: Models
   - [ ] 2.1 inspect GLBs (size, meshes, textures)
@@ -53,3 +53,4 @@ Restart auto-push: nohup ./scripts/autopush.sh >/dev/null 2>&1 &
 - Session #1 (2026-11-15): Created PROGRESS.md + reference details doc.
 - Session #2 (2026-11-15): Video analysed; VIDEO_OBSERVATIONS.md + key frames.
 - Session #3 (2026-11-15): resumed at "scaffold app"; added scripts, logs, plan.
+- Session #4 (2026-11-15): resumed at 1.2 (npm install + first build).
