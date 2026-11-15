@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 9 → perf/a11y/SEO
-- Last action: S14: 9.3 build PASS (logs/build-s14c.log)
-- NEXT ACTION: 9.4 posters: generate public/posters/*.png from GLBs + use as fallback/alt
+- Last action: S15 started, resuming at 9.4
+- NEXT ACTION: 9.4 posters: write scripts/generate-posters.mjs (playwright+three render GLB→public/posters/*.png)
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 22:49 (Asia/Dhaka) by Session #14
+- Last updated: 2026-11-15 22:54 (Asia/Dhaka) by Session #15
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -71,3 +71,4 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - Session #12 (2026-11-15): resumed at 8.3 build-verify / 8.4 Specials (session #11 stopped by usage policy while building 8.3 and writing Specials.tsx).
 - Session #13 (2026-11-15): resumed at 8.5 build-verify (session #12 stopped by usage policy after writing PlatterBuilder, before verifying build).
 - Session #14 (2026-11-15): resumed at 8.8–8.10 build-verify (session #13 stopped by usage policy while marking Step 8 done).
+- Session #15 (2026-11-15): started, resuming from 9.4 posters
