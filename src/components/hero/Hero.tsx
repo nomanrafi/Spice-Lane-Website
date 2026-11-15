@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { MENU, TIERS, formatPrice, getItem, type Tier } from '@/data/menu';
 import { useStore } from '@/store/useStore';
 import { seekSlot } from '@/lib/belt';
+import AmbientGlow from './AmbientGlow';
 
 const HeroCanvas = dynamic(() => import('./HeroCanvas'), { ssr: false, loading: () => <div className="h-full w-full animate-pulse rounded-card bg-card/40" /> });
 
@@ -39,7 +40,8 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" aria-label="Spice Lane tasting belt" className="relative mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-8 px-6 pt-28 pb-12 lg:grid-cols-[minmax(0,36%)_1fr]">
+    <section id="hero" aria-label="Spice Lane tasting belt" className="relative isolate mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-8 px-6 pt-28 pb-12 lg:grid-cols-[minmax(0,36%)_1fr]">
+      <AmbientGlow />
       <div className="relative z-10">
         <p className="text-xs uppercase tracking-[0.3em] text-muted">Spice Lane · Tasting belt</p>
         <h1 className="mt-5 text-4xl font-medium leading-[1.05] tracking-tight text-white sm:text-5xl">

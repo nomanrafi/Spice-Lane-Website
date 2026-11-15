@@ -19,3 +19,8 @@ body { font-family: var(--font-sans), system-ui, sans-serif; -webkit-font-smooth
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
 }
+
+/* ambient glow breathing (1 → 1.03, 6s) */
+@property --glow { syntax: '<color>'; inherits: true; initial-value: #444; }
+@keyframes glow-breathe { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.03); } }
+.glow-breathe { animation: glow-breathe 6s ease-in-out infinite; }

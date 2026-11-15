@@ -1,6 +1,6 @@
 'use client';
 import { Canvas } from '@react-three/fiber';
-import { ContactShadows, Environment } from '@react-three/drei';
+import { ContactShadows, Environment, Lightformer } from '@react-three/drei';
 import { useDrag } from '@use-gesture/react';
 import { beltMotion } from '@/lib/belt';
 import KaitenTable from './KaitenTable';
@@ -20,7 +20,12 @@ export default function HeroCanvas() {
         <ambientLight intensity={0.25} />
         <directionalLight position={[3, 6, 4]} intensity={1.6} castShadow shadow-mapSize={[1024, 1024]} />
         <directionalLight position={[-4, 3, -5]} intensity={0.6} color="#bcd" />
-        <Environment preset="studio" environmentIntensity={0.35} />
+        {/* local studio env (no CDN HDRI fetch) */}
+        <Environment resolution={256} environmentIntensity={0.35}>
+          <Lightformer form="rect" intensity={3} position={[0, 5, -2]} scale={[10, 3, 1]} />
+          <Lightformer form="rect" intensity={1.5} position={[-5, 2, 1]} rotation-y={Math.PI / 2} scale={[6, 2, 1]} />
+          <Lightformer form="rect" intensity={1.5} position={[5, 2, 1]} rotation-y={-Math.PI / 2} scale={[6, 2, 1]} />
+        </Environment>
         <KaitenTable />
         <ContactShadows position={[0, -0.25, 0]} opacity={0.6} scale={12} blur={2.6} far={2} />
       </Canvas>
