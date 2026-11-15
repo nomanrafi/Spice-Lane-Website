@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 8 → sections below hero
-- Last action: S11 resumed; 8.2 MenuGrid build verified (logs/build-s10b.log).
-- NEXT ACTION: 8.3 How it works (src/components/sections/HowItWorks.tsx): 3 steps pick/drag/enjoy, GSAP reveal; mount in page.tsx; build.
+- Last action: S12 resumed; HowItWorks.tsx (8.3) + Specials.tsx (8.4) exist (8.4 not mounted yet).
+- NEXT ACTION: Verify Specials.tsx, mount in page.tsx, npm run build.
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 22:25 (Asia/Dhaka) by Session #11
+- Last updated: 2026-11-15 22:36 (Asia/Dhaka) by Session #12
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -68,3 +68,4 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - Session #9 (2026-11-15): resumed at 7.3 (session #8 stopped by usage policy; 7.3 confirmation page was not pushed).
 - Session #10 (2026-11-15): resumed at Step 8 (session #9 stopped by usage policy after Step 6 build passed but before logging it).
 - Session #11 (2026-11-15): resumed at 8.3 (session #10 stopped by usage policy after 8.2 build passed, before logging).
+- Session #12 (2026-11-15): resumed at 8.3 build-verify / 8.4 Specials (session #11 stopped by usage policy while building 8.3 and writing Specials.tsx).
