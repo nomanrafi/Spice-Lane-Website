@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 9 → perf/a11y/SEO
-- Last action: S15 started, resuming at 9.4
-- NEXT ACTION: 9.4 posters: write scripts/generate-posters.mjs (playwright+three render GLB→public/posters/*.png)
+- Last action: S15: wrote scripts/generate-posters.mjs + npm script (untested)
+- NEXT ACTION: run npm run generate-posters, check public/posters/*.png
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 22:54 (Asia/Dhaka) by Session #15
+- Last updated: 2026-11-15 22:56 (Asia/Dhaka) by Session #15
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
