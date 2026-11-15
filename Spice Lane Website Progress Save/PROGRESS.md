@@ -2,11 +2,11 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
-- Current: Step 3 → 3.3 grain bg/layout shell check, then Step 4 (hero belt)
-- Last action: Session #5 RESTRUCTURE — website code moved OUT of this folder to the repo ROOT (src/, public/, package.json, configs, scripts/optimize-models.mjs). This folder now holds ONLY agent progress (notes, logs, checkpoint/autopush scripts, reference, archive, output/preview).
-- NEXT ACTION: 4.3 src/components/hero/Hero.tsx (text column, legend, caption, ‹ ⏸ › controls, label chip) + mount in src/app/page.tsx via next/dynamic ssr:false; then build. (4.1 belt.ts, 4.2 FoodModel/Plate/KaitenTable/HeroCanvas written, NOT yet build-tested)
+- Current: Step 4 → 4.3 done (hero mounted, build passed per build-s5-hero.log); verifying screenshot, then 4.4
+- Last action: Session #6 resumed; cloned, autopush started, npm install running.
+- NEXT ACTION: screenshot hero (npm run build && npm start, playwright) → output/preview/hero-s6.png; then 4.4 hover/flick/keyboard + AmbientGlow.
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 21:55 (Asia/Dhaka) by Session #5
+- Last updated: 2026-11-15 21:55 (Asia/Dhaka) by Session #6
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -62,3 +62,4 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - Session #3 (2026-11-15): resumed at "scaffold app"; added scripts, logs, plan.
 - Session #4 (2026-11-15): resumed at 1.2 (npm install + first build).
 - Session #5 (2026-11-15): resumed at 3.3/4.1; moved app code to repo root (user request).
+- Session #6 (2026-11-15): resumed at 4.3 verify (screenshot). User repeated: progress only in progress folder, website outside it, push fast.
