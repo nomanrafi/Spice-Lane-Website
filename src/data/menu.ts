@@ -58,3 +58,12 @@ export const MENU: MenuItem[] = [
 
 export const getItem = (id: string) => MENU.find((x) => x.id === id);
 export const formatPrice = (n: number) => `$${n.toFixed(2)}`;
+
+/** Menu-grid categories (Step 8.2). */
+export const CATEGORIES = ['All', 'Sushi & raw', 'Pasta', 'Mains', 'Seafood', 'Desserts'] as const;
+export type Category = (typeof CATEGORIES)[number];
+export const CATEGORY_OF: Record<string, Category> = {
+  'salmon-roll': 'Sushi & raw', 'tuna-tataki': 'Sushi & raw', spaghetti: 'Pasta', ribeye: 'Mains', lamb: 'Mains',
+  wagyu: 'Mains', lobster: 'Seafood', fondant: 'Desserts',
+};
+export const isGlutenFree = (i: MenuItem) => !i.allergens.some((a) => /gluten|wheat/i.test(a));
