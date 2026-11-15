@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 8 → sections below hero
-- Last action: S12 resumed; HowItWorks.tsx (8.3) + Specials.tsx (8.4) exist (8.4 not mounted yet).
-- NEXT ACTION: Verify Specials.tsx, mount in page.tsx, npm run build.
+- Last action: S12: 8.3 HowItWorks + 8.4 Specials mounted, npm run build PASS (logs/build-s12.log, / 196 kB).
+- NEXT ACTION: 8.5 Platter builder (src/components/sections/PlatterBuilder.tsx): pick items into a tray, live total, add all to cart; mount after Specials; build.
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 22:36 (Asia/Dhaka) by Session #12
+- Last updated: 2026-11-15 22:37 (Asia/Dhaka) by Session #12
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -38,7 +38,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [x] Step 5: Product modal (3D orbit viewer, counter, qty, add → ✓ Added) — wired in src/app/page.tsx, build passes (session #8)
 - [x] Step 6: Drag plate → cart (ghost, magnet, burst) — 6.1 ghost/store, 6.2 wired in HeroCanvas, build OK (s9)
 - [x] Step 7: Cart drawer + checkout + confirmation pages
-- [ ] Step 8 (8.1 Spotlight ✓ · 8.2 Menu grid ✓ · 8.3 How it works · 8.4 Specials · 8.5 Platter · 8.6 Reviews · 8.7 Reservations · 8.8 Locations · 8.9 FAQ · 8.10 Newsletter+Footer): Sections: Spotlight (pinned), Menu grid, How it works, Specials, Platter builder, Reviews, Reservations(+/api/reserve), Locations, FAQ, Newsletter+Footer
+- [ ] Step 8 (8.1 Spotlight ✓ · 8.2 Menu grid ✓ · 8.3 How it works ✓ · 8.4 Specials ✓ · 8.5 Platter · 8.6 Reviews · 8.7 Reservations · 8.8 Locations · 8.9 FAQ · 8.10 Newsletter+Footer): Sections: Spotlight (pinned), Menu grid, How it works, Specials, Platter builder, Reviews, Reservations(+/api/reserve), Locations, FAQ, Newsletter+Footer
 - [ ] Step 9: Perf/a11y/SEO (posters, reduced motion, JSON-LD, sitemap, robots)
 - [ ] Step 10: Final build, screenshots in output/preview, README
 

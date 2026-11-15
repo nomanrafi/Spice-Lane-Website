@@ -1,0 +1,37 @@
+
+> spice-lane-website@0.1.0 build
+> next build
+
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+  ▲ Next.js 14.2.35
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/5) ...
+   Generating static pages (1/5) 
+   Generating static pages (2/5) 
+   Generating static pages (3/5) 
+ ✓ Generating static pages (5/5)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                              Size     First Load JS
+┌ ○ /                                    69.6 kB         196 kB
+├ ○ /_not-found                          873 B          88.4 kB
+├ ○ /checkout                            30.3 kB         120 kB
+└ ƒ /order/[id]                          3.39 kB         127 kB
++ First Load JS shared by all            87.5 kB
+  ├ chunks/117-26587bd8de400226.js       31.7 kB
+  ├ chunks/fd9d1056-f42e3a44b4c14fe1.js  53.6 kB
+  └ other shared chunks (total)          2.11 kB
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

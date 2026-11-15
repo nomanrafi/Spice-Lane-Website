@@ -35,3 +35,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S8: npm install (OK, 585 pkgs); npm run build (PASS, / = 162 kB first load)
 - S9: Configured git credentials (token hidden); git clone; npm install
 - S9: npm install OK; npm run build PASS (/ 172 kB, /checkout, /order/[id])
+- S12: npm install OK; npm run build PASS after 8.3+8.4 (logs/build-s12.log)
