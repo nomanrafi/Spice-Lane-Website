@@ -49,3 +49,20 @@ npm run generate-posters  # re-render public/posters/*.png from the models
 2. Add an entry to `src/data/menu.ts` (`model: '/models/my-dish.glb'`, `poster: '/posters/my-dish.png'`,
    price `tier`, `accentColor`, nutrition, allergens…).
 3. Run `npm run generate-posters` to create its poster. A missing model shows a placeholder plate (dev warning), never a crash.
+
+## Deploy
+Deploy-ready (checked: `npm run lint`, `npx tsc --noEmit`, `npm run build` all pass; production smoke test OK).
+
+**Vercel (recommended)**
+1. Import the GitHub repo in Vercel → framework "Next.js" is auto-detected (root directory = repo root).
+2. Add env var `NEXT_PUBLIC_SITE_URL` = your live URL (e.g. `https://spicelane.com`). See `.env.example`.
+3. Deploy. No database or secrets are needed.
+
+**Any Node host**: Node ≥ 18.17 → `npm ci && npm run build && npm start` (port 3000, or set `PORT`).
+
+Notes
+- `public/models/` (optimized GLBs, ~5.6 MB) and `public/posters/` are committed, so no model step runs at deploy time.
+- `assets/*.glb` are the large source models; they are only used by `npm run optimize-models` and are not served.
+- `/api/order` uses a **mock payment** and does not store orders; `/api/reserve` validates and confirms only.
+  For real orders, plug in a payment provider (e.g. Stripe) + a database in `src/app/api/order/route.ts`.
+- `Spice Lane Website Progress Save/` holds AI-agent progress notes only; it is not part of the website.
