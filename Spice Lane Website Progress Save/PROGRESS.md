@@ -1,12 +1,12 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS
-- Current: Step 10 → final screenshots + README
-- Last action: S18: npm install OK; running build for 10.3a
-- NEXT ACTION: check logs/build-s18.log; if pass mark 10.3a + Step 10 + DoD done
+- Overall: DONE
+- Current: ALL STEPS DONE (S18)
+- Last action: S18: build PASS with IslandChip (logs/build-s18.log); task marked DONE
+- NEXT ACTION: none — task DONE. Optional: TODO(agent) follow-ups (payment API, cart bundle line)
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 23:15 (Asia/Dhaka) by Session #18
+- Last updated: 2026-11-15 23:16 (Asia/Dhaka) by Session #18
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -16,7 +16,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 
 ## Definition of Done
 - [x] `npm run build` passes, no console errors (S16: favicon 404 fixed)
-- [ ] Acceptance checklist (prompt §14) satisfied
+- [x] Acceptance checklist (prompt §14) satisfied (S17 grep audit; last gap = island hover chip, added 10.3a, build PASS S18)
 - [x] README explains run/build + how to add a food (S17)
 
 ## Repo layout (since session #5)
@@ -40,7 +40,12 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [x] Step 7: Cart drawer + checkout + confirmation pages
 - [x] Step 8 (all 8.1–8.10 ✓, build PASS s14): Sections: Spotlight (pinned), Menu grid, How it works, Specials, Platter builder, Reviews, Reservations(+/api/reserve), Locations, FAQ, Newsletter+Footer
 - [x] Step 9: Perf/a11y/SEO — 9.1 robots+sitemap · 9.2 JSON-LD+metadata · 9.3 reduced-motion · 9.4 posters (public/posters, MenuGrid cards + ModelViewer fallback) — build PASS S16 (logs/build-s16.log)
-- [ ] Step 10: Final build, screenshots in output/preview, README
+- [x] Step 10: Final build, screenshots in output/preview, README — 10.1 screenshots ✓ · 10.2 README ✓ · 10.3 acceptance audit ✓ · 10.3a IslandChip (KaitenTable.tsx) build PASS S18 (logs/build-s18.log)
+
+## How to use the result
+- From repo root: `npm install` → `npm run dev` (http://localhost:3000) or `npm run build && npm start`.
+- Add a dish: drop GLB in `assets/`, run `npm run optimize-models`, add an entry to `src/data/menu.ts` (see README).
+- Open follow-ups (not required): real payment/API in CheckoutForm/OrderConfirmation; true bundle line in cart (Specials/PlatterBuilder) — see TODO(agent) in src/.
 
 ## Problems / Notes
 - GLBs in ../assets are 16–20 MB each → optimized (Step 2 done). public/models/ IS committed (~5.7 MB total) so no re-run needed.

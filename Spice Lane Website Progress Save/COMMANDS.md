@@ -51,3 +51,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S17: Configured git credentials (token hidden); git clone; npm install (bg); autopush started
 - S18: Configured git credentials (token hidden); git clone; npm install (bg); autopush started
 - S18: npm install OK (585 pkgs); npm run build → logs/build-s18.log
+- S18: npm run build PASS (IslandChip); marked Step 10 + DoD done
