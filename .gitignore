@@ -1,0 +1,15 @@
+node_modules/
+.cache/
+.next/
+out/
+dist/.cache/
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+.git-credentials
+.DS_Store
+Thumbs.db
+*.tsbuildinfo
+next-env.d.ts

@@ -20,3 +20,7 @@ Why: dishes are steak/lobster, not $3 sushi; ring-colour = price-tier concept is
 ### 5. Model optimization
 Decision: `scripts/optimize-models.mjs` uses gltf-transform `optimize` (meshopt, simplify ratio 0.04, webp 1024). Source GLBs are single-mesh Tripo exports (~1M verts, 3 × 4K textures).
 Why: 16–20 MB per file is too heavy for a web belt of 8 plates. Output → `public/models/<lowercase>.glb`.
+
+### 6. (session #5) Website code at repo root, progress folder = notes only
+Decision: app (Next.js) lives at repo root; `Spice Lane Website Progress Save/` keeps only agent notes/logs/scripts/reference/archive/screenshots.
+Why: user chat (session #5) said earlier agents wrongly saved the website inside the progress folder; overrides session #3 rule "everything in this folder".

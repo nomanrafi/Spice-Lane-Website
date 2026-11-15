@@ -2,11 +2,11 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
-- Current: Step 3 → 3.1 zustand store
-- Last action: 1.2 build OK; 2.1–2.3 done (8 GLBs optimized to ~0.7 MB in public/models/, src/data/menu.ts written)
-- NEXT ACTION: 3.1 create src/store/useStore.ts (selected, frontItem, cart persisted, belt paused); 3.2 Header
-- Project runs?: YES — `npm run build` passes (placeholder page)
-- Last updated: 2026-11-15 21:40 (Asia/Dhaka) by Session #4 (resumed)
+- Current: Step 3 → 3.3 grain bg/layout shell check, then Step 4 (hero belt)
+- Last action: Session #5 RESTRUCTURE — website code moved OUT of this folder to the repo ROOT (src/, public/, package.json, configs, scripts/optimize-models.mjs). This folder now holds ONLY agent progress (notes, logs, checkpoint/autopush scripts, reference, archive, output/preview).
+- NEXT ACTION: verify build from repo root; then 4.1 src/lib/belt.ts (stadium path math — session #4 was stopped while writing it, it was NEVER pushed)
+- Project runs?: build re-check pending after restructure
+- Last updated: 2026-11-15 21:55 (Asia/Dhaka) by Session #5
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -19,7 +19,12 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [ ] Acceptance checklist (prompt §14) satisfied
 - [ ] README explains run/build + how to add a food
 
-## Plan  (app root = this folder; paths below are relative to it)
+## Repo layout (since session #5)
+- APP ROOT = repo root: `src/`, `public/models/`, `package.json`, `next.config.mjs`, `tailwind.config.ts`, `tsconfig.json`, `scripts/optimize-models.mjs`, `assets/*.glb` (source models).
+- PROGRESS FOLDER = `Spice Lane Website Progress Save/`: PROGRESS.md, COMMANDS.md, DECISIONS.md, AI_AGENT_INSTRUCTIONS.md, `reference/`, `scripts/checkpoint.sh`, `scripts/autopush.sh`, `scripts/logs/`, `archive/`, `output/preview/` (screenshots).
+- `Optional you can use/` = reference site code (optional).
+
+## Plan  (paths below are relative to the REPO ROOT)
 - [x] Step 0: setup (scripts, logs, plan)
 - [x] Step 1: Scaffold
   - [x] 1.1 package.json, tsconfig, next/tailwind/postcss config, src/app layout+page
@@ -28,7 +33,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
   - [x] 2.1 inspect GLBs (size, meshes, textures)
   - [x] 2.2 scripts/optimize-models.mjs (`npm run optimize-models`: ../assets/*.glb → public/models/, meshopt + webp/resize)
   - [x] 2.3 src/data/menu.ts (8 items, tiers, accent colors, nutrition…)
-- [ ] Step 3: Store + layout shell (zustand store w/ persisted cart, Header w/ cart pill + Added chip, grain bg)
+- [ ] Step 3 (3.1 store ✓, 3.2 Header ✓ per commit 5019cc9; 3.3 shell pending): Store + layout shell (zustand store w/ persisted cart, Header w/ cart pill + Added chip, grain bg)
 - [ ] Step 4: Hero 3D belt (KaitenTable, Plate, FoodModel, AmbientGlow, controls, hover/flick/seek, front item, chip)
 - [ ] Step 5: Product modal (3D orbit viewer, counter, qty, add → ✓ Added)
 - [ ] Step 6: Drag plate → cart (ghost, magnet, burst)
@@ -41,12 +46,14 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - GLBs in ../assets are 16–20 MB each → optimized (Step 2 done). public/models/ IS committed (~5.7 MB total) so no re-run needed.
 
 ## Environment setup (run on a fresh computer)
-cd "Spice Lane Website Progress Save" && npm install
-npm run optimize-models   # (once Step 2 exists) writes public/models/*.glb
+cd <repo root> && npm install          # app lives at repo root
+npm run optimize-models   # only if assets/*.glb changed (public/models is committed)
 npm run dev / npm run build
-Restart auto-push: nohup ./scripts/autopush.sh >/dev/null 2>&1 &
+Checkpoint: "./Spice Lane Website Progress Save/scripts/checkpoint.sh" "msg"
+Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh" >/dev/null 2>&1 &
 
 ## External actions (not in code)
+- User chat (session #5): website code must live OUTSIDE this folder in a professional structure; this folder = agent progress backup only. Push fast after small tasks.
 - User chat (session #3): save everything only in this folder; push fast after small tasks; repo token given in chat (never stored in repo).
 
 ## Session History
@@ -54,3 +61,4 @@ Restart auto-push: nohup ./scripts/autopush.sh >/dev/null 2>&1 &
 - Session #2 (2026-11-15): Video analysed; VIDEO_OBSERVATIONS.md + key frames.
 - Session #3 (2026-11-15): resumed at "scaffold app"; added scripts, logs, plan.
 - Session #4 (2026-11-15): resumed at 1.2 (npm install + first build).
+- Session #5 (2026-11-15): resumed at 3.3/4.1; moved app code to repo root (user request).

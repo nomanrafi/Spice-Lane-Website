@@ -1,10 +1,10 @@
-// npm run optimize-models — reads ../assets/*.glb (repo root assets) and writes web-sized copies to public/models/.
+// npm run optimize-models — reads assets/*.glb (repo root) and writes web-sized copies to public/models/.
 // Source GLBs are ~1M verts + 4K textures (16–20 MB). We weld+simplify the mesh, resize textures to 1024 webp,
 // and meshopt-compress. Output file names are kebab-case lowercase (e.g. A5-Wagyu-Ribeye.glb → a5-wagyu-ribeye.glb).
 import { execFileSync } from 'node:child_process';
 import { readdirSync, mkdirSync, existsSync, statSync } from 'node:fs';
 import path from 'node:path';
-const SRC = path.resolve('..', 'assets');
+const SRC = path.resolve('assets');
 const OUT = path.resolve('public', 'models');
 const RATIO = process.env.SIMPLIFY_RATIO || '0.04';
 const TEX = process.env.TEXTURE_SIZE || '1024';

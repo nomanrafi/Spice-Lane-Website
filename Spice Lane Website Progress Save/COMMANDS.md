@@ -19,3 +19,7 @@ Result: SUCCESS — placeholder page, log scripts/logs/build-1.log
 
 ### 6. npm run optimize-models  (app dir; FORCE=1 to overwrite)
 Result: SUCCESS — 8 GLBs 16–20 MB → 0.63–0.89 MB each in public/models/ (log scripts/logs/optimize.log)
+
+### 7. (session #5) Configured git credentials (token hidden); git clone
+### 8. git mv app files (src, public, package*.json, configs, .eslintrc, .gitignore, scripts/optimize-models.mjs) → repo root
+Result: SUCCESS — optimize script SRC now path.resolve('assets')
