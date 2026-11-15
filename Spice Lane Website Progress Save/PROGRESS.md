@@ -3,8 +3,8 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 10 → final screenshots + README
-- Last action: S16: build PASS (/ 228 kB first load); Step 9 done
-- NEXT ACTION: 10.1 screenshots (npm start + scripts/shot.mjs) → output/preview; 10.2 README; 10.3 acceptance check
+- Last action: S16: screenshots output/preview/hero-s16.png + menu-s16.png taken (1 console 404 to investigate)
+- NEXT ACTION: find the 404 resource (likely favicon), fix; 10.2 README; 10.3 acceptance check
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 23:05 (Asia/Dhaka) by Session #16
 

@@ -46,3 +46,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S15: npm run generate-posters → 8 PNGs in public/posters (OK)
 - S16: Configured git credentials (token hidden); git clone; npm install (bg); autopush started
 - S16: npm install OK; npm run build PASS for 9.4b posters (logs/build-s16.log)
+- S16: npx next start -p 3000 (bg); node scripts/shot.mjs → hero-s16.png, menu-s16.png (1 console 404)
