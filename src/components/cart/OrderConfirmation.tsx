@@ -6,7 +6,7 @@ import { lineInfo, type CartLine } from '@/store/useStore';
 
 type Order = { id: string; name: string; mode: 'pickup' | 'delivery'; time: string; address?: string; total: number; lines: CartLine[]; at: string };
 
-/** Order confirmation: reads the order saved by CheckoutForm in sessionStorage. TODO(agent): fetch from a real API. */
+/** Order confirmation: reads the order saved by CheckoutForm in sessionStorage. Orders are not persisted server-side yet (see TODO in src/app/api/order/route.ts). */
 export default function OrderConfirmation({ id }: { id: string }) {
   const [order, setOrder] = useState<Order | null | undefined>(undefined);
   useEffect(() => {

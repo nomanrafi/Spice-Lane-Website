@@ -20,12 +20,13 @@ type Form = z.infer<typeof schema>;
 
 const field = 'w-full rounded-2xl border border-line bg-white/5 px-4 py-3 text-sm outline-none transition focus:border-white/40';
 
-/** Checkout: validated form (react-hook-form + zod) + order summary. Submits locally → /order/[id]. TODO(agent): real payment/API. */
+/** Checkout: validated form (react-hook-form + zod) + order summary. Submits to POST /api/order (server re-prices + mock payment) → saves the result in sessionStorage → /order/[id]. */
 export default function CheckoutForm() {
   const router = useRouter();
   const cart = useStore((s) => s.cart);
   const clear = useStore((s) => s.clear);
   const [mounted, setMounted] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
   useEffect(() => setMounted(true), []);
   const { register, handleSubmit, watch, formState: { errors, isSubmitting } } = useForm<Form>({ resolver: zodResolver(schema), defaultValues: { mode: 'pickup', time: 'asap' } });
   const mode = watch('mode');
@@ -33,12 +34,18 @@ export default function CheckoutForm() {
   const total = subtotal * 1.1 + (mode === 'delivery' ? 4 : 0);
 
   const onSubmit = async (data: Form) => {
-    const id = 'SL' + Date.now().toString(36).toUpperCase().slice(-6);
-    const order = { id, ...data, lines: cart, total, at: new Date().toISOString() };
-    sessionStorage.setItem('spice-lane-order-' + id, JSON.stringify(order));
-    await new Promise((r) => setTimeout(r, 600));
-    clear();
-    router.push('/order/' + id);
+    setServerError(null);
+    try {
+      const res = await fetch('/api/order', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ customer: data, lines: cart }) });
+      const json = await res.json();
+      if (!res.ok || !json.ok) { setServerError(json.error ?? 'Could not place the order. Please try again.'); return; }
+      const order = { id: json.id, ...data, lines: cart, total: json.total, payment: json.payment, at: json.at };
+      sessionStorage.setItem('spice-lane-order-' + json.id, JSON.stringify(order));
+      clear();
+      router.push('/order/' + json.id);
+    } catch {
+      setServerError('Network error. Check your connection and try again.');
+    }
   };
 
   if (!mounted) return null;
@@ -74,6 +81,7 @@ export default function CheckoutForm() {
           </select><Err k="time" />
         </div>
         <div><label className="mb-1 block text-xs text-muted" htmlFor="notes">Notes (optional)</label><textarea id="notes" rows={3} className={field} {...register('notes')} /></div>
+        {serverError && <p role="alert" className="rounded-2xl border border-[#ff6b7a]/40 bg-[#ff6b7a]/10 px-4 py-3 text-sm text-[#ff6b7a]">{serverError}</p>}
         <button type="submit" disabled={isSubmitting} className="pill-primary w-full justify-center !py-3.5 disabled:opacity-60">{isSubmitting ? 'Placing order…' : `Place order · ${formatPrice(total)}`}</button>
       </form>
       <aside className="h-fit rounded-card border border-line bg-card p-6 md:p-8">

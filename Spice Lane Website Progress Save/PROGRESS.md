@@ -3,7 +3,7 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS (optional follow-ups)
 - Current: Step 11 follow-ups (S19)
-- Last action: S19: 11.1 bundle cart line DONE, build PASS (logs/build-s19.log)
+- Last action: S19: 11.2 src/app/api/order/route.ts + CheckoutForm fetch coded — build pending
 - NEXT ACTION: 11.2 POST /api/order (validate + price server-side from menu.ts, mock payment) and call it from CheckoutForm
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 23:16 (Asia/Dhaka) by Session #18
