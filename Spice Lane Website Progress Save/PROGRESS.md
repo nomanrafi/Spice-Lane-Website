@@ -3,8 +3,8 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 6 → drag plate to cart
-- Last action: S9 npm run build PASS with 7.1 CartDrawer, 7.2 /checkout, 7.3 /order/[id] (log scripts/logs/build-s9.log).
-- NEXT ACTION: Step 6 drag-to-cart (ghost + magnet to header cart pill + burst) in src/components/hero/HeroCanvas.tsx; then Step 8 sections.
+- Last action: S9 6.1 store ghost/burst + src/lib/dropzone.ts + src/components/hero/DragGhost.tsx written (not wired yet).
+- NEXT ACTION: 6.2 wire HeroCanvas useDrag: upward drag starting on hovered plate → setGhost; release near cart pill → add + setBurst; mount <DragGhost/> in page.tsx; build.
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 22:15 (Asia/Dhaka) by Session #9
 

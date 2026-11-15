@@ -12,6 +12,10 @@ type State = {
   cart: CartLine[];
   cartOpen: boolean;
   addedTick: number;          // increments on every add → drives the "Added" chip + bounce
+  ghost: { id: string; x: number; y: number } | null; // plate being dragged to the cart (Step 6)
+  burst: { x: number; y: number; color: string; t: number } | null; // drop burst at cart pill
+  setGhost: (g: State['ghost']) => void;
+  setBurst: (b: State['burst']) => void;
   setFront: (id: string) => void;
   setHover: (id: string | null) => void;
   open: (id: string | null) => void;
@@ -27,7 +31,9 @@ export const useStore = create<State>()(
   persist(
     (set) => ({
       frontId: MENU[0].id, hoverId: null, selectedId: null, paused: false,
-      cart: [], cartOpen: false, addedTick: 0,
+      cart: [], cartOpen: false, addedTick: 0, ghost: null, burst: null,
+      setGhost: (ghost) => set({ ghost }),
+      setBurst: (burst) => set({ burst }),
       setFront: (id) => set((s) => (s.frontId === id ? s : { frontId: id })),
       setHover: (id) => set({ hoverId: id }),
       open: (id) => set({ selectedId: id }),
