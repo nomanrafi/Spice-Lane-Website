@@ -56,3 +56,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S20: npm install → OK; npm run build → PASS (scripts/logs/build-s20.log, /api/order route present)
 - S21: Configured git credentials (token hidden); git clone → OK; autopush started
 - S21: npm install OK; tsc --noEmit PASS; next lint PASS (0 warnings); npm run build PASS (logs/tsc-s21.log, lint-s21.log, build-s21.log)
+- S21: next start + curl smoke: all pages 200, /nope 404, 8 models+8 posters 200, /api/order valid→ok / unknown→400, /api/reserve validates; shot.mjs → hero-s21.png, checkout-s21.png (0 console errors). Found: hero canvas clips table at left/right edges; pause icon glyph renders as boxes
