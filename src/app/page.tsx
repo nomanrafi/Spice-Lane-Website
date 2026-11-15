@@ -1,12 +1,13 @@
 import Header from '@/components/Header';
+import Hero from '@/components/hero/Hero';
 
 export default function Home() {
-  // TODO(agent): add Hero (Step 4) and sections (Step 8)
+  // TODO(agent): Product modal (Step 5), drag-to-cart (Step 6), cart drawer (Step 7), sections (Step 8)
   return (
     <>
       <Header />
-      <main id="top" className="flex min-h-screen items-center justify-center">
-        <h1 className="text-4xl font-medium tracking-tight">Spice Lane</h1>
+      <main id="top">
+        <Hero />
       </main>
     </>
   );
