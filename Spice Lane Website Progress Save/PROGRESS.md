@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 8 → sections below hero
-- Last action: S12: wrote PlatterBuilder.tsx + PlatterCanvas.tsx (8.5), mounted in page.tsx (building).
-- NEXT ACTION: Verify 8.5 build (logs/build-s12b.log); then 8.6 Reviews (src/components/sections/Reviews.tsx: stars count-up, marquee, gallery).
+- Last action: S13 started; verifying 8.5 build
+- NEXT ACTION: Verify 8.5 build (logs/build-s13.log); then 8.6 Reviews (src/components/sections/Reviews.tsx).
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 22:37 (Asia/Dhaka) by Session #12
+- Last updated: 2026-11-15 22:40 (Asia/Dhaka) by Session #13
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -69,3 +69,4 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - Session #10 (2026-11-15): resumed at Step 8 (session #9 stopped by usage policy after Step 6 build passed but before logging it).
 - Session #11 (2026-11-15): resumed at 8.3 (session #10 stopped by usage policy after 8.2 build passed, before logging).
 - Session #12 (2026-11-15): resumed at 8.3 build-verify / 8.4 Specials (session #11 stopped by usage policy while building 8.3 and writing Specials.tsx).
+- Session #13 (2026-11-15): resumed at 8.5 build-verify (session #12 stopped by usage policy after writing PlatterBuilder, before verifying build).
