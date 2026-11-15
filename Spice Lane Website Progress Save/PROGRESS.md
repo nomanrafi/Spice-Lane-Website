@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: DONE (incl. optional follow-ups 11.1 + 11.2)
 - Current: Step 12.4 build-verify (S22) ← IN PROGRESS
-- Last action: S22: 12.4 tsc+lint+build PASS (logs/*-s22.log)
-- NEXT ACTION: 12.4 re-screenshot hero (shot.mjs) → 12.5 README deploy notes
+- Last action: S22: hero-s22.png + hero-mobile-s22.png, 0 console errors; pause icon OK; mobile OK; desktop table LEFT edge still clipped at canvas boundary
+- NEXT ACTION: 12.4b widen hero canvas on desktop (Hero.tsx canvas wrapper) → rebuild → re-shot
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 23:37 (Asia/Dhaka) by Session #22
+- Last updated: 2026-11-15 23:38 (Asia/Dhaka) by Session #22
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
