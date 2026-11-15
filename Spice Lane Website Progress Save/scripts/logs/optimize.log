@@ -1,0 +1,232 @@
+optimizing A5-Wagyu-Ribeye.glb
+warn: Decoded EXT_meshopt_compression. Further compression will be lossy.
+❯ dedup
+✔ dedup                2ms
+❯ instance
+✔ instance             1ms
+❯ palette
+✔ palette              1ms
+❯ flatten
+✔ flatten              1ms
+❯ join
+✔ join                 278ms
+❯ weld
+✔ weld                 549ms
+❯ simplify
+✔ simplify             2,473ms
+❯ resample
+✔ resample             0ms
+❯ prune
+✔ prune                482ms
+❯ sparse
+✔ sparse               46ms
+❯ textureCompress
+✔ textureCompress      437ms
+❯ meshopt
+✔ meshopt              118ms
+
+info: A5-Wagyu-Ribeye.glb (18.38 MB) → a5-wagyu-ribeye.glb (703.78 KB)
+  -> /vercel/sandbox/data/project/Spice Lane Website Progress Save/public/models/a5-wagyu-ribeye.glb 0.70 MB
+optimizing Dark-Chocolate-Fondant.glb
+warn: Decoded EXT_meshopt_compression. Further compression will be lossy.
+❯ dedup
+✔ dedup                2ms
+❯ instance
+✔ instance             1ms
+❯ palette
+✔ palette              0ms
+❯ flatten
+✔ flatten              1ms
+❯ join
+✔ join                 287ms
+❯ weld
+✔ weld                 560ms
+❯ simplify
+✔ simplify             2,648ms
+❯ resample
+✔ resample             0ms
+❯ prune
+✔ prune                404ms
+❯ sparse
+✔ sparse               24ms
+❯ textureCompress
+✔ textureCompress      477ms
+❯ meshopt
+✔ meshopt              128ms
+
+info: Dark-Chocolate-Fondant.glb (16.65 MB) → dark-chocolate-fondant.glb (630.15 KB)
+  -> /vercel/sandbox/data/project/Spice Lane Website Progress Save/public/models/dark-chocolate-fondant.glb 0.63 MB
+optimizing Grilled-Ribeye-Steak.glb
+warn: Decoded EXT_meshopt_compression. Further compression will be lossy.
+❯ dedup
+✔ dedup                2ms
+❯ instance
+✔ instance             1ms
+❯ palette
+✔ palette              0ms
+❯ flatten
+✔ flatten              1ms
+❯ join
+✔ join                 465ms
+❯ weld
+✔ weld                 984ms
+❯ simplify
+✔ simplify             3,084ms
+❯ resample
+✔ resample             0ms
+❯ prune
+✔ prune                484ms
+❯ sparse
+✔ sparse               18ms
+❯ textureCompress
+✔ textureCompress      557ms
+❯ meshopt
+✔ meshopt              146ms
+
+info: Grilled-Ribeye-Steak.glb (17.53 MB) → grilled-ribeye-steak.glb (719.82 KB)
+  -> /vercel/sandbox/data/project/Spice Lane Website Progress Save/public/models/grilled-ribeye-steak.glb 0.72 MB
+optimizing Herb-Crusted-Rack-of-Lamb.glb
+warn: Decoded EXT_meshopt_compression. Further compression will be lossy.
+❯ dedup
+✔ dedup                1ms
+❯ instance
+✔ instance             1ms
+❯ palette
+✔ palette              0ms
+❯ flatten
+✔ flatten              1ms
+❯ join
+✔ join                 274ms
+❯ weld
+✔ weld                 591ms
+❯ simplify
+✔ simplify             2,012ms
+❯ resample
+✔ resample             0ms
+❯ prune
+✔ prune                375ms
+❯ sparse
+✔ sparse               23ms
+❯ textureCompress
+✔ textureCompress      333ms
+❯ meshopt
+✔ meshopt              91ms
+
+info: Herb-Crusted-Rack-of-Lamb.glb (18.92 MB) → herb-crusted-rack-of-lamb.glb (705.53 KB)
+  -> /vercel/sandbox/data/project/Spice Lane Website Progress Save/public/models/herb-crusted-rack-of-lamb.glb 0.71 MB
+optimizing Lobster-Thermidor.glb
+warn: Decoded EXT_meshopt_compression. Further compression will be lossy.
+❯ dedup
+✔ dedup                1ms
+❯ instance
+✔ instance             0ms
+❯ palette
+✔ palette              0ms
+❯ flatten
+✔ flatten              1ms
+❯ join
+✔ join                 268ms
+❯ weld
+✔ weld                 558ms
+❯ simplify
+✔ simplify             1,848ms
+❯ resample
+✔ resample             0ms
+❯ prune
+✔ prune                278ms
+❯ sparse
+✔ sparse               26ms
+❯ textureCompress
+✔ textureCompress      322ms
+❯ meshopt
+✔ meshopt              91ms
+
+info: Lobster-Thermidor.glb (16.12 MB) → lobster-thermidor.glb (705.71 KB)
+  -> /vercel/sandbox/data/project/Spice Lane Website Progress Save/public/models/lobster-thermidor.glb 0.71 MB
+optimizing Salmon-Sushi-Roll.glb
+warn: Decoded EXT_meshopt_compression. Further compression will be lossy.
+❯ dedup
+✔ dedup                2ms
+❯ instance
+✔ instance             1ms
+❯ palette
+✔ palette              1ms
+❯ flatten
+✔ flatten              1ms
+❯ join
+✔ join                 326ms
+❯ weld
+✔ weld                 511ms
+❯ simplify
+✔ simplify             1,987ms
+❯ resample
+✔ resample             0ms
+❯ prune
+✔ prune                289ms
+❯ sparse
+✔ sparse               21ms
+❯ textureCompress
+✔ textureCompress      323ms
+❯ meshopt
+✔ meshopt              92ms
+
+info: Salmon-Sushi-Roll.glb (17.79 MB) → salmon-sushi-roll.glb (760.57 KB)
+  -> /vercel/sandbox/data/project/Spice Lane Website Progress Save/public/models/salmon-sushi-roll.glb 0.76 MB
+optimizing Sesame-Crusted-Tuna-Tataki.glb
+warn: Decoded EXT_meshopt_compression. Further compression will be lossy.
+❯ dedup
+✔ dedup                1ms
+❯ instance
+✔ instance             1ms
+❯ palette
+✔ palette              0ms
+❯ flatten
+✔ flatten              1ms
+❯ join
+✔ join                 257ms
+❯ weld
+✔ weld                 520ms
+❯ simplify
+✔ simplify             2,000ms
+❯ resample
+✔ resample             0ms
+❯ prune
+✔ prune                287ms
+❯ sparse
+✔ sparse               15ms
+❯ textureCompress
+✔ textureCompress      317ms
+❯ meshopt
+✔ meshopt              91ms
+
+info: Sesame-Crusted-Tuna-Tataki.glb (18.6 MB) → sesame-crusted-tuna-tataki.glb (730.74 KB)
+  -> /vercel/sandbox/data/project/Spice Lane Website Progress Save/public/models/sesame-crusted-tuna-tataki.glb 0.73 MB
+optimizing Spaghetti-with-Tomato-Sauce.glb
+warn: Decoded EXT_meshopt_compression. Further compression will be lossy.
+❯ dedup
+✔ dedup                1ms
+❯ instance
+✔ instance             1ms
+❯ palette
+✔ palette              0ms
+❯ flatten
+✔ flatten              1ms
+❯ join
+✔ join                 260ms
+❯ weld
+✔ weld                 524ms
+❯ simplify
+✔ simplify             1,964ms
+❯ resample
+✔ resample             0ms
+❯ prune
+✔ prune                311ms
+❯ sparse
+✔ sparse               17ms
+❯ textureCompress
+✔ textureCompress      352ms
+❯ meshopt
+✔ meshopt              94ms
+
+info: Spaghetti-with-Tomato-Sauce.glb (20.87 MB) → spaghetti-with-tomato-sauce.glb (885.01 KB)
+  -> /vercel/sandbox/data/project/Spice Lane Website Progress Save/public/models/spaghetti-with-tomato-sauce.glb 0.89 MB

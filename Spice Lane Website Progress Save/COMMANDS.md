@@ -10,3 +10,12 @@ Result: SUCCESS — 7 commits, assets/ has 8 GLBs (16–20 MB each)
 
 ### 3. Create scripts/checkpoint.sh + scripts/autopush.sh (copied from AI_AGENT_INSTRUCTIONS.md §8)
 Result: SUCCESS — paths adapted: autopush cd's into the progress folder; checkpoint's "recent files" find prunes */node_modules, */.next, */scripts/logs
+
+### 4. (session #4) npm install  (app dir)
+Result: SUCCESS — 585 packages, log scripts/logs/npm-install.log
+
+### 5. npm run build  (app dir)
+Result: SUCCESS — placeholder page, log scripts/logs/build-1.log
+
+### 6. npm run optimize-models  (app dir; FORCE=1 to overwrite)
+Result: SUCCESS — 8 GLBs 16–20 MB → 0.63–0.89 MB each in public/models/ (log scripts/logs/optimize.log)

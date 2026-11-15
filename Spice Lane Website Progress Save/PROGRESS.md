@@ -2,10 +2,10 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
-- Current: Step 1 → 1.2 npm install + first build
-- Last action: 1.1 scaffold files written (package.json, tsconfig, tailwind, src/app)
-- NEXT ACTION: 1.2 run `npm install` in this folder, then `npm run build`; fix errors
-- Project runs?: NO app code yet
+- Current: Step 3 → 3.1 zustand store
+- Last action: 1.2 build OK; 2.1–2.3 done (8 GLBs optimized to ~0.7 MB in public/models/, src/data/menu.ts written)
+- NEXT ACTION: 3.1 create src/store/useStore.ts (selected, frontItem, cart persisted, belt paused); 3.2 Header
+- Project runs?: YES — `npm run build` passes (placeholder page)
 - Last updated: 2026-11-15 21:40 (Asia/Dhaka) by Session #4 (resumed)
 
 ## Task
@@ -21,13 +21,13 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 
 ## Plan  (app root = this folder; paths below are relative to it)
 - [x] Step 0: setup (scripts, logs, plan)
-- [ ] Step 1: Scaffold
+- [x] Step 1: Scaffold
   - [x] 1.1 package.json, tsconfig, next/tailwind/postcss config, src/app layout+page
-  - [ ] 1.2 npm install + first build OK
-- [ ] Step 2: Models
-  - [ ] 2.1 inspect GLBs (size, meshes, textures)
-  - [ ] 2.2 scripts/optimize-models.mjs (`npm run optimize-models`: ../assets/*.glb → public/models/, meshopt + webp/resize)
-  - [ ] 2.3 src/data/menu.ts (8 items, tiers, accent colors, nutrition…)
+  - [x] 1.2 npm install + first build OK
+- [x] Step 2: Models
+  - [x] 2.1 inspect GLBs (size, meshes, textures)
+  - [x] 2.2 scripts/optimize-models.mjs (`npm run optimize-models`: ../assets/*.glb → public/models/, meshopt + webp/resize)
+  - [x] 2.3 src/data/menu.ts (8 items, tiers, accent colors, nutrition…)
 - [ ] Step 3: Store + layout shell (zustand store w/ persisted cart, Header w/ cart pill + Added chip, grain bg)
 - [ ] Step 4: Hero 3D belt (KaitenTable, Plate, FoodModel, AmbientGlow, controls, hover/flick/seek, front item, chip)
 - [ ] Step 5: Product modal (3D orbit viewer, counter, qty, add → ✓ Added)
@@ -38,7 +38,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [ ] Step 10: Final build, screenshots in output/preview, README
 
 ## Problems / Notes
-- GLBs in ../assets are 16–20 MB each → must be optimized before web use (Step 2).
+- GLBs in ../assets are 16–20 MB each → optimized (Step 2 done). public/models/ IS committed (~5.7 MB total) so no re-run needed.
 
 ## Environment setup (run on a fresh computer)
 cd "Spice Lane Website Progress Save" && npm install
