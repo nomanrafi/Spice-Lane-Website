@@ -2,9 +2,9 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
-- Current: Step 9 → perf/a11y/SEO
-- Last action: S16: audited Steps 3/4 → done in code; running build for 9.4b
-- NEXT ACTION: verify build (logs/build-s15.log), then 9.4 done → Step 10
+- Current: Step 10 → final screenshots + README
+- Last action: S16: build PASS (/ 228 kB first load); Step 9 done
+- NEXT ACTION: 10.1 screenshots (npm start + scripts/shot.mjs) → output/preview; 10.2 README; 10.3 acceptance check
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 23:05 (Asia/Dhaka) by Session #16
 
@@ -39,7 +39,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [x] Step 6: Drag plate → cart (ghost, magnet, burst) — 6.1 ghost/store, 6.2 wired in HeroCanvas, build OK (s9)
 - [x] Step 7: Cart drawer + checkout + confirmation pages
 - [x] Step 8 (all 8.1–8.10 ✓, build PASS s14): Sections: Spotlight (pinned), Menu grid, How it works, Specials, Platter builder, Reviews, Reservations(+/api/reserve), Locations, FAQ, Newsletter+Footer
-- [ ] Step 9 (9.1 robots+sitemap ✓ · 9.2 JSON-LD+metadata ✓ · 9.3 reduced-motion ✓ · 9.4 posters/alt): Perf/a11y/SEO (posters, reduced motion, JSON-LD, sitemap, robots)
+- [x] Step 9: Perf/a11y/SEO — 9.1 robots+sitemap · 9.2 JSON-LD+metadata · 9.3 reduced-motion · 9.4 posters (public/posters, MenuGrid cards + ModelViewer fallback) — build PASS S16 (logs/build-s16.log)
 - [ ] Step 10: Final build, screenshots in output/preview, README
 
 ## Problems / Notes

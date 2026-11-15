@@ -45,3 +45,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S15: Configured git credentials (token hidden); git clone; npm install (bg); autopush started
 - S15: npm run generate-posters → 8 PNGs in public/posters (OK)
 - S16: Configured git credentials (token hidden); git clone; npm install (bg); autopush started
+- S16: npm install OK; npm run build PASS for 9.4b posters (logs/build-s16.log)
