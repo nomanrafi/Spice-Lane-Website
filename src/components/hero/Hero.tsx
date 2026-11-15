@@ -81,7 +81,7 @@ export default function Hero() {
         </div>
         <div className="mt-4 flex items-center justify-center gap-3">
           <RoundBtn label="Previous plate" onClick={() => seekSlot(-1)}>‹</RoundBtn>
-          <RoundBtn label={paused ? 'Play belt' : 'Pause belt'} onClick={togglePause}>{paused ? '▶' : '❚❚'}</RoundBtn>
+          <RoundBtn label={paused ? 'Play belt' : 'Pause belt'} onClick={togglePause}>{paused ? (<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" fill="currentColor"><path d="M4 2.5v9a.5.5 0 0 0 .77.42l7-4.5a.5.5 0 0 0 0-.84l-7-4.5A.5.5 0 0 0 4 2.5Z"/></svg>) : (<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" fill="currentColor"><rect x="3" y="2" width="3" height="10" rx="1"/><rect x="8" y="2" width="3" height="10" rx="1"/></svg>)}</RoundBtn>
           <RoundBtn label="Next plate" onClick={() => seekSlot(1)}>›</RoundBtn>
         </div>
         {/* accessible plate list (keyboard/screen-reader alternative to the 3D belt) */}
