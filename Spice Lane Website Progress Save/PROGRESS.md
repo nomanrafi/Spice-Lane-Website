@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 9 → perf/a11y/SEO
-- Last action: S14: wrote components/Providers.tsx (Lenis+ScrollTrigger sync, MotionConfig reducedMotion=user, belt autoSpeed=0 when reduced), wired in layout (9.3, unbuilt)
-- NEXT ACTION: Build-verify 9.3 (logs/build-s14c.log); then 9.4 model posters/alt text
+- Last action: S14: 9.3 build PASS (logs/build-s14c.log)
+- NEXT ACTION: 9.4 posters: generate public/posters/*.png from GLBs + use as fallback/alt
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 22:48 (Asia/Dhaka) by Session #14
+- Last updated: 2026-11-15 22:49 (Asia/Dhaka) by Session #14
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -39,7 +39,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [x] Step 6: Drag plate → cart (ghost, magnet, burst) — 6.1 ghost/store, 6.2 wired in HeroCanvas, build OK (s9)
 - [x] Step 7: Cart drawer + checkout + confirmation pages
 - [x] Step 8 (all 8.1–8.10 ✓, build PASS s14): Sections: Spotlight (pinned), Menu grid, How it works, Specials, Platter builder, Reviews, Reservations(+/api/reserve), Locations, FAQ, Newsletter+Footer
-- [ ] Step 9 (9.1 robots+sitemap ✓ · 9.2 JSON-LD+metadata ✓ · 9.3 reduced-motion · 9.4 posters/alt): Perf/a11y/SEO (posters, reduced motion, JSON-LD, sitemap, robots)
+- [ ] Step 9 (9.1 robots+sitemap ✓ · 9.2 JSON-LD+metadata ✓ · 9.3 reduced-motion ✓ · 9.4 posters/alt): Perf/a11y/SEO (posters, reduced motion, JSON-LD, sitemap, robots)
 - [ ] Step 10: Final build, screenshots in output/preview, README
 
 ## Problems / Notes
