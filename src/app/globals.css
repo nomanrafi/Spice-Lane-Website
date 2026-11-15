@@ -24,3 +24,4 @@ body { font-family: var(--font-sans), system-ui, sans-serif; -webkit-font-smooth
 @property --glow { syntax: '<color>'; inherits: true; initial-value: #444; }
 @keyframes glow-breathe { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.03); } }
 .glow-breathe { animation: glow-breathe 6s ease-in-out infinite; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
