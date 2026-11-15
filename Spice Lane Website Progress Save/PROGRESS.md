@@ -3,7 +3,7 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 9 → perf/a11y/SEO
-- Last action: S15: posters wired in MenuGrid cards + ModelViewer fallback (building)
+- Last action: S16: audited Steps 3/4 → done in code; running build for 9.4b
 - NEXT ACTION: verify build (logs/build-s15.log), then 9.4 done → Step 10
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 23:05 (Asia/Dhaka) by Session #16
@@ -33,8 +33,8 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
   - [x] 2.1 inspect GLBs (size, meshes, textures)
   - [x] 2.2 scripts/optimize-models.mjs (`npm run optimize-models`: ../assets/*.glb → public/models/, meshopt + webp/resize)
   - [x] 2.3 src/data/menu.ts (8 items, tiers, accent colors, nutrition…)
-- [ ] Step 3 (3.1 store ✓, 3.2 Header ✓ per commit 5019cc9; 3.3 shell pending): Store + layout shell (zustand store w/ persisted cart, Header w/ cart pill + Added chip, grain bg)
-- [ ] Step 4 (4.1 belt.ts ✓ · 4.2 table/plate/model ✓ (untested) · 4.3 Hero section+controls · 4.4 hover/flick/keyboard): Hero 3D belt (KaitenTable, Plate, FoodModel, AmbientGlow, controls, hover/flick/seek, front item, chip)
+- [x] Step 3: Store + layout shell — audited S16: useStore.ts, Header.tsx, .grain in globals.css + layout.tsx all present
+- [x] Step 4: Hero 3D belt — audited S16: Hero.tsx (arrow keys, front item), HeroCanvas.tsx (useDrag flick+inertia), KaitenTable.tsx (hover stop), Plate/FoodModel/AmbientGlow present
 - [x] Step 5: Product modal (3D orbit viewer, counter, qty, add → ✓ Added) — wired in src/app/page.tsx, build passes (session #8)
 - [x] Step 6: Drag plate → cart (ghost, magnet, burst) — 6.1 ghost/store, 6.2 wired in HeroCanvas, build OK (s9)
 - [x] Step 7: Cart drawer + checkout + confirmation pages
