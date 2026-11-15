@@ -43,3 +43,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S14: npm run build PASS for 9.1+9.2 (logs/build-s14b.log)
 - S14: npm run build PASS for 9.3 (logs/build-s14c.log)
 - S15: Configured git credentials (token hidden); git clone; npm install (bg); autopush started
+- S15: npm run generate-posters → 8 PNGs in public/posters (OK)

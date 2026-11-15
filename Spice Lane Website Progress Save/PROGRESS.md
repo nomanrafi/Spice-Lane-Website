@@ -3,8 +3,8 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 9 → perf/a11y/SEO
-- Last action: S15: wrote scripts/generate-posters.mjs + npm script (untested)
-- NEXT ACTION: run npm run generate-posters, check public/posters/*.png
+- Last action: S15: public/posters/*.png generated (8)
+- NEXT ACTION: 9.4b: use posters as <img> fallback in MenuGrid/CanvasBoundary + alt text
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 22:56 (Asia/Dhaka) by Session #15
 
