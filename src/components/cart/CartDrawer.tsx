@@ -2,8 +2,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { TIERS, formatPrice, getItem } from '@/data/menu';
-import { useStore, cartCount, cartTotal } from '@/store/useStore';
+import { formatPrice } from '@/data/menu';
+import { useStore, cartCount, cartTotal, lineInfo } from '@/store/useStore';
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -50,14 +50,15 @@ export default function CartDrawer() {
                 <ul className="flex-1 space-y-3 overflow-y-auto p-6">
                   <AnimatePresence initial={false}>
                     {cart.map((l) => {
-                      const it = getItem(l.id);
+                      const it = lineInfo(l);
                       if (!it) return null;
                       return (
                         <motion.li key={l.id} layout initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, x: 40 }} transition={{ duration: 0.3, ease }}
                           className="flex items-center gap-4 rounded-2xl border border-line p-4">
-                          <span className="h-10 w-10 shrink-0 rounded-full border-4" style={{ borderColor: TIERS[it.tier].color, background: it.accentColor + '55' }} aria-hidden />
+                          <span className="h-10 w-10 shrink-0 rounded-full border-4" style={{ borderColor: it.ring, background: it.accent + '55' }} aria-hidden />
                           <div className="min-w-0 flex-1">
                             <p className="truncate text-sm font-medium">{it.name}</p>
+                            {it.detail && <p className="truncate text-xs text-muted">{it.detail}</p>}
                             <p className="font-mono text-xs text-muted">{formatPrice(it.price)} · {formatPrice(it.price * l.qty)}</p>
                           </div>
                           <div className="flex items-center gap-1 rounded-full border border-line px-1">

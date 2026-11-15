@@ -1,9 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { formatPrice, getItem } from '@/data/menu';
+import { formatPrice } from '@/data/menu';
+import { lineInfo, type CartLine } from '@/store/useStore';
 
-type Order = { id: string; name: string; mode: 'pickup' | 'delivery'; time: string; address?: string; total: number; lines: { id: string; qty: number }[]; at: string };
+type Order = { id: string; name: string; mode: 'pickup' | 'delivery'; time: string; address?: string; total: number; lines: CartLine[]; at: string };
 
 /** Order confirmation: reads the order saved by CheckoutForm in sessionStorage. TODO(agent): fetch from a real API. */
 export default function OrderConfirmation({ id }: { id: string }) {
@@ -24,7 +25,7 @@ export default function OrderConfirmation({ id }: { id: string }) {
             Thanks, {order.name}. {order.mode === 'pickup' ? 'Pick up' : 'Delivery'} {order.time === 'asap' ? 'in about 25 minutes' : `at ${order.time}`}{order.mode === 'delivery' && order.address ? ` to ${order.address}` : ''}.
           </p>
           <ul className="mx-auto mt-8 max-w-sm space-y-2 text-left text-sm">
-            {order.lines.map((l) => { const it = getItem(l.id); return it ? <li key={l.id} className="flex justify-between"><span className="text-white/80">{l.qty} × {it.name}</span><span className="font-mono">{formatPrice(it.price * l.qty)}</span></li> : null; })}
+            {order.lines.map((l) => { const it = lineInfo(l); return it ? <li key={l.id} className="flex justify-between"><span className="text-white/80">{l.qty} × {it.name}{it.detail && <span className="block text-xs text-muted">{it.detail}</span>}</span><span className="font-mono">{formatPrice(it.price * l.qty)}</span></li> : null; })}
             <li className="flex justify-between border-t border-line pt-3 text-base"><span>Total</span><span className="font-mono">{formatPrice(order.total)}</span></li>
           </ul>
         </>

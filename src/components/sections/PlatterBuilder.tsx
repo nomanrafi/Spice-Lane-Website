@@ -10,11 +10,12 @@ const MAX = 6;
 const BUNDLE_OFF = 0.1; // 10% off a full platter (6 dishes)
 
 /** 8.5 Build your own platter: drag (or click) dishes onto a 3D wooden platter; live total; add all to cart.
- *  TODO(agent): cart has no real "bundle" line yet — dishes are added individually. */
+ *  A full platter goes to the cart as ONE bundle line at the discounted price; a partial one adds dishes individually. */
 export default function PlatterBuilder() {
   const [ids, setIds] = useState<string[]>([]);
   const [over, setOver] = useState(false);
   const add = useStore((s) => s.add);
+  const addBundle = useStore((s) => s.addBundle);
   const put = (id: string) => setIds((v) => (v.length >= MAX ? v : [...v, id]));
   const sum = ids.reduce((a, id) => a + (getItem(id)?.price ?? 0), 0);
   const total = ids.length === MAX ? Math.round(sum * (1 - BUNDLE_OFF) * 100) / 100 : sum;
@@ -59,7 +60,7 @@ export default function PlatterBuilder() {
               {ids.length === MAX && <span className="ml-2 text-xs text-[#01b87b]">-{BUNDLE_OFF * 100}%</span>}</p>
             <div className="flex gap-2">
               <button type="button" onClick={() => setIds([])} disabled={!ids.length} className="rounded-full border border-line px-4 py-2 text-sm text-white disabled:opacity-40">Clear</button>
-              <button type="button" disabled={!ids.length} onClick={() => { ids.forEach((id) => add(id)); setIds([]); }}
+              <button type="button" disabled={!ids.length} onClick={() => { if (ids.length === MAX) addBundle('platter-' + [...ids].sort().join('-'), { name: 'Custom platter', items: ids, price: total }); else ids.forEach((id) => add(id)); setIds([]); }}
                 className="rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition hover:scale-105 disabled:opacity-40">Add platter</button>
             </div>
           </div>

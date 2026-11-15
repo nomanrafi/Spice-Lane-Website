@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { TIERS, formatPrice, getItem } from '@/data/menu';
 import { useStore } from '@/store/useStore';
 
-/** Combo sets. Discount applied to the sum of item prices. Adding a combo adds each item to the cart. TODO(agent): true bundle line in cart. */
+/** Combo sets. Discount applied to the sum of item prices. Adding a combo adds ONE bundle line (store.addBundle) at the discounted price. */
 const COMBOS = [
   { id: 'chef', name: "Chef's tasting", blurb: 'Salmon roll, sesame tuna tataki and the herb-crusted lamb.', items: ['salmon-roll', 'tuna-tataki', 'lamb'], off: 0.15 },
   { id: 'date', name: 'Date night', blurb: 'A5 wagyu, lobster thermidor, and a molten fondant to share.', items: ['wagyu', 'lobster', 'fondant'], off: 0.2, limited: true },
@@ -35,7 +35,7 @@ function Tower({ ids, show }: { ids: string[]; show: boolean }) {
 }
 
 function ComboCard({ c, timer }: { c: (typeof COMBOS)[number]; timer: string }) {
-  const add = useStore((s) => s.add);
+  const addBundle = useStore((s) => s.addBundle);
   const ref = useRef<HTMLElement>(null);
   const seen = useInView(ref, { once: true, margin: '-15% 0px' });
   const full = c.items.reduce((a, id) => a + (getItem(id)?.price ?? 0), 0);
@@ -53,7 +53,7 @@ function ComboCard({ c, timer }: { c: (typeof COMBOS)[number]; timer: string }) 
           </span>
           <span className="text-xl text-white">{formatPrice(price)}</span>
         </p>
-        <button type="button" onClick={() => c.items.forEach((id) => add(id))} className="rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition hover:scale-105">Add combo</button>
+        <button type="button" onClick={() => addBundle(c.id, { name: c.name, items: c.items, price })} className="rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition hover:scale-105">Add combo</button>
       </div>
     </article>
   );

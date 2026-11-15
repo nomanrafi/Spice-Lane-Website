@@ -4,8 +4,8 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { formatPrice, getItem } from '@/data/menu';
-import { useStore, cartTotal } from '@/store/useStore';
+import { formatPrice } from '@/data/menu';
+import { useStore, cartTotal, lineInfo } from '@/store/useStore';
 
 const schema = z.object({
   name: z.string().min(2, 'Please enter your name'),
@@ -79,7 +79,7 @@ export default function CheckoutForm() {
       <aside className="h-fit rounded-card border border-line bg-card p-6 md:p-8">
         <h2 className="text-lg font-medium">Summary</h2>
         <ul className="mt-4 space-y-3 text-sm">
-          {cart.map((l) => { const it = getItem(l.id); return it ? <li key={l.id} className="flex justify-between gap-4"><span className="text-white/80">{l.qty} × {it.name}</span><span className="font-mono">{formatPrice(it.price * l.qty)}</span></li> : null; })}
+          {cart.map((l) => { const it = lineInfo(l); return it ? <li key={l.id} className="flex justify-between gap-4"><span className="text-white/80">{l.qty} × {it.name}{it.detail && <span className="block text-xs text-muted">{it.detail}</span>}</span><span className="font-mono">{formatPrice(it.price * l.qty)}</span></li> : null; })}
         </ul>
         <div className="mt-5 space-y-2 border-t border-line pt-4 text-sm text-muted">
           <div className="flex justify-between"><span>Subtotal</span><span className="font-mono">{formatPrice(subtotal)}</span></div>

@@ -3,7 +3,7 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS (optional follow-ups)
 - Current: Step 11 follow-ups (S19)
-- Last action: S18: build PASS with IslandChip (logs/build-s18.log); task marked DONE
+- Last action: S19: 11.1 bundle cart line coded (useStore addBundle+lineInfo, CartDrawer/Checkout/Confirmation/Specials/PlatterBuilder) — build pending
 - NEXT ACTION: 11.1 cart bundle line (Specials/PlatterBuilder add ONE bundle item) → 11.2 /api/order mock payment endpoint
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 23:16 (Asia/Dhaka) by Session #18
