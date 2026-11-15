@@ -28,7 +28,7 @@ function Icon({ i }: { i: number }) {
 
 /** 8.3 How it works: horizontal scroll-pinned storyline (4 steps) + interactive tier-ring legend. */
 export default function HowItWorks() {
-  const sec = useRef<HTMLElement>(null);
+  const sec = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const [hot, setHot] = useState<Tier | null>(null);
 
@@ -38,7 +38,7 @@ export default function HowItWorks() {
     const ctx = gsap.context(() => {
       gsap.utils.toArray<SVGGeometryElement>('.hiw-draw').forEach((el) => {
         const len = el.getTotalLength?.() ?? 300;
-        gsap.fromTo(el, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 85%', containerAnimation: undefined } });
+        gsap.fromTo(el, { strokeDasharray: len, strokeDashoffset: len }, { strokeDashoffset: 0, duration: 1.2, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
       });
       if (reduce || window.innerWidth < 768 || !track.current) return;
       const dist = () => track.current!.scrollWidth - window.innerWidth;
@@ -49,7 +49,7 @@ export default function HowItWorks() {
 
   return (
     <section id="how" aria-labelledby="how-h" className="relative overflow-hidden py-24">
-      <div ref={sec as React.RefObject<HTMLDivElement> as never} className="flex min-h-screen flex-col justify-center">
+      <div ref={sec} className="flex min-h-screen flex-col justify-center">
         <div className="mx-auto w-full max-w-7xl px-6">
           <p className="font-mono text-xs uppercase tracking-widest text-muted">Kaiten, explained</p>
           <h2 id="how-h" className="mt-2 text-4xl font-semibold tracking-tight text-white md:text-6xl">How the belt works</h2>
