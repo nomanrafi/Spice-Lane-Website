@@ -3,8 +3,8 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 10 → final screenshots + README
-- Last action: S16: screenshots output/preview/hero-s16.png + menu-s16.png taken (1 console 404 to investigate)
-- NEXT ACTION: find the 404 resource (likely favicon), fix; 10.2 README; 10.3 acceptance check
+- Last action: S16: added src/app/icon.svg (fixed favicon 404); build PASS (logs/build-s16b.log)
+- NEXT ACTION: view hero-s16.png/menu-s16.png to sanity-check; 10.2 README polish; 10.3 acceptance check (prompt §14)
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 23:05 (Asia/Dhaka) by Session #16
 
@@ -15,7 +15,7 @@ website). Reference details (motion values, colors, layout): `reference/REFERENC
 small task; `Optional you can use/` (repo root) holds the reference site's code (optional help).
 
 ## Definition of Done
-- [ ] `npm run build` passes, no console errors
+- [x] `npm run build` passes, no console errors (S16: favicon 404 fixed)
 - [ ] Acceptance checklist (prompt §14) satisfied
 - [ ] README explains run/build + how to add a food
 
