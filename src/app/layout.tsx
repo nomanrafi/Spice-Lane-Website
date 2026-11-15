@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter_Tight, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import JsonLd from '@/components/JsonLd';
+import Providers from '@/components/Providers';
 import { SITE_URL } from '@/lib/site';
 
 const sans = Inter_Tight({ subsets: ['latin'], variable: '--font-sans', display: 'swap' });
@@ -28,7 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${sans.variable} ${mono.variable}`}>
       <body className="grain min-h-screen bg-bg">
         <JsonLd />
-        {children}
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

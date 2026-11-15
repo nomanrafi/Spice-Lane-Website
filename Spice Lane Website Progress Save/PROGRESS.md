@@ -3,8 +3,8 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 9 → perf/a11y/SEO
-- Last action: S14: 9.1+9.2 build PASS (logs/build-s14b.log)
-- NEXT ACTION: 9.3 reduced-motion audit: Lenis/GSAP/belt auto-rotate must respect prefers-reduced-motion
+- Last action: S14: wrote components/Providers.tsx (Lenis+ScrollTrigger sync, MotionConfig reducedMotion=user, belt autoSpeed=0 when reduced), wired in layout (9.3, unbuilt)
+- NEXT ACTION: Build-verify 9.3 (logs/build-s14c.log); then 9.4 model posters/alt text
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 22:48 (Asia/Dhaka) by Session #14
 
