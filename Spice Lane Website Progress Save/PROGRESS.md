@@ -2,7 +2,7 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: DONE (incl. optional follow-ups 11.1 + 11.2)
-- Current: none — all steps complete
+- Current: Step 12 — deploy-readiness audit (S21) ← IN PROGRESS
 - Last action: S20: 11.2 build PASS (logs/build-s20.log); /api/order runtime test passed in S19 (real dishes priced server-side, tampered bundle clamped, unknown dish rejected)
 - NEXT ACTION: nothing required. Optional idea: real payment provider (Stripe) + DB persistence — see TODO(agent) in src/app/api/order/route.ts
 - Project runs?: YES — npm run build passes from repo root (session 5)
@@ -42,6 +42,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [x] Step 9: Perf/a11y/SEO — 9.1 robots+sitemap · 9.2 JSON-LD+metadata · 9.3 reduced-motion · 9.4 posters (public/posters, MenuGrid cards + ModelViewer fallback) — build PASS S16 (logs/build-s16.log)
 - [x] Step 10: Final build, screenshots in output/preview, README — 10.1 screenshots ✓ · 10.2 README ✓ · 10.3 acceptance audit ✓ · 10.3a IslandChip (KaitenTable.tsx) build PASS S18 (logs/build-s18.log)
 
+- [ ] Step 12 (S21): deploy-readiness audit — 12.1 install+build · 12.2 lint+typecheck · 12.3 runtime smoke test (pages, APIs, models) · 12.4 fix issues · 12.5 deploy notes in README
 - [x] Step 11 (S19–S20, optional follow-ups): 11.1 bundle cart line ✓ build PASS · 11.2 /api/order mock payment ✓ build PASS S20
 
 ## How to use the result
@@ -84,4 +85,5 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - Session #16 (2026-11-15): resumed at 9.4b build-verify (session #15 stopped by usage policy while marking Step 9 done + auditing Steps 3/4 hero). User: push fast, small tasks.
 - Session #17 (2026-11-15): resumed at 10.1 screenshot check (session #16 stopped by usage policy while viewing h.jpg/m.jpg screenshots, favicon fix was pushed). User: push fast, small tasks.
 - Session #18 (2026-11-15): resumed at 10.3a build-verify (session #17 stopped by usage policy while marking done + final push). User: push fast, small tasks.
+- Session #21 (2026-11-15): resumed after DONE; user asked: anything left to build? check everything, deploy-ready? Push fast, small tasks.
 - Session #20 (2026-11-15): resumed at 11.2 build-verify (S19 stopped by usage policy during final log/push; its API runtime test had passed per user screenshot).
