@@ -2,9 +2,9 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: DONE (incl. optional follow-ups 11.1 + 11.2)
-- Current: Step 12.5 deploy notes + final verify (S23) ← IN PROGRESS
-- Last action: S23: viewed hero-s22c.png → whole table visible after camera pull-back (HeroCanvas.tsx pos [0,6.7,8.0]); 12.4 DONE
-- NEXT ACTION: 12.5 fresh lint+tsc+build (S23) then add Deploy section to README.md
+- Current: ALL DONE — Step 12 deploy audit complete (S23). Site is deploy-ready.
+- Last action: S23: lint+tsc+build PASS (logs/build-s23.log); prod smoke test: / /checkout /order/x robots sitemap icon = 200, models served, POST /api/order valid=200 invalid=400, /api/reserve invalid=400; all menu.ts models/posters exist; added .env.example (NEXT_PUBLIC_SITE_URL), package.json engines node>=18.17, README ## Deploy
+- NEXT ACTION: none required. User may deploy on Vercel (set NEXT_PUBLIC_SITE_URL). Optional: real payments + DB (TODO in src/app/api/order/route.ts)
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 23:50 (Asia/Dhaka) by Session #23
 
@@ -42,7 +42,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [x] Step 9: Perf/a11y/SEO — 9.1 robots+sitemap · 9.2 JSON-LD+metadata · 9.3 reduced-motion · 9.4 posters (public/posters, MenuGrid cards + ModelViewer fallback) — build PASS S16 (logs/build-s16.log)
 - [x] Step 10: Final build, screenshots in output/preview, README — 10.1 screenshots ✓ · 10.2 README ✓ · 10.3 acceptance audit ✓ · 10.3a IslandChip (KaitenTable.tsx) build PASS S18 (logs/build-s18.log)
 
-- [ ] Step 12 (S21): deploy-readiness audit — 12.1 install+build ✓ · 12.2 lint+typecheck ✓ · 12.3 runtime smoke test ✓ (found: canvas edge clip, pause glyph) · 12.4 fix issues ✓ (S22, verified S23) · 12.5 deploy notes in README
+- [x] Step 12 (S21–S23): deploy-readiness audit — 12.1 install+build ✓ · 12.2 lint+typecheck ✓ · 12.3 runtime smoke test ✓ (found: canvas edge clip, pause glyph) · 12.4 fix issues ✓ (S22, verified S23) · 12.5 deploy notes in README ✓ (S23)
 - [x] Step 11 (S19–S20, optional follow-ups): 11.1 bundle cart line ✓ build PASS · 11.2 /api/order mock payment ✓ build PASS S20
 
 ## How to use the result

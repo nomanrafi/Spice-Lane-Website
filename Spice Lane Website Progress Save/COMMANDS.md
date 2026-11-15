@@ -61,3 +61,6 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S22: Configured git credentials (token hidden); git clone → OK; autopush started
 - S22: npm install OK; tsc PASS; next lint PASS; npm run build PASS (logs/*-s22.log)
 - S22: 12.4b HeroCanvas.tsx camera [0,6.1,7.3]→[0,6.7,8.0] (table touched both canvas edges on desktop 1440px)
+- S23: Configured git credentials (token hidden); git clone; npm ci → OK
+- S23: npx next lint → 0 warnings; npx tsc --noEmit → 0; npm run build → PASS (scripts/logs/build-s23.log)
+- S23: PORT=3123 npx next start + curl smoke test → all pages 200, POST /api/order 200/400, /api/reserve 400 on invalid
