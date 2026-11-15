@@ -2,9 +2,9 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
-- Current: Step 7 → verify build (7.1–7.3 written, untested)
-- Last action: S9 wrote src/app/order/[id]/page.tsx + src/components/cart/OrderConfirmation.tsx (7.3).
-- NEXT ACTION: npm run build at repo root; fix errors in 7.1–7.3; then Step 6 drag-to-cart, Step 8 sections.
+- Current: Step 6 → drag plate to cart
+- Last action: S9 npm run build PASS with 7.1 CartDrawer, 7.2 /checkout, 7.3 /order/[id] (log scripts/logs/build-s9.log).
+- NEXT ACTION: Step 6 drag-to-cart (ghost + magnet to header cart pill + burst) in src/components/hero/HeroCanvas.tsx; then Step 8 sections.
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 22:15 (Asia/Dhaka) by Session #9
 
@@ -37,7 +37,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [ ] Step 4 (4.1 belt.ts ✓ · 4.2 table/plate/model ✓ (untested) · 4.3 Hero section+controls · 4.4 hover/flick/keyboard): Hero 3D belt (KaitenTable, Plate, FoodModel, AmbientGlow, controls, hover/flick/seek, front item, chip)
 - [x] Step 5: Product modal (3D orbit viewer, counter, qty, add → ✓ Added) — wired in src/app/page.tsx, build passes (session #8)
 - [ ] Step 6: Drag plate → cart (ghost, magnet, burst)
-- [ ] Step 7: Cart drawer + checkout + confirmation pages
+- [x] Step 7: Cart drawer + checkout + confirmation pages
 - [ ] Step 8: Sections: Spotlight (pinned), Menu grid, How it works, Specials, Platter builder, Reviews, Reservations(+/api/reserve), Locations, FAQ, Newsletter+Footer
 - [ ] Step 9: Perf/a11y/SEO (posters, reduced motion, JSON-LD, sitemap, robots)
 - [ ] Step 10: Final build, screenshots in output/preview, README

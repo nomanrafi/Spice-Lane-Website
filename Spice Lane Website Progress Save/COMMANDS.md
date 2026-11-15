@@ -34,3 +34,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 ### 12. (session #5) wrote src/components/hero/KaitenTable.tsx + HeroCanvas.tsx (4.2 done)
 - S8: npm install (OK, 585 pkgs); npm run build (PASS, / = 162 kB first load)
 - S9: Configured git credentials (token hidden); git clone; npm install
+- S9: npm install OK; npm run build PASS (/ 172 kB, /checkout, /order/[id])
