@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 10 → final screenshots + README
-- Last action: S17: 10.3a wrote IslandChip (drei Html) in KaitenTable.tsx — building
-- NEXT ACTION: verify build (logs/build-s17.log); if pass mark 10.3a done
+- Last action: S18 started; resuming 10.3a (IslandChip build-verify)
+- NEXT ACTION: npm install, then npm run build > logs/build-s18.log; if pass mark 10.3a + Step 10 + DoD done
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 23:11 (Asia/Dhaka) by Session #17
+- Last updated: 2026-11-15 23:14 (Asia/Dhaka) by Session #18
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -74,3 +74,4 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - Session #15 (2026-11-15): started, resuming from 9.4 posters
 - Session #16 (2026-11-15): resumed at 9.4b build-verify (session #15 stopped by usage policy while marking Step 9 done + auditing Steps 3/4 hero). User: push fast, small tasks.
 - Session #17 (2026-11-15): resumed at 10.1 screenshot check (session #16 stopped by usage policy while viewing h.jpg/m.jpg screenshots, favicon fix was pushed). User: push fast, small tasks.
+- Session #18 (2026-11-15): resumed at 10.3a build-verify (session #17 stopped by usage policy while marking done + final push). User: push fast, small tasks.
