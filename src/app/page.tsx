@@ -10,6 +10,7 @@ import Specials from "@/components/sections/Specials";
 import PlatterBuilder from "@/components/sections/PlatterBuilder";
 import Reviews from "@/components/sections/Reviews";
 import Reservations from "@/components/sections/Reservations";
+import Locations from "@/components/sections/Locations";
 
 export default function Home() {
   // TODO(agent): remaining sections 8.2–8.10 (Step 8)
@@ -25,6 +26,7 @@ export default function Home() {
         <PlatterBuilder />
         <Reviews />
         <Reservations />
+        <Locations />
       </main>
       <ProductModal />
       <CartDrawer />

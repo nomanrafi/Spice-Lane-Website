@@ -3,8 +3,8 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 8 → sections below hero
-- Last action: S13: 8.5 build PASS (logs/build-s13.log, before Reviews). Wrote 8.7: src/lib/reservation.ts, src/app/api/reserve/route.ts, sections/Reservations.tsx, mounted
-- NEXT ACTION: Run npm run build (logs/build-s13b.log) to verify 8.6+8.7; then 8.8 Locations (sections/Locations.tsx).
+- Last action: S13: wrote sections/Locations.tsx (8.8) + mounted; build-s13b (before Locations) result in log
+- NEXT ACTION: Run npm run build (logs/build-s13c.log) to verify 8.8; then 8.9 FAQ (sections/FAQ.tsx w/ FAQPage JSON-LD).
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 22:43 (Asia/Dhaka) by Session #13
 
