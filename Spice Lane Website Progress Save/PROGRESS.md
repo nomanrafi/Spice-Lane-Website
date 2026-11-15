@@ -2,11 +2,11 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: DONE (incl. optional follow-ups 11.1 + 11.2)
-- Current: Step 12 — deploy-readiness audit (S21) ← IN PROGRESS
-- Last action: S20: 11.2 build PASS (logs/build-s20.log); /api/order runtime test passed in S19 (real dishes priced server-side, tampered bundle clamped, unknown dish rejected)
-- NEXT ACTION: nothing required. Optional idea: real payment provider (Stripe) + DB persistence — see TODO(agent) in src/app/api/order/route.ts
+- Current: Step 12.4 build-verify (S22) ← IN PROGRESS
+- Last action: S22 resumed: 12.4 fix pushed by S21 but not build-verified
+- NEXT ACTION: 12.4 build verify → re-screenshot hero → 12.5 deploy notes in README
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 23:25 (Asia/Dhaka) by Session #20
+- Last updated: 2026-11-15 23:36 (Asia/Dhaka) by Session #22
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -87,3 +87,4 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - Session #18 (2026-11-15): resumed at 10.3a build-verify (session #17 stopped by usage policy while marking done + final push). User: push fast, small tasks.
 - Session #21 (2026-11-15): resumed after DONE; user asked: anything left to build? check everything, deploy-ready? Push fast, small tasks.
 - Session #20 (2026-11-15): resumed at 11.2 build-verify (S19 stopped by usage policy during final log/push; its API runtime test had passed per user screenshot).
+- Session #22 (2026-11-15): resumed at 12.4 build-verify (S21 stopped after pushing fix, before build).

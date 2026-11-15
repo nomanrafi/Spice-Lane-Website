@@ -58,3 +58,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S21: npm install OK; tsc --noEmit PASS; next lint PASS (0 warnings); npm run build PASS (logs/tsc-s21.log, lint-s21.log, build-s21.log)
 - S21: next start + curl smoke: all pages 200, /nope 404, 8 models+8 posters 200, /api/order valid→ok / unknown→400, /api/reserve validates; shot.mjs → hero-s21.png, checkout-s21.png (0 console errors). Found: hero canvas clips table at left/right edges; pause icon glyph renders as boxes
 - S21: 12.4 fix: Hero.tsx pause/play glyphs → inline SVG; HeroCanvas.tsx camera [0,5.2,6.2]→[0,6.1,7.3] to stop table clipping at canvas edges (before build)
+- S22: Configured git credentials (token hidden); git clone → OK; autopush started
