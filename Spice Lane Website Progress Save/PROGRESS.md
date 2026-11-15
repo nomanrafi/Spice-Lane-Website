@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 9 → perf/a11y/SEO
-- Last action: S15: public/posters/*.png generated (8)
-- NEXT ACTION: 9.4b: use posters as <img> fallback in MenuGrid/CanvasBoundary + alt text
+- Last action: S15: posters wired in MenuGrid cards + ModelViewer fallback (building)
+- NEXT ACTION: verify build (logs/build-s15.log), then 9.4 done → Step 10
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 22:56 (Asia/Dhaka) by Session #15
+- Last updated: 2026-11-15 22:57 (Asia/Dhaka) by Session #15
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food

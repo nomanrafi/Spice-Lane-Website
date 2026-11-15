@@ -11,7 +11,9 @@ import CanvasBoundary from './CanvasBoundary';
 export default function ModelViewer({ item, autoRotate = true }: { item: MenuItem; autoRotate?: boolean }) {
   const ctl = useRef<OC>(null);
   return (
-    <CanvasBoundary>
+    // WebGL failure → show the pre-rendered poster instead of crashing.
+    // eslint-disable-next-line @next/next/no-img-element
+    <CanvasBoundary fallback={<img src={item.poster} alt={`${item.name}, 3D render`} className="m-auto h-full w-auto object-contain" />}>
       <div className="h-full w-full" onDoubleClick={() => ctl.current?.reset()}>
         <Canvas dpr={[1, 2]} camera={{ position: [0, 1.6, 2.6], fov: 35 }} shadows>
           <ambientLight intensity={0.3} />

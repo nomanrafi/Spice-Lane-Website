@@ -23,9 +23,10 @@ function Card({ item, live, onLive }: { item: MenuItem; live: boolean; onLive: (
       <button type="button" onClick={() => open(item.id)} onFocus={() => onLive(true)} onBlur={() => onLive(false)} aria-label={`Open ${item.name}`} className="relative block h-56 w-full">
         <div aria-hidden className="absolute inset-0" style={{ background: `radial-gradient(60% 60% at 50% 60%, ${item.accentColor}55, transparent 70%)` }} />
         {live ? <div className="absolute inset-0"><ModelViewer item={item} /></div> : (
-          <div aria-hidden className="absolute left-1/2 top-1/2 h-28 w-28 -translate-x-1/2 -translate-y-1/2 rounded-full border-4" style={{ background: item.plateColor, borderColor: TIERS[item.tier].color }}>
-            <div className="m-auto mt-6 h-14 w-14 rounded-full opacity-80" style={{ background: item.accentColor }} />
-          </div>)}
+          // Poster = pre-rendered PNG of the real GLB (npm run generate-posters).
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={item.poster} alt={`${item.name}, 3D render`} loading="lazy" decoding="async" width={768} height={768}
+            className="absolute inset-0 m-auto h-full w-auto object-contain p-2 transition-transform duration-500 group-hover:scale-105" />)}
       </button>
       <div className="flex items-end justify-between gap-3 p-5">
         <div>
