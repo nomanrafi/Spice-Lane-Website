@@ -2,11 +2,11 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
-- Current: Step 4 → 4.3 done (hero mounted, build passed per build-s5-hero.log); verifying screenshot, then 4.4
-- Last action: Session #6 resumed; cloned, autopush started, npm install running.
-- NEXT ACTION: screenshot hero (npm run build && npm start, playwright) → output/preview/hero-s6.png; then 4.4 hover/flick/keyboard + AmbientGlow.
+- Current: Step 5 → 5.1 ProductModal/ModelViewer written (commit ac09636, untested). 4.4 AmbientGlow done.
+- Last action: Session #7 resumed; autopush started; npm install running.
+- NEXT ACTION: wire ProductModal into page if not yet, npm run build, screenshot hero+modal → output/preview/; then 5.2 modal polish, Step 6.
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 21:55 (Asia/Dhaka) by Session #6
+- Last updated: 2026-11-15 22:00 (Asia/Dhaka) by Session #7
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -63,3 +63,4 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - Session #4 (2026-11-15): resumed at 1.2 (npm install + first build).
 - Session #5 (2026-11-15): resumed at 3.3/4.1; moved app code to repo root (user request).
 - Session #6 (2026-11-15): resumed at 4.3 verify (screenshot). User repeated: progress only in progress folder, website outside it, push fast.
+- Session #7 (2026-11-15): resumed at 5.1 verify (session #6 stopped by usage policy after viewing hero-s6.png).
