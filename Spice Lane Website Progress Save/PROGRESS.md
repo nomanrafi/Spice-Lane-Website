@@ -3,8 +3,8 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 9 → perf/a11y/SEO
-- Last action: S14: npm run build PASS for all Step 8 (logs/build-s14.log); Step 8 done
-- NEXT ACTION: Step 9.1: add src/app/robots.ts + src/app/sitemap.ts
+- Last action: S14: wrote robots.ts, sitemap.ts, lib/site.ts, components/JsonLd.tsx, layout metadata/OG/viewport (9.1+9.2, unbuilt)
+- NEXT ACTION: Build-verify 9.1+9.2 (logs/build-s14b.log); then 9.3 reduced-motion audit
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 22:47 (Asia/Dhaka) by Session #14
 
