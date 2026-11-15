@@ -3,8 +3,8 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 8 → sections below hero
-- Last action: S12: 8.3 HowItWorks + 8.4 Specials mounted, npm run build PASS (logs/build-s12.log, / 196 kB).
-- NEXT ACTION: 8.5 Platter builder (src/components/sections/PlatterBuilder.tsx): pick items into a tray, live total, add all to cart; mount after Specials; build.
+- Last action: S12: wrote PlatterBuilder.tsx + PlatterCanvas.tsx (8.5), mounted in page.tsx (building).
+- NEXT ACTION: Verify 8.5 build (logs/build-s12b.log); then 8.6 Reviews (src/components/sections/Reviews.tsx: stars count-up, marquee, gallery).
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 22:37 (Asia/Dhaka) by Session #12
 

@@ -7,6 +7,7 @@ import Spotlight from '@/components/sections/Spotlight';
 import MenuGrid from '@/components/sections/MenuGrid';
 import HowItWorks from "@/components/sections/HowItWorks";
 import Specials from "@/components/sections/Specials";
+import PlatterBuilder from "@/components/sections/PlatterBuilder";
 
 export default function Home() {
   // TODO(agent): remaining sections 8.2–8.10 (Step 8)
@@ -19,6 +20,7 @@ export default function Home() {
         <MenuGrid />
         <HowItWorks />
         <Specials />
+        <PlatterBuilder />
       </main>
       <ProductModal />
       <CartDrawer />
