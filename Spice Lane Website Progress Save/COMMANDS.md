@@ -23,3 +23,6 @@ Result: SUCCESS — 8 GLBs 16–20 MB → 0.63–0.89 MB each in public/models/ 
 ### 7. (session #5) Configured git credentials (token hidden); git clone
 ### 8. git mv app files (src, public, package*.json, configs, .eslintrc, .gitignore, scripts/optimize-models.mjs) → repo root
 Result: SUCCESS — optimize script SRC now path.resolve('assets')
+
+### 9. (session #5) npm install + npm run build at repo root
+Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
