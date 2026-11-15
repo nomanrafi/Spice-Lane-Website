@@ -26,3 +26,5 @@ Result: SUCCESS — optimize script SRC now path.resolve('assets')
 
 ### 9. (session #5) npm install + npm run build at repo root
 Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
+
+### 10. (session #5) wrote src/lib/belt.ts (4.1)
