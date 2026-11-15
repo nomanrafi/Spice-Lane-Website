@@ -50,3 +50,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S16: added src/app/icon.svg; npm run build PASS (logs/build-s16b.log)
 - S17: Configured git credentials (token hidden); git clone; npm install (bg); autopush started
 - S18: Configured git credentials (token hidden); git clone; npm install (bg); autopush started
+- S18: npm install OK (585 pkgs); npm run build → logs/build-s18.log
