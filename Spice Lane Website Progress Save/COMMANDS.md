@@ -55,3 +55,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S20: Configured git credentials (token hidden); git clone → OK
 - S20: npm install → OK; npm run build → PASS (scripts/logs/build-s20.log, /api/order route present)
 - S21: Configured git credentials (token hidden); git clone → OK; autopush started
+- S21: npm install OK; tsc --noEmit PASS; next lint PASS (0 warnings); npm run build PASS (logs/tsc-s21.log, lint-s21.log, build-s21.log)

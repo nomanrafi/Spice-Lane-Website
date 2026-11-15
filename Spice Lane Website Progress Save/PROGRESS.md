@@ -42,7 +42,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [x] Step 9: Perf/a11y/SEO — 9.1 robots+sitemap · 9.2 JSON-LD+metadata · 9.3 reduced-motion · 9.4 posters (public/posters, MenuGrid cards + ModelViewer fallback) — build PASS S16 (logs/build-s16.log)
 - [x] Step 10: Final build, screenshots in output/preview, README — 10.1 screenshots ✓ · 10.2 README ✓ · 10.3 acceptance audit ✓ · 10.3a IslandChip (KaitenTable.tsx) build PASS S18 (logs/build-s18.log)
 
-- [ ] Step 12 (S21): deploy-readiness audit — 12.1 install+build · 12.2 lint+typecheck · 12.3 runtime smoke test (pages, APIs, models) · 12.4 fix issues · 12.5 deploy notes in README
+- [ ] Step 12 (S21): deploy-readiness audit — 12.1 install+build ✓ · 12.2 lint+typecheck ✓ · 12.3 runtime smoke test (pages, APIs, models) · 12.4 fix issues · 12.5 deploy notes in README
 - [x] Step 11 (S19–S20, optional follow-ups): 11.1 bundle cart line ✓ build PASS · 11.2 /api/order mock payment ✓ build PASS S20
 
 ## How to use the result
