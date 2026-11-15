@@ -3,8 +3,8 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS (optional follow-ups)
 - Current: Step 11 follow-ups (S19)
-- Last action: S19: 11.1 bundle cart line coded (useStore addBundle+lineInfo, CartDrawer/Checkout/Confirmation/Specials/PlatterBuilder) — build pending
-- NEXT ACTION: 11.1 cart bundle line (Specials/PlatterBuilder add ONE bundle item) → 11.2 /api/order mock payment endpoint
+- Last action: S19: 11.1 bundle cart line DONE, build PASS (logs/build-s19.log)
+- NEXT ACTION: 11.2 POST /api/order (validate + price server-side from menu.ts, mock payment) and call it from CheckoutForm
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 23:16 (Asia/Dhaka) by Session #18
 
@@ -41,6 +41,8 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [x] Step 8 (all 8.1–8.10 ✓, build PASS s14): Sections: Spotlight (pinned), Menu grid, How it works, Specials, Platter builder, Reviews, Reservations(+/api/reserve), Locations, FAQ, Newsletter+Footer
 - [x] Step 9: Perf/a11y/SEO — 9.1 robots+sitemap · 9.2 JSON-LD+metadata · 9.3 reduced-motion · 9.4 posters (public/posters, MenuGrid cards + ModelViewer fallback) — build PASS S16 (logs/build-s16.log)
 - [x] Step 10: Final build, screenshots in output/preview, README — 10.1 screenshots ✓ · 10.2 README ✓ · 10.3 acceptance audit ✓ · 10.3a IslandChip (KaitenTable.tsx) build PASS S18 (logs/build-s18.log)
+
+- [ ] Step 11 (S19, optional follow-ups): 11.1 bundle cart line ✓ build PASS · 11.2 /api/order mock payment ← IN PROGRESS
 
 ## How to use the result
 - From repo root: `npm install` → `npm run dev` (http://localhost:3000) or `npm run build && npm start`.
