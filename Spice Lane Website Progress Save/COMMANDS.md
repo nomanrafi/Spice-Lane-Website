@@ -32,3 +32,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 ### 11. (session #5) wrote src/components/hero/FoodModel.tsx + Plate.tsx (4.2 part 1)
 
 ### 12. (session #5) wrote src/components/hero/KaitenTable.tsx + HeroCanvas.tsx (4.2 done)
+- S8: npm install (OK, 585 pkgs); npm run build (PASS, / = 162 kB first load)

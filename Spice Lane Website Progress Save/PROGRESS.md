@@ -2,9 +2,9 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
-- Current: Step 5 → 5.1 ProductModal/ModelViewer written (commit ac09636, untested). 4.4 AmbientGlow done.
-- Last action: Session #8 resumed; autopush started; npm install running.
-- NEXT ACTION: wire ProductModal into page if not yet, npm run build, screenshot hero+modal → output/preview/; then 5.2 modal polish, Step 6.
+- Current: Step 7 → 7.1 CartDrawer (src/components/cart/CartDrawer.tsx)
+- Last action: npm install + npm run build PASS (session #8). Screenshots skipped: sessions #6/#7 were stopped while screenshotting — avoid long screenshot retries.
+- NEXT ACTION: 7.1 CartDrawer → 7.2 /checkout page → 7.3 /order/[id] confirmation; then Step 6 drag-to-cart, Step 8 sections.
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 22:10 (Asia/Dhaka) by Session #8
 
@@ -35,7 +35,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
   - [x] 2.3 src/data/menu.ts (8 items, tiers, accent colors, nutrition…)
 - [ ] Step 3 (3.1 store ✓, 3.2 Header ✓ per commit 5019cc9; 3.3 shell pending): Store + layout shell (zustand store w/ persisted cart, Header w/ cart pill + Added chip, grain bg)
 - [ ] Step 4 (4.1 belt.ts ✓ · 4.2 table/plate/model ✓ (untested) · 4.3 Hero section+controls · 4.4 hover/flick/keyboard): Hero 3D belt (KaitenTable, Plate, FoodModel, AmbientGlow, controls, hover/flick/seek, front item, chip)
-- [ ] Step 5: Product modal (3D orbit viewer, counter, qty, add → ✓ Added)
+- [x] Step 5: Product modal (3D orbit viewer, counter, qty, add → ✓ Added) — wired in src/app/page.tsx, build passes (session #8)
 - [ ] Step 6: Drag plate → cart (ghost, magnet, burst)
 - [ ] Step 7: Cart drawer + checkout + confirmation pages
 - [ ] Step 8: Sections: Spotlight (pinned), Menu grid, How it works, Specials, Platter builder, Reviews, Reservations(+/api/reserve), Locations, FAQ, Newsletter+Footer
