@@ -2,9 +2,9 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
-- Current: Step 1 → micro-task 1.1 — scaffold Next.js app
-- Last action: Session #3 set up checkpoint/autopush scripts, COMMANDS/DECISIONS, full plan (below)
-- NEXT ACTION: 1.1 create Next.js 14 + TS + Tailwind app files directly in this folder (package.json etc.)
+- Current: Step 1 → 1.2 npm install + first build
+- Last action: 1.1 scaffold files written (package.json, tsconfig, tailwind, src/app)
+- NEXT ACTION: 1.2 run `npm install` in this folder, then `npm run build`; fix errors
 - Project runs?: NO app code yet
 - Last updated: 2026-11-15 21:40 (Asia/Dhaka) by Session #3
 
