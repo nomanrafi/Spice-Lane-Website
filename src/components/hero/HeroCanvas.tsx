@@ -40,7 +40,7 @@ export default function HeroCanvas() {
 
   return (
     <div {...bind()} className="h-full w-full touch-pan-y" aria-hidden>
-      <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 6.1, 7.3], fov: 34 }} gl={{ antialias: true }}
+      <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 6.7, 8.0], fov: 34 }} gl={{ antialias: true }}
         onCreated={({ camera }) => camera.lookAt(0, 0, 0.3)}>
         <ambientLight intensity={0.25} />
         <directionalLight position={[3, 6, 4]} intensity={1.6} castShadow shadow-mapSize={[1024, 1024]} />

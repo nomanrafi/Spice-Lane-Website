@@ -60,3 +60,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S21: 12.4 fix: Hero.tsx pause/play glyphs → inline SVG; HeroCanvas.tsx camera [0,5.2,6.2]→[0,6.1,7.3] to stop table clipping at canvas edges (before build)
 - S22: Configured git credentials (token hidden); git clone → OK; autopush started
 - S22: npm install OK; tsc PASS; next lint PASS; npm run build PASS (logs/*-s22.log)
+- S22: 12.4b HeroCanvas.tsx camera [0,6.1,7.3]→[0,6.7,8.0] (table touched both canvas edges on desktop 1440px)
