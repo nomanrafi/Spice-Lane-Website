@@ -4,7 +4,7 @@
 - Overall: IN PROGRESS
 - Current: Step 3 → 3.3 grain bg/layout shell check, then Step 4 (hero belt)
 - Last action: Session #5 RESTRUCTURE — website code moved OUT of this folder to the repo ROOT (src/, public/, package.json, configs, scripts/optimize-models.mjs). This folder now holds ONLY agent progress (notes, logs, checkpoint/autopush scripts, reference, archive, output/preview).
-- NEXT ACTION: 4.2 src/components/hero/{KaitenTable,Plate,FoodModel}.tsx (4.1 src/lib/belt.ts DONE)
+- NEXT ACTION: 4.3 src/components/hero/Hero.tsx (text column, legend, caption, ‹ ⏸ › controls, label chip) + mount in src/app/page.tsx via next/dynamic ssr:false; then build. (4.1 belt.ts, 4.2 FoodModel/Plate/KaitenTable/HeroCanvas written, NOT yet build-tested)
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 21:55 (Asia/Dhaka) by Session #5
 
@@ -34,7 +34,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
   - [x] 2.2 scripts/optimize-models.mjs (`npm run optimize-models`: ../assets/*.glb → public/models/, meshopt + webp/resize)
   - [x] 2.3 src/data/menu.ts (8 items, tiers, accent colors, nutrition…)
 - [ ] Step 3 (3.1 store ✓, 3.2 Header ✓ per commit 5019cc9; 3.3 shell pending): Store + layout shell (zustand store w/ persisted cart, Header w/ cart pill + Added chip, grain bg)
-- [ ] Step 4 (4.1 belt.ts ✓ · 4.2 table/plate/model · 4.3 Hero section+controls · 4.4 hover/flick/keyboard): Hero 3D belt (KaitenTable, Plate, FoodModel, AmbientGlow, controls, hover/flick/seek, front item, chip)
+- [ ] Step 4 (4.1 belt.ts ✓ · 4.2 table/plate/model ✓ (untested) · 4.3 Hero section+controls · 4.4 hover/flick/keyboard): Hero 3D belt (KaitenTable, Plate, FoodModel, AmbientGlow, controls, hover/flick/seek, front item, chip)
 - [ ] Step 5: Product modal (3D orbit viewer, counter, qty, add → ✓ Added)
 - [ ] Step 6: Drag plate → cart (ghost, magnet, burst)
 - [ ] Step 7: Cart drawer + checkout + confirmation pages

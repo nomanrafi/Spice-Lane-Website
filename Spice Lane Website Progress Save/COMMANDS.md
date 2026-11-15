@@ -30,3 +30,5 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 ### 10. (session #5) wrote src/lib/belt.ts (4.1)
 
 ### 11. (session #5) wrote src/components/hero/FoodModel.tsx + Plate.tsx (4.2 part 1)
+
+### 12. (session #5) wrote src/components/hero/KaitenTable.tsx + HeroCanvas.tsx (4.2 done)
