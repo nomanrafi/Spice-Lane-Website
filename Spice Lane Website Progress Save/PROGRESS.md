@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 8 → sections below hero
-- Last action: S10 resumed; Step 6 (drag-to-cart) verified: build log scripts/logs/build-s9b.log passes.
-- NEXT ACTION: 8.1 Spotlight section (src/components/sections/Spotlight.tsx) + mount in src/app/page.tsx; build.
+- Last action: S10 8.1 Spotlight (src/components/sections/Spotlight.tsx + SpotlightCanvas.tsx) mounted in page.tsx; build OK (logs/build-s10a.log).
+- NEXT ACTION: 8.2 Menu grid (src/components/sections/MenuGrid.tsx): tabs, search, tier+diet filters, poster/3D-on-hover cards, +Add; mount; build.
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 22:25 (Asia/Dhaka) by Session #10
+- Last updated: 2026-11-15 22:20 (Asia/Dhaka) by Session #10
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -38,7 +38,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [x] Step 5: Product modal (3D orbit viewer, counter, qty, add → ✓ Added) — wired in src/app/page.tsx, build passes (session #8)
 - [x] Step 6: Drag plate → cart (ghost, magnet, burst) — 6.1 ghost/store, 6.2 wired in HeroCanvas, build OK (s9)
 - [x] Step 7: Cart drawer + checkout + confirmation pages
-- [ ] Step 8 (8.1 Spotlight · 8.2 Menu grid · 8.3 How it works · 8.4 Specials · 8.5 Platter · 8.6 Reviews · 8.7 Reservations · 8.8 Locations · 8.9 FAQ · 8.10 Newsletter+Footer): Sections: Spotlight (pinned), Menu grid, How it works, Specials, Platter builder, Reviews, Reservations(+/api/reserve), Locations, FAQ, Newsletter+Footer
+- [ ] Step 8 (8.1 Spotlight ✓ · 8.2 Menu grid · 8.3 How it works · 8.4 Specials · 8.5 Platter · 8.6 Reviews · 8.7 Reservations · 8.8 Locations · 8.9 FAQ · 8.10 Newsletter+Footer): Sections: Spotlight (pinned), Menu grid, How it works, Specials, Platter builder, Reviews, Reservations(+/api/reserve), Locations, FAQ, Newsletter+Footer
 - [ ] Step 9: Perf/a11y/SEO (posters, reduced motion, JSON-LD, sitemap, robots)
 - [ ] Step 10: Final build, screenshots in output/preview, README
 
