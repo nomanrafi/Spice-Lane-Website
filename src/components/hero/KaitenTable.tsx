@@ -2,7 +2,8 @@
 import { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { MENU } from '@/data/menu';
+import { Html } from '@react-three/drei';
+import { MENU, getItem } from '@/data/menu';
 import { useStore } from '@/store/useStore';
 import { BELT, beltMotion, frontIndex, plateS, stadiumPoint } from '@/lib/belt';
 import Plate from './Plate';
@@ -53,6 +54,19 @@ function TableBody() {
   );
 }
 
+/** Label chip floating over the centre island: name + price of the hovered plate. */
+function IslandChip({ id }: { id: string | null }) {
+  const item = id ? getItem(id) : undefined;
+  return (
+    <Html position={[0, 0.75, 0]} center zIndexRange={[20, 0]} style={{ pointerEvents: 'none' }}>
+      <div aria-live="polite"
+        className={`whitespace-nowrap rounded-full border border-white/10 bg-black/70 px-4 py-2 text-sm text-white backdrop-blur transition-all duration-300 ${item ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}>
+        {item && (<><span className="mr-2 inline-block h-2 w-2 rounded-full" style={{ background: item.accentColor }} />{item.name}<span className="ml-2 font-mono text-white/60">${item.price.toFixed(2)}</span></>)}
+      </div>
+    </Html>
+  );
+}
+
 export default function KaitenTable() {
   const groups = useRef<(THREE.Group | null)[]>([]);
   const hoverId = useStore((s) => s.hoverId);
@@ -86,6 +100,7 @@ export default function KaitenTable() {
   return (
     <group>
       <TableBody />
+      <IslandChip id={hoverId} />
       {MENU.slice(0, BELT.count).map((item, i) => (
         <Plate key={item.id} ref={(g) => { groups.current[i] = g; }} item={item}
           active={hoverId === item.id || (!hoverId && frontId === item.id && paused)}

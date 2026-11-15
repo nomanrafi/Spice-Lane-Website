@@ -3,8 +3,8 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 10 → final screenshots + README
-- Last action: S17: 10.3 audit — all §14 items present in code EXCEPT hover label chip on the island (KaitenTable.tsx)
-- NEXT ACTION: 10.3a add drei <Html> label chip above island in src/components/hero/KaitenTable.tsx showing hovered item name+price; build
+- Last action: S17: 10.3a wrote IslandChip (drei Html) in KaitenTable.tsx — building
+- NEXT ACTION: verify build (logs/build-s17.log); if pass mark 10.3a done
 - Project runs?: YES — npm run build passes from repo root (session 5)
 - Last updated: 2026-11-15 23:11 (Asia/Dhaka) by Session #17
 
