@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: DONE (incl. optional follow-ups 11.1 + 11.2)
 - Current: Step 12.4 build-verify (S22) ← IN PROGRESS
-- Last action: S22 resumed: 12.4 fix pushed by S21 but not build-verified
-- NEXT ACTION: 12.4 build verify → re-screenshot hero → 12.5 deploy notes in README
+- Last action: S22: 12.4 tsc+lint+build PASS (logs/*-s22.log)
+- NEXT ACTION: 12.4 re-screenshot hero (shot.mjs) → 12.5 README deploy notes
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 23:36 (Asia/Dhaka) by Session #22
+- Last updated: 2026-11-15 23:37 (Asia/Dhaka) by Session #22
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
