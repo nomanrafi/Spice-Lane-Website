@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 10 → final screenshots + README
-- Last action: S17: viewed hero-s16/menu-s16 — hero belt + menu grid render OK (hero table slightly clipped at right edge of canvas, minor)
-- NEXT ACTION: 10.2 README polish; 10.3 acceptance check (prompt §14)
+- Last action: S17: 10.2 README rewritten (features, structure, scripts, add-a-food)
+- NEXT ACTION: 10.3 acceptance check (prompt §14) by grepping code; then final build
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 23:10 (Asia/Dhaka) by Session #17
+- Last updated: 2026-11-15 23:11 (Asia/Dhaka) by Session #17
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -17,7 +17,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 ## Definition of Done
 - [x] `npm run build` passes, no console errors (S16: favicon 404 fixed)
 - [ ] Acceptance checklist (prompt §14) satisfied
-- [ ] README explains run/build + how to add a food
+- [x] README explains run/build + how to add a food (S17)
 
 ## Repo layout (since session #5)
 - APP ROOT = repo root: `src/`, `public/models/`, `package.json`, `next.config.mjs`, `tailwind.config.ts`, `tsconfig.json`, `scripts/optimize-models.mjs`, `assets/*.glb` (source models).
