@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS
 - Current: Step 10 → final screenshots + README
-- Last action: S16: added src/app/icon.svg (fixed favicon 404); build PASS (logs/build-s16b.log)
-- NEXT ACTION: view hero-s16.png/menu-s16.png to sanity-check; 10.2 README polish; 10.3 acceptance check (prompt §14)
+- Last action: S17 resumed; autopush started
+- NEXT ACTION: view hero-s16.png/menu-s16.png; 10.2 README polish; 10.3 acceptance check (prompt §14)
 - Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 23:05 (Asia/Dhaka) by Session #16
+- Last updated: 2026-11-15 23:10 (Asia/Dhaka) by Session #17
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -73,3 +73,4 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - Session #14 (2026-11-15): resumed at 8.8–8.10 build-verify (session #13 stopped by usage policy while marking Step 8 done).
 - Session #15 (2026-11-15): started, resuming from 9.4 posters
 - Session #16 (2026-11-15): resumed at 9.4b build-verify (session #15 stopped by usage policy while marking Step 9 done + auditing Steps 3/4 hero). User: push fast, small tasks.
+- Session #17 (2026-11-15): resumed at 10.1 screenshot check (session #16 stopped by usage policy while viewing h.jpg/m.jpg screenshots, favicon fix was pushed). User: push fast, small tasks.
