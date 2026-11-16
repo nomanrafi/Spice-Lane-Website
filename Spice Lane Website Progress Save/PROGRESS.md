@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS — Step 13: fixes from repo-root `Update Review.pdf` (user review, Bengali comments)
 - Current: Step 13 → 13.7+13.8 scroll lock code written (not built yet)
-- Last action: S24 read Update Review.pdf (text: /data/pdf via pdftotext; list of fixes below in Step 13)
-- NEXT ACTION: build-verify 13.7/13.8, then 13.4 remove duplicate hover chip in src/components/hero/Hero.tsx (the motion.div chip at top-[44%]), then 13.3 plates
+- Last action: S25 resumed: npm ci OK; found Reviews.tsx gallery (13.10) auto-pushed by S24; footer credit (13.11) NOT in repo
+- NEXT ACTION: build-verify 13.7/13.8/13.10, then 13.3/13.4 Plate.tsx + Hero.tsx
 - Project runs?: YES — build PASS S23
-- Last updated: 2026-11-16 13:15 (Asia/Dhaka) by Session #24
+- Last updated: 2026-11-16 13:15 (Asia/Dhaka) by Session #25
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -63,6 +63,9 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Add a dish: drop GLB in `assets/`, run `npm run optimize-models`, add an entry to `src/data/menu.ts` (see README).
 - Checkout posts to POST /api/order (server re-prices from src/data/menu.ts, mock payment). Bundles (Specials/PlatterBuilder) add a single bundle line to the cart.
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
+
+## Session History
+- S25 (2026-11-16): resumed at 13.7 verify; prior session S24 was stopped by usage limit before pushing footer credit
 
 ## Problems / Notes
 - GLBs in ../assets are 16–20 MB each → optimized (Step 2 done). public/models/ IS committed (~5.7 MB total) so no re-run needed.
