@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS — Step 13: fixes from repo-root `Update Review.pdf` (user review, Bengali comments)
 - Current: Step 13 → 13.7+13.8 scroll lock code written (not built yet)
-- Last action: S26 resumed; npm ci running
-- NEXT ACTION: build-verify 13.7/13.8/13.10, then 13.11 footer, 13.3/13.4
+- Last action: 13.11 footer credit 'Made by NOMAN-RAFI' added in Footer.tsx above social row (build s25a PASS covered 13.7/13.8/13.10)
+- NEXT ACTION: build-verify 13.11, then 13.3 (remove extra plate in Plate.tsx) + 13.4 hover label
 - Project runs?: YES — build PASS S23
-- Last updated: 2026-11-16 13:20 (Asia/Dhaka) by Session #26
+- Last updated: 2026-11-16 13:22 (Asia/Dhaka) by Session #26
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -49,11 +49,11 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
   - [ ] 13.4 Hover on an item shows WRONG item's name → fix hover label mapping
   - [ ] 13.5 Dragging on the BACK side of table rotates the wrong way → invert drag direction when pointer is on far half
   - [ ] 13.6 Table food items a bit bigger
-  - [ ] 13.7 Product popup bigger; while popup open, wheel zooms model, page behind must NOT scroll (scroll lock)
-  - [ ] 13.8 Cart drawer: list must scroll inside; page behind must NOT scroll while open
+  - [x] 13.7 Product popup bigger; while popup open, wheel zooms model, page behind must NOT scroll (scroll lock)
+  - [x] 13.8 Cart drawer: list must scroll inside; page behind must NOT scroll while open
   - [ ] 13.9 Spotlight/next section: products look cropped/falling below → fix framing; show ONLY the front-selected product there
-  - [ ] 13.10 Blank-looking sections (PDF p3 second image) → add meaningful content/visuals
-  - [ ] 13.11 Footer (blue mark, PDF p4): add "MADE BY NOMAN-RAFI"
+  - [x] 13.10 Blank-looking sections (PDF p3 second image) → add meaningful content/visuals
+  - [x] 13.11 Footer (blue mark, PDF p4): add "MADE BY NOMAN-RAFI"
   - [ ] 13.12 build + screenshots + push
 - [x] Step 12 (S21–S23): deploy-readiness audit — 12.1 install+build ✓ · 12.2 lint+typecheck ✓ · 12.3 runtime smoke test ✓ (found: canvas edge clip, pause glyph) · 12.4 fix issues ✓ (S22, verified S23) · 12.5 deploy notes in README ✓ (S23)
 - [x] Step 11 (S19–S20, optional follow-ups): 11.1 bundle cart line ✓ build PASS · 11.2 /api/order mock payment ✓ build PASS S20

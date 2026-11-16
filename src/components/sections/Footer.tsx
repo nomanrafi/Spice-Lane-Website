@@ -55,7 +55,10 @@ export default function Footer() {
             </AnimatePresence>
           </div>
         </div>
-        <div className="mt-16 flex flex-wrap items-center justify-between gap-6 text-sm text-muted">
+        <p className="mt-12 font-mono text-xs uppercase tracking-[0.25em] text-muted">
+          Made by <span className="font-semibold text-white">NOMAN-RAFI</span>
+        </p>
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-6 text-sm text-muted">
           <ul className="flex gap-5">{SOCIAL.map((s) => <li key={s.n}><a href={s.h} target="_blank" rel="noopener noreferrer" className="hover:text-white">{s.n}</a></li>)}</ul>
           <ul className="flex gap-5">{LEGAL.map((s) => <li key={s.n}><a href={s.h} className="hover:text-white">{s.n}</a></li>)}</ul>
           <p className="font-mono">© {new Date().getFullYear()} Spice Lane</p>
