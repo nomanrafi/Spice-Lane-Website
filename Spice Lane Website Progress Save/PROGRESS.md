@@ -1,7 +1,8 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS (Step 14, S57)
+- Overall: IN PROGRESS (Step 14, S68)
+- S68: belt.ts BELT={A:5,B:2.3,n:2.1,plateR:1.5,H:1.8} (island B−H=0.5, plates Ø3); Zebra rewritten = 16 thin quadratic crescent seams + glint, NO tone bands. NEXT: check canvas does not clip table sides (clipping = "rectangle" look), runtime hover test counting visible names
 - S57 pushed: belt.ts BELT={A:4.8,B:2.3,n:2.3,asym:0.03,dip:0,plateR:1.22,H:1.62} (smooth oval, no overlap, island B−H=0.68); Zebra = 24 thin crescent seams + glint (reference slatPath), no shade blocks; belt #3a3a3a + inner rail. NEXT: screenshot hero, tune camera (HeroCanvas.tsx) to fill blue mark, test hover single name
 - S45 change: belt.ts BELT={A:4.0,B:2.35,n:2.4,asym:0.07 (right end fuller),plateR:1.12,H:1.3}; KaitenTable Zebra = 24 crescent grooves (bulge 0.22·pitch)+glint+very soft alt tone; camera [0,9.4,8.4] fov33 (tsc OK)
 - Older: 14.1–14.3 retune S39: belt.ts BELT={A:3.7,B:2.45,n:2 (true ellipse),plateR:1.0,H:1.25}; KaitenTable zebra = 10 light/dark crescent slat pairs (was 29 thin seams)

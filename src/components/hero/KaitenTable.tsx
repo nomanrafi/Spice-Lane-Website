@@ -12,40 +12,37 @@ import Plate from './Plate';
  * src/lib/belt.ts: outer = curve(A+H, B+H), island hole = curve(A−H, B−H)). Plates fill most of the band width,
  * so the middle island is small, like the reference kaiten table.
  */
-const SEAMS = 24; // S65: 3 slats per plate slot, alternating light/dark bands = zebra like reference
-//         // S64: fewer seams (2 per plate slot) like the reference, user: "ato line keno"
-const ACROSS = 20;         // segments across the band (smooth curved crescent)
-/** Reusable dynamic triangle-strip grid (rows × cols quads per patch), refilled every frame. */
-function useGrid(patches: number, cols: number, rows: number) {
+const SEAMS = 16; // S68: 2 seams per plate slot (reference: thin crescent seam + glint, NO stripe/tone bands)
+const ACROSS = 24; // points across the band → smooth curve, not a straight line
+
+/** Thin ribbon strips (one per seam) refilled every frame. */
+function useStrips(n: number, cols: number) {
   return useMemo(() => {
     const g = new THREE.BufferGeometry();
-    const vp = (cols + 1) * (rows + 1);
-    g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(patches * vp * 3), 3));
+    g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(n * (cols + 1) * 2 * 3), 3));
     const idx: number[] = [];
-    for (let p = 0; p < patches; p++) for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
-      const a = p * vp + r * (cols + 1) + c, b = a + cols + 1;
+    for (let p = 0; p < n; p++) for (let c = 0; c < cols; c++) {
+      const a = p * (cols + 1) * 2 + c, b = a + cols + 1;
       idx.push(a, b, a + 1, a + 1, b, b + 1);
     }
     g.setIndex(idx); return g;
-  }, [patches, cols, rows]);
+  }, [n, cols]);
 }
 
 /**
- * S64 zebra = real kaiten "crescent-top" slats (reference table): every slat edge is a strongly CURVED crescent
- * (middle of the band leads, both edges trail — not a straight/linear radial line). Alternate slats get a very soft
- * lighter tone (zebra), each slat edge = dark seam + thin glint. Everything travels with the plates.
+ * S68 zebra = reference slatPath: each seam is ONE thin dark curved line across the belt (quadratic crescent:
+ * middle of the band leads, edges trail) plus a faint white glint just behind it. They travel with the plates
+ * and bend round the curves. No alternating light/dark blocks (that looked linear/striped).
  */
 function Zebra() {
   const pitch = PERIMETER / SEAMS;
-  const bulge = pitch * 0.38; // S65: gentle crescent like reference slatPath (not straight, not extreme)             // strong crescent curvature (was 0.2·pitch ≈ straight)
-  const seams = useGrid(SEAMS, ACROSS, 1);
-  const glints = useGrid(SEAMS, ACROSS, 1);
-  const tones = useGrid(SEAMS / 2, ACROSS, 6);
+  const bulge = pitch * 0.32;
+  const seams = useStrips(SEAMS, ACROSS);
+  const glints = useStrips(SEAMS, ACROSS);
   useFrame(() => {
     const off = beltMotion.offset + pitch / 2;
-    // crescent across the band: ends trail, middle leads (smooth cosine profile, rounder than a parabola)
-    const at = (s: number, u: number) => bandPoint(beltTheta(s + bulge * Math.cos((u * Math.PI) / 2)), u * 0.95);
-    const line = (geo: THREE.BufferGeometry, shift: number, w: number, y: number) => {
+    const at = (s: number, u: number) => bandPoint(beltTheta(s + bulge * (1 - u * u)), u * 0.96);
+    const fill = (geo: THREE.BufferGeometry, shift: number, w: number, y: number) => {
       const lp = geo.attributes.position as THREE.BufferAttribute; let k = 0;
       for (let j = 0; j < SEAMS; j++) {
         const s0 = off + j * pitch + shift;
@@ -57,29 +54,16 @@ function Zebra() {
       }
       lp.needsUpdate = true;
     };
-    line(seams, 0, 0.018, 0.056);
-    line(glints, -0.07, 0.01, 0.057);
-    const tp = tones.attributes.position as THREE.BufferAttribute; let k = 0;
-    for (let j = 0; j < SEAMS / 2; j++) {
-      const s0 = off + j * 2 * pitch;
-      for (let r = 0; r <= 6; r++) for (let c = 0; c <= ACROSS; c++) {
-        const u = (c / ACROSS) * 2 - 1;
-        const [x, z] = at(s0 + (r / 6) * pitch, u);
-        tp.setXYZ(k++, x, 0.054, z);
-      }
-    }
-    tp.needsUpdate = true;
+    fill(seams, 0, 0.016, 0.056);
+    fill(glints, -0.06, 0.008, 0.057);
   });
   return (
     <group raycast={() => null}>
-      <mesh geometry={tones} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.07} depthWrite={false} side={THREE.DoubleSide} />
-      </mesh>
       <mesh geometry={seams} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#000000" transparent opacity={0.42} depthWrite={false} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#000000" transparent opacity={0.5} depthWrite={false} side={THREE.DoubleSide} />
       </mesh>
       <mesh geometry={glints} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.14} depthWrite={false} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#ffffff" transparent opacity={0.16} depthWrite={false} side={THREE.DoubleSide} />
       </mesh>
     </group>
   );
