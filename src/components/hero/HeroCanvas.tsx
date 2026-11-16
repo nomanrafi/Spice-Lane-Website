@@ -13,17 +13,25 @@ import KaitenTable from './KaitenTable';
 export default function HeroCanvas() {
   const mode = useRef<'none' | 'spin' | 'ghost'>('none');
   const dragId = useRef<string | null>(null);
+  const wrap = useRef<HTMLDivElement>(null);
+  // review 13.5: on the far (back) lane the plates move the opposite screen direction, so invert the drag there.
+  const side = useRef<1 | -1>(1);
   // Drag left/right = spin belt (inertia). Drag UP starting on a plate = carry it to the cart (Step 6).
   const bind = useDrag(({ first, last, delta: [dx], movement: [mx, my], velocity: [vx], direction: [dirx], xy: [px, py] }) => {
     const st = useStore.getState();
-    if (first) { mode.current = 'none'; dragId.current = st.hoverId; beltMotion.target = null; }
+    if (first) {
+      mode.current = 'none'; dragId.current = st.hoverId; beltMotion.target = null;
+      const r = wrap.current?.getBoundingClientRect();
+      // table centre projects a little above the canvas middle (camera looks at z=0.3)
+      side.current = r && py - r.top < r.height * 0.47 ? -1 : 1;
+    }
     if (mode.current === 'none' && Math.hypot(mx, my) > 12) {
       mode.current = dragId.current && my < 0 && Math.abs(my) > Math.abs(mx) ? 'ghost' : 'spin';
       if (mode.current === 'spin') beltMotion.dragging = true;
     }
     if (mode.current === 'spin') {
-      beltMotion.offset -= dx * 0.012;         // drag left → plates move left (front lane runs right → left)
-      if (last) { beltMotion.dragging = false; beltMotion.velocity = -dirx * vx * 6; }
+      beltMotion.offset -= side.current * dx * 0.012;         // drag left → plates move left (front lane runs right → left)
+      if (last) { beltMotion.dragging = false; beltMotion.velocity = -side.current * dirx * vx * 6; }
     } else if (mode.current === 'ghost' && dragId.current) {
       if (!last) st.setGhost({ id: dragId.current, x: px, y: py });
       else {
@@ -39,7 +47,7 @@ export default function HeroCanvas() {
   }, { filterTaps: true, pointer: { touch: true } });
 
   return (
-    <div {...bind()} className="h-full w-full touch-pan-y" aria-hidden>
+    <div ref={wrap} {...bind()} className="h-full w-full touch-pan-y" aria-hidden>
       <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 6.7, 8.0], fov: 34 }} gl={{ antialias: true }}
         onCreated={({ camera }) => camera.lookAt(0, 0, 0.3)}>
         <ambientLight intensity={0.25} />

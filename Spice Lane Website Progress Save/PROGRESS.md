@@ -3,8 +3,8 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS — Step 13: fixes from repo-root `Update Review.pdf` (user review, Bengali comments)
 - Current: Step 13 → 13.5 back-side drag direction (S28)
-- Last action: S27 pushed 13.1 zebra stripes, 13.2/13.3/13.6 belt+plate rewrite, 13.4 hover chip fix (commits dfeec30, 09b93e4) — build not yet verified
-- NEXT ACTION: 13.5 invert drag on far half (HeroCanvas.tsx), then 13.9 Spotlight framing, then 13.12 build+screenshots
+- Last action: 13.5 HeroCanvas.tsx: side ref (-1 when drag starts in top 47% of canvas = back lane) multiplies dx + fling velocity
+- NEXT ACTION: 13.9 Spotlight framing + only front product; then 13.12 build+screenshots
 - Project runs?: YES — build PASS S23
 - Last updated: 2026-11-16 13:40 (Asia/Dhaka) by Session #28
 
@@ -47,7 +47,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
   - [x] 13.2 Table shape/size = wide flat ellipse like user's blue marking (bigger, wider); front items look bigger, back smaller (perspective)
   - [x] 13.3 Remove extra plate mesh under each food (GLB already has round plate); tier colour ring must fit the GLB plate's circle
   - [x] 13.4 Hover on an item shows WRONG item's name → fix hover label mapping
-  - [ ] 13.5 Dragging on the BACK side of table rotates the wrong way → invert drag direction when pointer is on far half
+  - [x] 13.5 Dragging on the BACK side of table rotates the wrong way → invert drag direction when pointer is on far half
   - [x] 13.6 Table food items a bit bigger
   - [x] 13.7 Product popup bigger; while popup open, wheel zooms model, page behind must NOT scroll (scroll lock)
   - [x] 13.8 Cart drawer: list must scroll inside; page behind must NOT scroll while open
