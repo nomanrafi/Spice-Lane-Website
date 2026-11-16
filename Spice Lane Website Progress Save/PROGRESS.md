@@ -1,7 +1,8 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS (Step 14, S77)
+- Overall: IN PROGRESS (Step 14, S78)
+- S78: resumed at 14.1. User NEW: 'table ta to dekha jacche na' (table NOT VISIBLE now!) + same 4 requests. Priority: make table visible, then shape/zebra/gap/hover. NO image viewing.
 - S77: resumed at 14.1. User (chat): shape must match blue mark (not fixed rectangle), zebra like reference (not linear, fewer lines), smaller middle gap, bigger items, hover shows 2 names. Push small.
 - S76: resumed at 14.1. Plan: measure blue mark in PDF p1 numerically (pixel analysis, no image viewing), fit belt.ts; zebra like reference; fix 2-name hover; build; push small.
 - S75: resumed at 14.1-14.5 (S74 pushed zebra 16 curved seams, stopped during npm install). Answer to user: table NOT complete (shape/zebra/gap/hover not verified). Autopush 30s. NO image viewing (sessions die after viewing images).
