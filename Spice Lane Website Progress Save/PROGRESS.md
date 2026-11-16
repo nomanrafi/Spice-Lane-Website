@@ -1,7 +1,8 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS (Step 14, S75)
+- Overall: IN PROGRESS (Step 14, S76)
+- S76: resumed at 14.1. Plan: measure blue mark in PDF p1 numerically (pixel analysis, no image viewing), fit belt.ts; zebra like reference; fix 2-name hover; build; push small.
 - S75: resumed at 14.1-14.5 (S74 pushed zebra 16 curved seams, stopped during npm install). Answer to user: table NOT complete (shape/zebra/gap/hover not verified). Autopush 30s. NO image viewing (sessions die after viewing images).
 - S74: resumed at 14.1 (S73 pushed true ellipse OUT 4.5x2.75 IN 2.0x0.25; stopped while making zebra seams fewer+curved). Answer: table NOT complete. Autopush 30s. NO image viewing.
 - S74 DONE-1: KaitenTable.tsx Zebra SEAMS 28→16, bulge 0.22→0.34·pitch (fewer, curved). NEXT: npm install, tsc, DOM hover test (count visible names), build.
