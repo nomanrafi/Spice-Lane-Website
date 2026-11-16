@@ -1,7 +1,8 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS (Step 14, S71)
+- Overall: IN PROGRESS (Step 14, S72)
+- S72: resumed at 14.1 (S71 auto-pushed belt A6.2/B2.25/n2.4/plateR1.4/H1.7, unverified). User asked first: is table done? Answer = NO (14.1-14.3 unverified, hover 2 names still reported). Autopush 30s.
 - S71: resumed; autopush 30s running; plan = port reference stadium geometry (r=0.95d, band 1.22d, 32 slats bulge .2) into belt.ts + bigger camera framing to fill blue mark (PDF p1 = big organic oval on right half of hero)
 - S70: resumed; autopush 30s; dev server + screenshot of current S68 table, then tune shape/zebra/camera to blue mark
 - S68: belt.ts BELT={A:5,B:2.3,n:2.1,plateR:1.5,H:1.8} (island B−H=0.5, plates Ø3); Zebra rewritten = 16 thin quadratic crescent seams + glint, NO tone bands. NEXT: check canvas does not clip table sides (clipping = "rectangle" look), runtime hover test counting visible names
@@ -79,6 +80,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S72 (2026-11-16): resumed at 14.1. User asked 'is table work complete?' -> answered NO. Same 4 requests; push every 30s.
 - S69 (2026-11-16): resumed at 14.1. User (Bangla): same 4 table requests (blue-mark shape not fixed rect, reference zebra not linear/too many lines, smaller middle gap + bigger items, hover shows 2 names); push every ~30s. Plan: port reference geometry (stadium r=0.95d, band 1.22d, slats every 0.34d bulge 0.2 pitch) into 3D; check canvas clipping.
 - S68 (2026-11-16): resumed at 14.1. User repeated same 4 table requests (blue-mark shape not fixed rect, reference zebra not linear/fewer lines, smaller middle gap + bigger items, hover 2 names); push every ~30s. No image viewing.
 - S67 (2026-11-16): resumed at 14.1. User repeated same 4 table requests (blue-mark shape not fixed rect, reference zebra not linear/fewer lines, smaller middle gap + bigger items, hover 2 names); push every ~30s.
