@@ -2,11 +2,11 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS — Step 13: fixes from repo-root `Update Review.pdf` (user review, Bengali comments)
-- Current: 13.12c SpotlightCanvas.tsx ring lifted y 0.012→0.05, radii 0.98–1.06→0.97–1.03 (ring sat below plate in spotlight-s31). 13.10 confirmed: PDF p4 blank cards = Reviews gallery, now filled (reviews-s31.jpg)
+- Current: 13.13 (S32 user chat) header logo 'Spice Lane' bigger: src/components/Header.tsx text-[15px]→text-[22px] md:text-[26px], header h-16 md:h-20
 - Last action: 13.9 SpotlightCanvas: removed extra plate mesh, ring fits GLB rim (D=1.5), centred framing; Spotlight.tsx shows only frontId (removed hover/pick switcher, pairings open modal). tsconfig exclude progress+optional folders (archive broke tsc)
-- NEXT ACTION: npm run build, restart next start :3000, shots2.mjs → check spotlight ring; then mark 13.12 + Step 13 done
+- NEXT ACTION: npm ci; npm run build; next start :3000; screenshot hero (logo + spotlight ring 13.12c); then mark 13.12/13.13 + Step 13 done
 - Project runs?: YES — build PASS S23
-- Last updated: 2026-11-16 13:50 (Asia/Dhaka) by Session #31
+- Last updated: 2026-11-16 14:00 (Asia/Dhaka) by Session #32
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -55,6 +55,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
   - [x] 13.10 Blank-looking sections (PDF p3 second image) → add meaningful content/visuals
   - [x] 13.11 Footer (blue mark, PDF p4): add "MADE BY NOMAN-RAFI"
   - [ ] 13.12 build + screenshots + push
+  - [ ] 13.13 (S32 user chat) make header logo text 'Spice Lane' bigger — edited, needs build verify
 - [x] Step 12 (S21–S23): deploy-readiness audit — 12.1 install+build ✓ · 12.2 lint+typecheck ✓ · 12.3 runtime smoke test ✓ (found: canvas edge clip, pause glyph) · 12.4 fix issues ✓ (S22, verified S23) · 12.5 deploy notes in README ✓ (S23)
 - [x] Step 11 (S19–S20, optional follow-ups): 11.1 bundle cart line ✓ build PASS · 11.2 /api/order mock payment ✓ build PASS S20
 
@@ -65,6 +66,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S32 (2026-11-16): resumed at 13.12 verify (S31 stopped by usage policy while rebuilding/screenshotting after 13.12c ring push). User asked: logo 'Spice Lane' bigger
 - S31 (2026-11-16): resumed at 13.12b verify (S30 stopped by usage policy while rebuilding/screenshotting hero after pushing camera fix)
 - S30 (2026-11-16): resumed at 13.12 review screenshots vs PDF + verify 13.10 (S29 stopped after viewing hero-s29/spotlight-s29)
 - S29 (2026-11-16): resumed at 13.12 (S28 stopped by usage policy during production build after pushing 13.9)
