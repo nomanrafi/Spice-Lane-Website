@@ -12,7 +12,7 @@ import Plate from './Plate';
  * src/lib/belt.ts: outer = curve(A+H, B+H), island hole = curve(A−H, B−H)). Plates fill most of the band width,
  * so the middle island is small, like the reference kaiten table.
  */
-const SEAMS = 16;          // S49: 2 crescent seams per plate (fewer lines, like the reference look); S45: reference-like groove count = 3 per plate (not dozens of straight stripes)
+const SEAMS = 24;          // S57: reference look = thin crescent seams, 3 per plate slot, no stripe blocks
 const ACROSS = 14;         // segments across the band (makes each seam a smooth crescent)
 /** Reusable dynamic triangle-strip grid (rows × cols quads per patch), refilled every frame. */
 function useGrid(patches: number, cols: number, rows: number) {
@@ -36,13 +36,13 @@ function useGrid(patches: number, cols: number, rows: number) {
  */
 function Zebra() {
   const pitch = PERIMETER / SEAMS;
-  const bulge = pitch * 0.22;
+  const bulge = pitch * 0.2;               // reference slatPath: middle of each seam bulges forward 0.2·pitch
   const seams = useGrid(SEAMS, ACROSS, 1);
   const glints = useGrid(SEAMS, ACROSS, 1);
-  const shades = useGrid(SEAMS / 2, ACROSS, 4);
   useFrame(() => {
     const off = beltMotion.offset + pitch / 2;
-    const at = (s: number, u: number) => bandPoint(beltTheta(s + bulge * (1 - u * u)), u * 0.93);
+    // smooth crescent across the band: ends trail, middle leads (quadratic like the reference SVG path)
+    const at = (s: number, u: number) => bandPoint(beltTheta(s + bulge * (1 - u * u)), u * 0.92);
     const line = (geo: THREE.BufferGeometry, shift: number, w: number, y: number) => {
       const lp = geo.attributes.position as THREE.BufferAttribute; let k = 0;
       for (let j = 0; j < SEAMS; j++) {
@@ -55,28 +55,16 @@ function Zebra() {
       }
       lp.needsUpdate = true;
     };
-    line(seams, 0, 0.022, 0.055);
-    line(glints, 0.07, 0.01, 0.056);
-    // very soft alternate tone between every other pair of seams (subtle zebra, not hard stripes)
-    const sp = shades.attributes.position as THREE.BufferAttribute; let o = 0;
-    for (let j = 0; j < SEAMS; j += 2) {
-      const s0 = off + j * pitch;
-      for (let r = 0; r <= 4; r++) for (let c = 0; c <= ACROSS; c++) {
-        const u = (c / ACROSS) * 2 - 1; const [x, z] = at(s0 + pitch * (r / 4), u); sp.setXYZ(o++, x, 0.054, z);
-      }
-    }
-    sp.needsUpdate = true;
+    line(seams, 0, 0.018, 0.055);
+    line(glints, -0.06, 0.008, 0.056);
   });
   return (
     <group raycast={() => null}>
-      <mesh geometry={shades} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.05} depthWrite={false} side={THREE.DoubleSide} />
-      </mesh>
       <mesh geometry={seams} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#000000" transparent opacity={0.5} depthWrite={false} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#000000" transparent opacity={0.42} depthWrite={false} side={THREE.DoubleSide} />
       </mesh>
       <mesh geometry={glints} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.12} depthWrite={false} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#ffffff" transparent opacity={0.14} depthWrite={false} side={THREE.DoubleSide} />
       </mesh>
     </group>
   );
@@ -85,27 +73,33 @@ function Zebra() {
 const loop = (a: number, b: number) => outline(a, b, 240).map(([x, z]) => new THREE.Vector2(x, z));
 
 function TableBody() {
-  const { top, island, rim } = useMemo(() => {
+  const { top, island, rim, innerRim } = useMemo(() => {
     const { A, B, H } = BELT;
     const outer = new THREE.Shape(loop(A + H, B + H));
     outer.holes.push(new THREE.Path(loop(A - H, B - H)));
     const ext = { depth: 0.22, bevelEnabled: true, bevelSize: 0.05, bevelThickness: 0.05, bevelSegments: 4, curveSegments: 8 };
     const rimShape = new THREE.Shape(loop(A + H + 0.05, B + H + 0.05));
     rimShape.holes.push(new THREE.Path(loop(A + H - 0.03, B + H - 0.03)));
+    const inRim = new THREE.Shape(loop(A - H + 0.03, B - H + 0.03));
+    inRim.holes.push(new THREE.Path(loop(A - H - 0.04, B - H - 0.04)));
     return {
       top: new THREE.ExtrudeGeometry(outer, ext),
       island: new THREE.ExtrudeGeometry(new THREE.Shape(loop(A - H - 0.06, B - H - 0.06)), { ...ext, depth: 0.3, bevelSize: 0.08, bevelThickness: 0.08 }),
       rim: new THREE.ShapeGeometry(rimShape),
+      innerRim: new THREE.ShapeGeometry(inRim),
     };
   }, []);
   return (
     <group>
       <mesh geometry={top} rotation={[Math.PI / 2, 0, 0]} receiveShadow castShadow>
-        <meshStandardMaterial color="#2b2b2b" roughness={0.5} metalness={0.25} />
+        <meshStandardMaterial color="#3a3a3a" roughness={0.6} metalness={0.15} />
       </mesh>
       {/* thin light rail along the outer edge (reference: white rim highlight) */}
       <mesh geometry={rim} rotation={[Math.PI / 2, 0, 0]} position={[0, 0.052, 0]} raycast={() => null}>
         <meshBasicMaterial color="#b0b0b0" transparent opacity={0.45} side={THREE.DoubleSide} />
+      </mesh>
+      <mesh geometry={innerRim} rotation={[Math.PI / 2, 0, 0]} position={[0, 0.053, 0]} raycast={() => null}>
+        <meshBasicMaterial color="#9a9a9a" transparent opacity={0.35} side={THREE.DoubleSide} />
       </mesh>
       <mesh geometry={island} rotation={[Math.PI / 2, 0, 0]} position={[0, 0.17, 0]} receiveShadow castShadow>
         <meshStandardMaterial color="#151515" roughness={0.55} metalness={0.2} />
