@@ -8,7 +8,7 @@
 - Last action: S38 fixed build-s37 type error in src/lib/belt.ts:8 (curve() default params typed as number)
 - NEXT ACTION: npm run dev + node "Spice Lane Website Progress Save/scripts/hero-shot.mjs" /tmp/s39 → compare with PDF p1 blue mark; adjust camera (HeroCanvas.tsx:51) so table fills blue area
 - Project runs?: S43 dev server runs, hero renders, no page errors (output/preview/hero-s43.jpg = S42 radial oval, looks right)
-- Last updated: 2026-11-16 20:55 (Asia/Dhaka) by Session #63 (resumed at 14.1)
+- Last updated: 2026-11-16 21:05 (Asia/Dhaka) by Session #64 (resumed at 14.1; autopush every 30s)
 - S42 plan: rewrite belt.ts as radial superellipse (outer/inner = curve(θ, A±H, B±H)), steeper+closer camera so table fills blue mark, 16 curved zebra slats (alternating tone), plateR up, verify hover single chip by screenshot
 
 ## Task
@@ -76,6 +76,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S64 (2026-11-16): resumed at 14.1. Same 4 user requests. Autopush interval 30s (AUTOPUSH_INTERVAL=30).
 - S63 (2026-11-16): resumed at 14.1. User asked first: how much work left? Same 4 requests (blue-mark shape not fixed rect, reference zebra curved/fewer, smaller gap + bigger items, hover shows 2 names). Answered: only Step 14 left (14.1–14.3 code pushed S57 but unverified, 14.4 hover re-check, 14.5 build+push).
 - S62 (2026-11-16): resumed at 14.1. User asked first: how much work left? Same 4 requests (blue-mark shape, reference zebra fewer/curved, smaller gap + bigger items, hover 2 names). S61 stopped after viewing blue.png (nothing pushed). Avoid viewing many images.
 - S61 (2026-11-16): resumed at 14.1. User asked first: how much work is left? Same 4 requests (blue-mark shape not fixed rect; reference-like zebra not linear/fewer lines; smaller middle gap + bigger items; hover shows 2 names). S60 stopped after viewing s60-hover.png (nothing new pushed).
