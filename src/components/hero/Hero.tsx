@@ -69,15 +69,7 @@ export default function Hero() {
       <div className="relative">
         <div className="relative aspect-[16/10] w-full lg:-mx-8 lg:w-[calc(100%+4rem)]">
           <HeroCanvas />
-          <AnimatePresence>
-            {active && (
-              <motion.div key={active.id} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}
-                className="pointer-events-none absolute left-1/2 top-[44%] -translate-x-1/2 -translate-y-1/2 whitespace-nowrap rounded-full border border-line bg-black/70 px-4 py-2 text-sm text-white backdrop-blur">
-                <span className="mr-2 inline-block h-2 w-2 rounded-full" style={{ background: TIERS[active.tier].color }} />
-                {active.name} <span className="ml-1 text-muted">{formatPrice(active.price)}</span>
-              </motion.div>
-            )}
-          </AnimatePresence>
+          {/* S36 (14.4): duplicate overlay name chip removed — only the 3D HoverChip in KaitenTable.tsx shows the hovered name */}
         </div>
         <div className="mt-4 flex items-center justify-center gap-3">
           <RoundBtn label="Previous plate" onClick={() => seekSlot(-1)}>‹</RoundBtn>

@@ -1,9 +1,9 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS (Step 14, S35)
+- Overall: IN PROGRESS (Step 14, S36)
 - Current: 14.1 hero table shape → smooth organic oval like user's blue marking (no straight 'rectangle' sides), bigger
-- Last action: S35 resumed (S34 stopped by usage policy after pushing belt.ts superellipse, while fixing normal direction)
+- Last action: S36 removed duplicate hover chip in Hero.tsx (14.4). Before: S35 resumed (S34 stopped by usage policy after pushing belt.ts superellipse, while fixing normal direction)
 - NEXT ACTION: rewrite src/lib/belt.ts (superellipse path, arc-length LUT) + KaitenTable.tsx (offset-curve table, ~34 crescent seams like reference)
 - Project runs?: YES — build PASS S32
 - Last updated: 2026-11-16 14:30 (Asia/Dhaka) by Session #34
@@ -63,7 +63,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
   - [ ] 14.1 Table shape = user's blue marking (smooth wide oval, NOT fixed rectangle/stadium with straight sides), bigger  ← IN PROGRESS
   - [ ] 14.2 Zebra = like reference (few curved crescent seams + glint, pitch ≈ 0.34·plate Ø, ~34 seams) instead of 112 dense straight stripes
   - [ ] 14.3 (S34 user chat) middle gap/island SMALLER, food items BIGGER (plateR 0.7→0.95)
-  - [ ] 14.4 (S34 user chat) hovering one item shows TWO names → remove duplicate overlay chip in src/components/hero/Hero.tsx (keep 3D HoverChip in KaitenTable.tsx)
+  - [x] 14.4 (done S36) (S34 user chat) hovering one item shows TWO names → remove duplicate overlay chip in src/components/hero/Hero.tsx (keep 3D HoverChip in KaitenTable.tsx)
   - [ ] 14.5 build + screenshot + push
 
 ## How to use the result
@@ -73,6 +73,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S36 (2026-11-16): resumed at 14.1; S35 stopped by usage policy before pushing 14.4. User repeated same requests (shape, zebra, gap/items, double name)
 - S35 (2026-11-16): resumed at 14.1 (belt.ts pushed by S34; KaitenTable not yet). User repeated same 4 requests (shape, zebra, gap smaller/items bigger, double hover name)
 - S34 (2026-11-16): resumed at 14.1. User repeated: table shape ≠ blue mark (why fixed rectangle?), zebra too linear & too many lines; NEW: centre gap smaller, items bigger, hover shows 2 names
 - S33 (2026-11-16): resumed after DONE. User: table shape doesn't match blue marking (fixed rectangle), zebra too linear/too many lines
