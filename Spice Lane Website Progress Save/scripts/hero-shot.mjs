@@ -7,6 +7,6 @@ await p.goto('http://localhost:3000', { waitUntil: 'networkidle', timeout: 90000
 await p.waitForTimeout(14000);
 await p.screenshot({ path: `${out}-a.png` });
 const c = await p.$('canvas'); const r = await c.boundingBox();
-await p.mouse.move(r.x + r.width*0.5, r.y + r.height*0.72); await p.waitForTimeout(2500);
+await p.mouse.move(r.x + r.width*0.5, r.y + r.height*0.80); await p.waitForTimeout(2500);
 await p.screenshot({ path: `${out}-hover.png` });
 console.log('errors', errs.slice(0,3)); await b.close(); process.exit(0);
