@@ -70,7 +70,12 @@ export default function Hero() {
       <div className="relative">
         <div className="relative aspect-[16/10] w-full lg:-mx-8 lg:w-[calc(100%+4rem)]">
           <HeroCanvas />
-          {/* S36 (14.4): duplicate overlay name chip removed — only the 3D HoverChip in KaitenTable.tsx shows the hovered name */}
+          {/* S49 (14.4): the ONLY hover name label; KaitenTable.tsx HoverChip moves it over the hovered plate */}
+          {(() => { const h = hoverId ? getItem(hoverId) : undefined; return (
+            <div id="hover-chip" aria-live="polite" style={{ opacity: 0 }}
+              className="pointer-events-none absolute left-0 top-0 z-20 whitespace-nowrap rounded-full border border-white/10 bg-black/75 px-4 py-2 text-sm text-white backdrop-blur transition-opacity duration-200">
+              {h && (<><span className="mr-2 inline-block h-2 w-2 rounded-full" style={{ background: h.accentColor }} />{h.name}<span className="ml-2 font-mono text-white/60">{formatPrice(h.price)}</span></>)}
+            </div>); })()}
         </div>
         <div className="mt-4 flex items-center justify-center gap-3">
           <RoundBtn label="Previous plate" onClick={() => seekSlot(-1)}>‹</RoundBtn>

@@ -1,9 +1,8 @@
 'use client';
 import { useMemo, useRef, type MutableRefObject } from 'react';
-import { useFrame } from '@react-three/fiber';
+import { useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
-import { Html } from '@react-three/drei';
-import { MENU, getItem } from '@/data/menu';
+import { MENU } from '@/data/menu';
 import { useStore } from '@/store/useStore';
 import { BELT, PERIMETER, bandPoint, beltMotion, beltPoint, beltTheta, frontIndex, outline, plateS } from '@/lib/belt';
 import Plate from './Plate';
@@ -13,7 +12,7 @@ import Plate from './Plate';
  * src/lib/belt.ts: outer = curve(A+H, B+H), island hole = curve(A−H, B−H)). Plates fill most of the band width,
  * so the middle island is small, like the reference kaiten table.
  */
-const SEAMS = 24;          // S45: reference-like groove count = 3 per plate (not dozens of straight stripes)
+const SEAMS = 16;          // S49: 2 crescent seams per plate (fewer lines, like the reference look); S45: reference-like groove count = 3 per plate (not dozens of straight stripes)
 const ACROSS = 14;         // segments across the band (makes each seam a smooth crescent)
 /** Reusable dynamic triangle-strip grid (rows × cols quads per patch), refilled every frame. */
 function useGrid(patches: number, cols: number, rows: number) {
@@ -71,7 +70,7 @@ function Zebra() {
   return (
     <group raycast={() => null}>
       <mesh geometry={shades} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.025} depthWrite={false} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#ffffff" transparent opacity={0.05} depthWrite={false} side={THREE.DoubleSide} />
       </mesh>
       <mesh geometry={seams} frustumCulled={false} raycast={() => null}>
         <meshBasicMaterial color="#000000" transparent opacity={0.5} depthWrite={false} side={THREE.DoubleSide} />
@@ -116,25 +115,24 @@ function TableBody() {
   );
 }
 
-/** Label chip floating just above the hovered plate (review 13.4: label always belongs to the plate under the mouse). */
+/**
+ * S49 (14.4 final): hover name = ONE plain DOM element (#hover-chip, rendered once in Hero.tsx).
+ * drei <Html> was dropped because it can mount twice (StrictMode / remounts) → user saw TWO names.
+ * Here we only project the hovered plate to screen space and move that single element.
+ */
 function HoverChip({ id, groups }: { id: string | null; groups: MutableRefObject<(THREE.Group | null)[]> }) {
-  const item = id ? getItem(id) : undefined;
-  const anchor = useRef<THREE.Group>(null);
+  const { camera, size } = useThree();
+  const v = useMemo(() => new THREE.Vector3(), []);
   useFrame(() => {
+    const el = document.getElementById('hover-chip'); if (!el) return;
     const i = MENU.findIndex((m) => m.id === id);
     const g = groups.current[i];
-    if (anchor.current && g) anchor.current.position.set(g.position.x, g.position.y + 1.25, g.position.z);
+    if (!g) { el.style.opacity = '0'; return; }
+    v.set(g.position.x, g.position.y + 0.9, g.position.z).project(camera);
+    el.style.transform = `translate3d(${((v.x + 1) / 2) * size.width}px, ${((1 - v.y) / 2) * size.height}px, 0) translate(-50%, -100%)`;
+    el.style.opacity = '1';
   });
-  return (
-    <group ref={anchor}>
-      <Html center zIndexRange={[20, 0]} style={{ pointerEvents: 'none' }}>
-        <div aria-live="polite"
-          className={`whitespace-nowrap rounded-full border border-white/10 bg-black/75 px-4 py-2 text-sm text-white backdrop-blur transition-opacity duration-200 ${item ? 'opacity-100' : 'opacity-0'}`}>
-          {item && (<><span className="mr-2 inline-block h-2 w-2 rounded-full" style={{ background: item.accentColor }} />{item.name}<span className="ml-2 font-mono text-white/60">${item.price.toFixed(2)}</span></>)}
-        </div>
-      </Html>
-    </group>
-  );
+  return null;
 }
 
 export default function KaitenTable() {

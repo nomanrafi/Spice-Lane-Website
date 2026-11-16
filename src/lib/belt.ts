@@ -3,7 +3,8 @@
 // inner edge is curve(θ, A−H, B−H) and the outer edge curve(θ, A+H, B+H) — no offset-curve cusps, small island.
 // Front lane = +Z (closest to camera), moving RIGHT → LEFT as arc-length s grows. s = 0 is the front-centre point.
 // S45: asymmetric organic oval like the blue mark (right end fuller, left end a bit narrower), thin band gap, big plates.
-export const BELT = { A: 4.0, B: 2.35, n: 2.4, asym: 0.07, plateR: 1.12, H: 1.3, count: 8 } as const;
+// S49: smooth symmetric oval (no straight sides), thin island like the reference (inner minor semi-axis B−H = 0.75), bigger plates.
+export const BELT = { A: 4.3, B: 2.15, n: 2.3, asym: 0, plateR: 1.2, H: 1.4, count: 8 } as const;
 
 const LUT_N = 1440;
 type P = [number, number];
