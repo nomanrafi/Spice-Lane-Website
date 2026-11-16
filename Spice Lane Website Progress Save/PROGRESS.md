@@ -6,7 +6,7 @@
 - Last action: S38 fixed build-s37 type error in src/lib/belt.ts:8 (curve() default params typed as number)
 - NEXT ACTION: npm run build → hero screenshot (scripts/hero-shot.mjs) → compare with Update Review.pdf p1 blue mark; then tune egg shape/size
 - Project runs?: build FAILED S37 (type error, fixed S38, re-verify)
-- Last updated: 2026-11-16 14:35 (Asia/Dhaka) by Session #38
+- Last updated: 2026-11-16 14:35 (Asia/Dhaka) by Session #39 (resumed)
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -73,6 +73,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S39 (2026-11-16): resumed at 14.5 verify; user repeated same 4 requests (shape=blue mark not fixed rect, zebra like reference fewer/curved, smaller gap + bigger items, single hover name)
 - S38 (2026-11-16): resumed at 14.5; same user requests repeated (shape=blue mark, zebra like reference w/ fewer lines, smaller gap, bigger items, single hover name)
 - S37 (2026-11-16): resumed at 14.1 verify. User repeated: shape ≠ blue mark, zebra too linear/many lines, gap smaller, items bigger, hover shows 2 names
 - S36 (2026-11-16): resumed at 14.1; S35 stopped by usage policy before pushing 14.4. User repeated same requests (shape, zebra, gap/items, double name)
