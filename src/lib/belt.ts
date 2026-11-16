@@ -3,12 +3,12 @@
 // the band is the radial interpolation between them (same ellipse parameter t), so every slat seam runs cleanly from
 // island to rim. Plates ride the centre-line (u = 0). Ground ratio 1.7:1 looks ≈2.15:1 on screen at 53° camera tilt.
 // Front lane = +Z, moving RIGHT → LEFT as s grows.
-export const OUT = { a: 4.75, b: 2.75 } as const;
-export const IN = { a: 2.05, b: 0.34 } as const;
+export const OUT = { a: 4.5, b: 2.75 } as const;
+export const IN = { a: 2.0, b: 0.25 } as const;
 /** Plates ride slightly outside the band middle (u = RIDE) so the tight ellipse ends never make plates overlap. */
-export const RIDE = 0.1;
+export const RIDE = 0.2;
 const lerp = (i: number, o: number, u: number) => i + (o - i) * ((u + 1) / 2);
-export const BELT = { A: lerp(IN.a, OUT.a, RIDE), B: lerp(IN.b, OUT.b, RIDE), plateR: 0.9, H: (OUT.b - IN.b) / 2, count: 8 } as const;
+export const BELT = { A: lerp(IN.a, OUT.a, RIDE), B: lerp(IN.b, OUT.b, RIDE), plateR: 0.92, H: (OUT.b - IN.b) / 2, count: 8 } as const;
 
 type P = [number, number];
 /** Point across the band at ellipse parameter t: u = −1 island edge … 0 centre-line … +1 outer rim (|u|>1 extrapolates). */
