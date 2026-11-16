@@ -1,12 +1,12 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS (Step 14, S33)
+- Overall: IN PROGRESS (Step 14, S34)
 - Current: 14.1 hero table shape → smooth organic oval like user's blue marking (no straight 'rectangle' sides), bigger
-- Last action: S33 resumed; read Update Review.pdf p1 + reference slatPath() in `Optional you can use/`
+- Last action: S34 resumed (S33 stopped by usage policy before any code). Archived old files to archive/s34/
 - NEXT ACTION: rewrite src/lib/belt.ts (superellipse path, arc-length LUT) + KaitenTable.tsx (offset-curve table, ~34 crescent seams like reference)
 - Project runs?: YES — build PASS S32
-- Last updated: 2026-11-16 14:20 (Asia/Dhaka) by Session #33
+- Last updated: 2026-11-16 14:30 (Asia/Dhaka) by Session #34
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -62,7 +62,9 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [ ] Step 14 (S33 user chat): table still wrong
   - [ ] 14.1 Table shape = user's blue marking (smooth wide oval, NOT fixed rectangle/stadium with straight sides), bigger  ← IN PROGRESS
   - [ ] 14.2 Zebra = like reference (few curved crescent seams + glint, pitch ≈ 0.34·plate Ø, ~34 seams) instead of 112 dense straight stripes
-  - [ ] 14.3 build + screenshot + push
+  - [ ] 14.3 (S34 user chat) middle gap/island SMALLER, food items BIGGER (plateR 0.7→0.95)
+  - [ ] 14.4 (S34 user chat) hovering one item shows TWO names → remove duplicate overlay chip in src/components/hero/Hero.tsx (keep 3D HoverChip in KaitenTable.tsx)
+  - [ ] 14.5 build + screenshot + push
 
 ## How to use the result
 - From repo root: `npm install` → `npm run dev` (http://localhost:3000) or `npm run build && npm start`.
@@ -71,6 +73,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S34 (2026-11-16): resumed at 14.1. User repeated: table shape ≠ blue mark (why fixed rectangle?), zebra too linear & too many lines; NEW: centre gap smaller, items bigger, hover shows 2 names
 - S33 (2026-11-16): resumed after DONE. User: table shape doesn't match blue marking (fixed rectangle), zebra too linear/too many lines
 - S32 (2026-11-16): resumed at 13.12 verify (S31 stopped by usage policy while rebuilding/screenshotting after 13.12c ring push). User asked: logo 'Spice Lane' bigger
 - S31 (2026-11-16): resumed at 13.12b verify (S30 stopped by usage policy while rebuilding/screenshotting hero after pushing camera fix)
@@ -96,6 +99,7 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - User chat (session #3): save everything only in this folder; push fast after small tasks; repo token given in chat (never stored in repo).
 
 ## Session History
+- S34 (2026-11-16): resumed at 14.1. User repeated: table shape ≠ blue mark (why fixed rectangle?), zebra too linear & too many lines; NEW: centre gap smaller, items bigger, hover shows 2 names
 - S30 (2026-11-16): resumed at 13.12 review screenshots vs PDF + verify 13.10 (S29 stopped after viewing hero-s29/spotlight-s29)
 - Session #24 (2026-11-16): new request — apply fixes from `Update Review.pdf` (repo root). User: push fast, small tasks; website code outside progress folder.
 - Session #1 (2026-11-15): Created PROGRESS.md + reference details doc.
