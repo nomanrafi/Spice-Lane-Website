@@ -9,6 +9,7 @@ import { useStore } from '@/store/useStore';
 import { getItem } from '@/data/menu';
 import { cartCenter, cartDistance, MAGNET_RADIUS } from '@/lib/dropzone';
 import KaitenTable from './KaitenTable';
+import { fitCamera } from '@/lib/fitCamera';
 
 /**
  * S72 (14.1): auto-frame the camera so the WHOLE oval table (rim + plates) always fits inside the canvas with a margin
@@ -20,20 +21,10 @@ function CameraFit() {
   useLayoutEffect(() => {
     const cam = camera as THREE.PerspectiveCamera;
     cam.fov = 32; cam.aspect = size.width / size.height; cam.updateProjectionMatrix();
-    const E = (53 * Math.PI) / 180, FW = 0.88, FH = 0.72;
     const pts: THREE.Vector3[] = [];
     for (const [x, z] of outline(BELT.H + 0.08, 96)) pts.push(new THREE.Vector3(x, 0, z));
     for (const [x, z] of outline(0, 96)) pts.push(new THREE.Vector3(x, 0.9, z));
-    const v = new THREE.Vector3(); const tgt = new THREE.Vector3(0, 0, 0);
-    let D = 20;
-    for (let it = 0; it < 40; it++) {
-      cam.position.set(0, tgt.y + D * Math.sin(E), tgt.z + D * Math.cos(E)); cam.lookAt(tgt); cam.updateMatrixWorld();
-      let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity;
-      for (const p of pts) { v.copy(p).project(cam); x0 = Math.min(x0, v.x); x1 = Math.max(x1, v.x); y0 = Math.min(y0, v.y); y1 = Math.max(y1, v.y); }
-      D *= Math.max((x1 - x0) / (2 * FW), (y1 - y0) / (2 * FH));
-      tgt.z += ((y1 + y0) / 2) * D * Math.tan((16 * Math.PI) / 180) * 0.6;
-    }
-    cam.position.set(0, D * Math.sin(E), tgt.z + D * Math.cos(E)); cam.lookAt(tgt); cam.updateMatrixWorld();
+    fitCamera(cam, pts, 53, 0.94, 0.86); // S78: stable fit (old loop diverged → table invisible)
   }, [camera, size.width, size.height]);
   return null;
 }
