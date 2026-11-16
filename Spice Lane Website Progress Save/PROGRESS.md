@@ -2,9 +2,9 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS — Step 13: fixes from repo-root `Update Review.pdf` (user review, Bengali comments)
-- Current: 13.12b hero table was clipped at canvas edges (S30 screenshot) → camera farther [0,8,9.6] + canvas 16/10 wider; verifying
+- Current: 13.12 verify: S31 screenshots OK (hero not clipped, spotlight = front item only, footer credit). Checking PDF p4 blank section = Specials (nav shows Specials active) — 13.10 earlier only fixed Reviews gallery
 - Last action: 13.9 SpotlightCanvas: removed extra plate mesh, ring fits GLB rim (D=1.5), centred framing; Spotlight.tsx shows only frontId (removed hover/pick switcher, pairings open modal). tsconfig exclude progress+optional folders (archive broke tsc)
-- NEXT ACTION: 13.12 screenshots via scripts/shots2.mjs (server: npx next start -p 3000) and compare with PDF
+- NEXT ACTION: screenshot #specials; if cards still blank gradients, add 3D poster images + labels in src/components/sections/Specials.tsx
 - Project runs?: YES — build PASS S23
 - Last updated: 2026-11-16 13:50 (Asia/Dhaka) by Session #31
 
