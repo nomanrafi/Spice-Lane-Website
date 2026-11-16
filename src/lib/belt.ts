@@ -1,34 +1,33 @@
-// S42 (14.1): table = one big smooth oval (superellipse, like the user's blue marking in Update Review.pdf p1).
-// Centre-line |x/A|^n + |z/B|^n = 1 in the XZ plane. The band is built RADIALLY: for curve parameter θ the
-// inner edge is curve(θ, A−H, B−H) and the outer edge curve(θ, A+H, B+H) — no offset-curve cusps, small island.
-// Front lane = +Z (closest to camera), moving RIGHT → LEFT as arc-length s grows. s = 0 is the front-centre point.
-// S45: asymmetric organic oval like the blue mark (right end fuller, left end a bit narrower), thin band gap, big plates.
-// S49: smooth symmetric oval (no straight sides), thin island like the reference (inner minor semi-axis B−H = 0.75), bigger plates.
-// S50: organic shape traced from the user's blue mark: wide, round ends, right end fuller (asym), soft dip in the
-// middle of the back edge (dip). Thin island (B−H = 0.5) and big plates (plateR 1.3) like the reference.
-export const BELT = { A: 6.2, B: 2.25, n: 2.4, asym: 0.03, dip: 0, plateR: 1.4, H: 1.7, count: 8 } as const; // S71: smooth wide oval (blue mark), slot = 1.25·plate Ø so plates never overlap (fixes double hover name), island B−H=0.55
+// S72 (14.1): table = smooth OVAL like the user's blue marking (Update Review.pdf p1): a classic 4-arc oval
+// (two small round end arcs + two big, gently bowed front/back arcs, tangent-continuous). No straight sides, no corners
+// (the old superellipse n>2 looked like a rounded RECTANGLE). The band is a true offset curve (concentric arcs), so the
+// band width is constant and the middle island is a thin smooth oval. Front lane = +Z, moving RIGHT → LEFT as s grows.
+// Sizes follow the reference kaiten (band ≈ 1.2·plate Ø) with a thinner island + bigger plates (user request).
+export const BELT = { A: 3.7, B: 1.75, R1: 1.5, plateR: 1.0, H: 1.2, count: 8 } as const;
 
-const LUT_N = 1440;
 type P = [number, number];
-const curve = (th: number, a: number = BELT.A, b: number = BELT.B): P => {
-  const c = Math.cos(th), s = Math.sin(th), e = 2 / BELT.n;
-  const k = 1 + BELT.asym * c; // fuller right end, narrower left end (organic, not a fixed rectangle/ellipse)
-  const d = s < 0 ? 1 - BELT.dip * Math.exp(-((c / 0.5) ** 2)) * -s : 1; // soft dent in the back edge (blue mark)
-  return [a * Math.sign(c) * Math.abs(c) ** e, b * k * d * Math.sign(s) * Math.abs(s) ** e];
-};
-/** Closed outline of a superellipse with semi-axes (a, b) — used for table rim / island shapes. */
-export function outline(a: number, b: number, steps = 192): P[] {
-  return Array.from({ length: steps }, (_, i) => curve((i / steps) * Math.PI * 2, a, b));
+const R2 = ((BELT.A - BELT.R1) ** 2 + BELT.B ** 2 - BELT.R1 ** 2) / (2 * (BELT.B - BELT.R1));
+const PHI = Math.asin((BELT.A - BELT.R1) / (R2 - BELT.R1));
+/** Point on the oval whose outward normal has angle t, pushed `off` along that normal. */
+function ovalAt(t: number, off = 0): P {
+  const tt = Math.atan2(Math.sin(t), Math.cos(t)), e = Math.PI / 2 - PHI;
+  let cx = 0, cz = 0, R = R2;
+  if (Math.abs(tt) <= e) { cx = BELT.A - BELT.R1; R = BELT.R1; }
+  else if (Math.abs(tt) >= Math.PI - e) { cx = -(BELT.A - BELT.R1); R = BELT.R1; }
+  else cz = tt > 0 ? -(R2 - BELT.B) : R2 - BELT.B;
+  return [cx + (R + off) * Math.cos(t), cz + (R + off) * Math.sin(t)];
 }
-/** Point across the band at curve parameter θ: u = −1 inner edge … 0 centre-line … +1 outer edge. */
-export function bandPoint(th: number, u: number): P {
-  return curve(th, BELT.A + u * BELT.H, BELT.B + u * BELT.H);
+/** Closed outline of the oval offset by `off` from the centre-line (− = inward). */
+export function outline(off: number, steps = 240): P[] {
+  return Array.from({ length: steps }, (_, i) => ovalAt((i / steps) * Math.PI * 2, off));
 }
+/** Point across the band at normal-angle θ: u = −1 inner edge … 0 centre-line … +1 outer edge. */
+export function bandPoint(th: number, u: number): P { return ovalAt(th, u * BELT.H); }
 
-// Uniform-arc-length lookup table, starting at θ = π/2 (front-centre) with θ increasing (moves left).
-const DN = 8192;
+// Uniform-arc-length lookup, starting at the front-centre (normal angle π/2) and moving left (θ increasing).
+const LUT_N = 2048, DN = 8192;
 const dense: P[] = []; const cum: number[] = [0];
-for (let i = 0; i <= DN; i++) dense.push(curve(Math.PI / 2 + (i / DN) * Math.PI * 2));
+for (let i = 0; i <= DN; i++) dense.push(ovalAt(Math.PI / 2 + (i / DN) * Math.PI * 2));
 for (let i = 1; i < dense.length; i++) cum.push(cum[i - 1] + Math.hypot(dense[i][0] - dense[i - 1][0], dense[i][1] - dense[i - 1][1]));
 export const PERIMETER = cum[cum.length - 1];
 export const SLOT = PERIMETER / BELT.count;

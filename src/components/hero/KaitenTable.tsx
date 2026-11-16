@@ -69,21 +69,21 @@ function Zebra() {
   );
 }
 
-const loop = (a: number, b: number) => outline(a, b, 240).map(([x, z]) => new THREE.Vector2(x, z));
+const loop = (off: number) => outline(off, 240).map(([x, z]) => new THREE.Vector2(x, z));
 
 function TableBody() {
   const { top, island, rim, innerRim } = useMemo(() => {
-    const { A, B, H } = BELT;
-    const outer = new THREE.Shape(loop(A + H, B + H));
-    outer.holes.push(new THREE.Path(loop(A - H, B - H)));
+    const { H } = BELT;
+    const outer = new THREE.Shape(loop(H));
+    outer.holes.push(new THREE.Path(loop(-H)));
     const ext = { depth: 0.22, bevelEnabled: true, bevelSize: 0.05, bevelThickness: 0.05, bevelSegments: 4, curveSegments: 8 };
-    const rimShape = new THREE.Shape(loop(A + H + 0.05, B + H + 0.05));
-    rimShape.holes.push(new THREE.Path(loop(A + H - 0.03, B + H - 0.03)));
-    const inRim = new THREE.Shape(loop(A - H + 0.03, B - H + 0.03));
-    inRim.holes.push(new THREE.Path(loop(A - H - 0.04, B - H - 0.04)));
+    const rimShape = new THREE.Shape(loop(H + 0.05));
+    rimShape.holes.push(new THREE.Path(loop(H - 0.03)));
+    const inRim = new THREE.Shape(loop(-H + 0.03));
+    inRim.holes.push(new THREE.Path(loop(-H - 0.04)));
     return {
       top: new THREE.ExtrudeGeometry(outer, ext),
-      island: new THREE.ExtrudeGeometry(new THREE.Shape(loop(A - H - 0.06, B - H - 0.06)), { ...ext, depth: 0.3, bevelSize: 0.08, bevelThickness: 0.08 }),
+      island: new THREE.ExtrudeGeometry(new THREE.Shape(loop(-H - 0.06)), { ...ext, depth: 0.3, bevelSize: 0.08, bevelThickness: 0.08 }),
       rim: new THREE.ShapeGeometry(rimShape),
       innerRim: new THREE.ShapeGeometry(inRim),
     };

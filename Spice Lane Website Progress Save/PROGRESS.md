@@ -3,6 +3,7 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS (Step 14, S72)
 - S72: resumed at 14.1 (S71 auto-pushed belt A6.2/B2.25/n2.4/plateR1.4/H1.7, unverified). User asked first: is table done? Answer = NO (14.1-14.3 unverified, hover 2 names still reported). Autopush 30s.
+- S72 DONE-1: belt.ts = 4-arc smooth oval BELT={A:3.7,B:1.75,R1:1.5,plateR:1,H:1.2} (offset band, thin island 0.55, no rect corners); outline(off) API. Found root cause of 'rectangle': canvas box too small → table clipped at canvas edges + superellipse n>2 corners. NEXT: full-bleed canvas layer (left 35.5vw,w 64.5vw, top 14svh,h 78svh) + auto camera fit, elevation 53°, fov 32.
 - S71: resumed; autopush 30s running; plan = port reference stadium geometry (r=0.95d, band 1.22d, 32 slats bulge .2) into belt.ts + bigger camera framing to fill blue mark (PDF p1 = big organic oval on right half of hero)
 - S70: resumed; autopush 30s; dev server + screenshot of current S68 table, then tune shape/zebra/camera to blue mark
 - S68: belt.ts BELT={A:5,B:2.3,n:2.1,plateR:1.5,H:1.8} (island B−H=0.5, plates Ø3); Zebra rewritten = 16 thin quadratic crescent seams + glint, NO tone bands. NEXT: check canvas does not clip table sides (clipping = "rectangle" look), runtime hover test counting visible names
