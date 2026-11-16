@@ -40,7 +40,7 @@ export function beltFrame(s: number) {
   const [x1, z1] = beltPoint(s - 0.02), [x2, z2] = beltPoint(s + 0.02);
   const l = Math.hypot(x2 - x1, z2 - z1) || 1;
   const tx = (x2 - x1) / l, tz = (z2 - z1) / l;
-  return { tx, tz, nx: -tz, nz: tx }; // travel is counter-clockwise seen from +Y… normal (−tz, tx) points outward
+  return { tx, tz, nx: tz, nz: -tx }; // S36: verified (tz, −tx) points OUTWARD (front point: t=(−1,0) → n=(0,+1))
 }
 /** @deprecated old name kept so older imports keep working */
 export const stadiumPoint = beltPoint;

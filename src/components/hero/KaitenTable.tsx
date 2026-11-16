@@ -5,66 +5,91 @@ import * as THREE from 'three';
 import { Html } from '@react-three/drei';
 import { MENU, getItem } from '@/data/menu';
 import { useStore } from '@/store/useStore';
-import { BELT, PERIMETER, beltMotion, frontIndex, plateS, stadiumPoint } from '@/lib/belt';
+import { BELT, PERIMETER, beltFrame, beltMotion, beltPoint, frontIndex, plateS } from '@/lib/belt';
 import Plate from './Plate';
 
-/** Flat stadium shape (XY), rotated onto XZ by the mesh. */
-function stadiumShape(hl: number, r: number) {
-  const s = new THREE.Shape();
-  s.moveTo(-hl, -r); s.lineTo(hl, -r);
-  s.absarc(hl, 0, r, -Math.PI / 2, Math.PI / 2, false);
-  s.lineTo(-hl, r);
-  s.absarc(-hl, 0, r, Math.PI / 2, (3 * Math.PI) / 2, false);
-  return s;
+/**
+ * S36 (14.1/14.2/14.3): table follows the user's blue marking — one smooth organic oval (superellipse centre-line,
+ * NO straight sides). The band is the exact offset curve ±H of the plate path, so plates always sit centred on it,
+ * and the island in the middle is small (bigger plates, smaller gap).
+ */
+const SAMPLES = 240;
+function offsetLoop(d: number): THREE.Vector2[] {
+  return Array.from({ length: SAMPLES }, (_, i) => {
+    const s = (i / SAMPLES) * PERIMETER;
+    const [x, z] = beltPoint(s); const f = beltFrame(s);
+    return new THREE.Vector2(x + f.nx * d, z + f.nz * d);
+  });
 }
 
-/** Zebra slats across the belt lane (review 13.1). They ride on the same offset as the plates, so they move with the food. */
-const STRIPES = 112;
-function ZebraStripes({ w }: { w: number }) {
-  const ref = useRef<THREE.InstancedMesh>(null);
-  const tmp = useMemo(() => new THREE.Object3D(), []);
-  const step = PERIMETER / STRIPES;
-  useFrame(() => {
-    const im = ref.current; if (!im) return;
-    for (let i = 0; i < STRIPES; i++) {
-      const s = i * step + beltMotion.offset;
-      const [x, z] = stadiumPoint(s);
-      const [x2, z2] = stadiumPoint(s + 0.01);
-      tmp.position.set(x, 0.046, z);
-      tmp.rotation.set(-Math.PI / 2, 0, -Math.atan2(z2 - z, x2 - x));
-      tmp.updateMatrix();
-      im.setMatrixAt(i, tmp.matrix);
+/**
+ * Zebra = crescent slat seams like the reference (prompt-code slatPath): a seam every ≈0.34·plate Ø, each one a
+ * curved groove from inner to outer edge bulging in the travel direction, plus a faint white glint just behind it.
+ * Rebuilt every frame from beltMotion.offset, so they travel with the plates and bend round the curves.
+ */
+const SEAMS = Math.max(10, Math.round(PERIMETER / (0.34 * 2 * BELT.plateR)));
+const SEG = 10;
+function Seams({ shift, width, color, opacity, y }: { shift: number; width: number; color: string; opacity: number; y: number }) {
+  const geo = useMemo(() => {
+    const g = new THREE.BufferGeometry();
+    g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(SEAMS * (SEG + 1) * 2 * 3), 3));
+    const idx: number[] = [];
+    for (let j = 0; j < SEAMS; j++) for (let k = 0; k < SEG; k++) {
+      const a = (j * (SEG + 1) + k) * 2; idx.push(a, a + 1, a + 2, a + 1, a + 3, a + 2);
     }
-    im.instanceMatrix.needsUpdate = true;
+    g.setIndex(idx); return g;
+  }, []);
+  useFrame(() => {
+    const pos = geo.attributes.position as THREE.BufferAttribute;
+    const pitch = PERIMETER / SEAMS, half = BELT.H * 0.9, bulge = pitch * 0.2;
+    for (let j = 0; j < SEAMS; j++) {
+      const s0 = beltMotion.offset + shift + j * pitch + pitch / 2;
+      for (let k = 0; k <= SEG; k++) {
+        const t = k / SEG, u = (t * 2 - 1);            // −1 inner … +1 outer
+        const along = bulge * (1 - u * u);             // crescent: centre of the seam leads, ends trail
+        const s = s0 + along; const [x, z] = beltPoint(s); const f = beltFrame(s);
+        const px = x + f.nx * u * half, pz = z + f.nz * u * half;
+        const o = (j * (SEG + 1) + k) * 2;
+        pos.setXYZ(o, px - f.tx * width, y, pz - f.tz * width);
+        pos.setXYZ(o + 1, px + f.tx * width, y, pz + f.tz * width);
+      }
+    }
+    pos.needsUpdate = true;
   });
   return (
-    <instancedMesh ref={ref} args={[undefined, undefined, STRIPES]} receiveShadow raycast={() => null}>
-      <planeGeometry args={[step * 0.5, w * 2 - 0.06]} />
-      <meshStandardMaterial color="#5a5a5a" roughness={0.55} metalness={0.25} />
-    </instancedMesh>
+    <mesh geometry={geo} raycast={() => null} frustumCulled={false}>
+      <meshBasicMaterial color={color} transparent opacity={opacity} depthWrite={false} side={THREE.DoubleSide} />
+    </mesh>
   );
 }
 
 function TableBody() {
-  const hl = BELT.L / 2, w = BELT.plateR + 0.2;
-  const { top, island } = useMemo(() => {
-    const outer = stadiumShape(hl, BELT.R + w);
-    outer.holes.push(new THREE.Path(stadiumShape(hl, BELT.R - w).getPoints(64).reverse()));
-    const ext = { depth: 0.18, bevelEnabled: true, bevelSize: 0.04, bevelThickness: 0.04, bevelSegments: 3, curveSegments: 48 };
+  const { top, island, rim } = useMemo(() => {
+    const outer = new THREE.Shape(offsetLoop(BELT.H));
+    outer.holes.push(new THREE.Path(offsetLoop(-BELT.H)));
+    const ext = { depth: 0.22, bevelEnabled: true, bevelSize: 0.05, bevelThickness: 0.05, bevelSegments: 4, curveSegments: 8 };
+    const rimShape = new THREE.Shape(offsetLoop(BELT.H + 0.06));
+    rimShape.holes.push(new THREE.Path(offsetLoop(BELT.H - 0.02)));
     return {
       top: new THREE.ExtrudeGeometry(outer, ext),
-      island: new THREE.ExtrudeGeometry(stadiumShape(hl, BELT.R - w - 0.08), { ...ext, depth: 0.3 }),
+      island: new THREE.ExtrudeGeometry(new THREE.Shape(offsetLoop(-BELT.H - 0.1)), { ...ext, depth: 0.3 }),
+      rim: new THREE.ShapeGeometry(rimShape),
     };
-  }, [hl, w]);
+  }, []);
   return (
     <group>
-      <mesh geometry={top} rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow castShadow>
-        <meshStandardMaterial color="#262626" roughness={0.5} metalness={0.3} />
+      <mesh geometry={top} rotation={[Math.PI / 2, 0, 0]} receiveShadow castShadow>
+        <meshStandardMaterial color="#2a2a2a" roughness={0.45} metalness={0.3} />
       </mesh>
-      <mesh geometry={island} rotation={[Math.PI / 2, 0, 0]} position={[0, 0.12, 0]} receiveShadow castShadow>
-        <meshStandardMaterial color="#151515" roughness={0.6} metalness={0.2} />
+      {/* thin light rail along the outer edge (reference: white rim highlight) */}
+      <mesh geometry={rim} rotation={[Math.PI / 2, 0, 0]} position={[0, 0.052, 0]} raycast={() => null}>
+        <meshBasicMaterial color="#9a9a9a" transparent opacity={0.35} side={THREE.DoubleSide} />
       </mesh>
-      <ZebraStripes w={w} />
+      <mesh geometry={island} rotation={[Math.PI / 2, 0, 0]} position={[0, 0.14, 0]} receiveShadow castShadow>
+        <meshStandardMaterial color="#141414" roughness={0.6} metalness={0.2} />
+      </mesh>
+      <Seams shift={0} width={0.018} color="#000000" opacity={0.6} y={0.053} />
+      <Seams shift={-0.045} width={0.01} color="#ffffff" opacity={0.12} y={0.054} />
     </group>
   );
 }
@@ -114,7 +139,7 @@ export default function KaitenTable() {
     if (!m.dragging) m.offset += m.velocity * dt;
     groups.current.forEach((g, i) => {
       if (!g) return;
-      const [x, z] = stadiumPoint(plateS(i));
+      const [x, z] = beltPoint(plateS(i));
       g.position.set(x, 0.05, z);
     });
     const fid = MENU[frontIndex()]?.id; if (fid) setFront(fid);
