@@ -6,7 +6,7 @@
 - Last action: S38 fixed build-s37 type error in src/lib/belt.ts:8 (curve() default params typed as number)
 - NEXT ACTION: npm run dev + node "Spice Lane Website Progress Save/scripts/hero-shot.mjs" /tmp/s39 → compare with PDF p1 blue mark; adjust camera (HeroCanvas.tsx:51) so table fills blue area
 - Project runs?: S43 dev server runs, hero renders, no page errors (output/preview/hero-s43.jpg = S42 radial oval, looks right)
-- Last updated: 2026-11-16 17:55 (Asia/Dhaka) by Session #43 (resumed)
+- Last updated: 2026-11-16 18:10 (Asia/Dhaka) by Session #44 (resumed)
 - S42 plan: rewrite belt.ts as radial superellipse (outer/inner = curve(θ, A±H, B±H)), steeper+closer camera so table fills blue mark, 16 curved zebra slats (alternating tone), plateR up, verify hover single chip by screenshot
 
 ## Task
@@ -74,6 +74,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S44 (2026-11-16): resumed at 14.1. User repeated same 4 requests (shape like blue mark, reference-like zebra w/ fewer lines, smaller middle gap + bigger items, hover shows 2 names).
 - S43 (2026-11-16): resumed at 14.1 (S42 auto-pushed radial belt.ts+KaitenTable WIP, unverified). User repeated same 4 requests.
 - S42 (2026-11-16): resumed at 14.1. Viewed PDF p1 crop: reference = tight band, plates fill band, thin island, subtle curved radial seams; blue mark = big wide oval (~2.15:1 on screen) filling right 60% of hero.
 - S41 (2026-11-16): resumed at 14.1–14.5 verify. User repeated same 4 requests (shape=blue mark not fixed rect, zebra like reference fewer/curved, smaller gap + bigger items, single hover name).
