@@ -1,11 +1,11 @@
 'use client';
-import { useMemo, useRef } from 'react';
+import { useMemo, useRef, type MutableRefObject } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { Html } from '@react-three/drei';
 import { MENU, getItem } from '@/data/menu';
 import { useStore } from '@/store/useStore';
-import { BELT, beltMotion, frontIndex, plateS, stadiumPoint } from '@/lib/belt';
+import { BELT, PERIMETER, beltMotion, frontIndex, plateS, stadiumPoint } from '@/lib/belt';
 import Plate from './Plate';
 
 /** Flat stadium shape (XY), rotated onto XZ by the mesh. */
@@ -16,6 +16,33 @@ function stadiumShape(hl: number, r: number) {
   s.lineTo(-hl, r);
   s.absarc(-hl, 0, r, Math.PI / 2, (3 * Math.PI) / 2, false);
   return s;
+}
+
+/** Zebra slats across the belt lane (review 13.1). They ride on the same offset as the plates, so they move with the food. */
+const STRIPES = 112;
+function ZebraStripes({ w }: { w: number }) {
+  const ref = useRef<THREE.InstancedMesh>(null);
+  const tmp = useMemo(() => new THREE.Object3D(), []);
+  const step = PERIMETER / STRIPES;
+  useFrame(() => {
+    const im = ref.current; if (!im) return;
+    for (let i = 0; i < STRIPES; i++) {
+      const s = i * step + beltMotion.offset;
+      const [x, z] = stadiumPoint(s);
+      const [x2, z2] = stadiumPoint(s + 0.01);
+      tmp.position.set(x, 0.046, z);
+      tmp.rotation.set(-Math.PI / 2, 0, -Math.atan2(z2 - z, x2 - x));
+      tmp.updateMatrix();
+      im.setMatrixAt(i, tmp.matrix);
+    }
+    im.instanceMatrix.needsUpdate = true;
+  });
+  return (
+    <instancedMesh ref={ref} args={[undefined, undefined, STRIPES]} receiveShadow raycast={() => null}>
+      <planeGeometry args={[step * 0.5, w * 2 - 0.06]} />
+      <meshStandardMaterial color="#5a5a5a" roughness={0.55} metalness={0.25} />
+    </instancedMesh>
+  );
 }
 
 function TableBody() {
@@ -29,41 +56,37 @@ function TableBody() {
       island: new THREE.ExtrudeGeometry(stadiumShape(hl, BELT.R - w - 0.08), { ...ext, depth: 0.3 }),
     };
   }, [hl, w]);
-  // radial slat seams along the track
-  const seams = useMemo(() => {
-    const n = 64, pts: [number, number, number][] = [];
-    const P = 2 * BELT.L + 2 * Math.PI * BELT.R;
-    for (let i = 0; i < n; i++) { const [x, z] = stadiumPoint((i / n) * P); pts.push([x, 0.005, z]); }
-    return pts;
-  }, []);
   return (
     <group>
       <mesh geometry={top} rotation={[Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow castShadow>
-        <meshStandardMaterial color="#2b2b2b" roughness={0.45} metalness={0.35} />
+        <meshStandardMaterial color="#262626" roughness={0.5} metalness={0.3} />
       </mesh>
       <mesh geometry={island} rotation={[Math.PI / 2, 0, 0]} position={[0, 0.12, 0]} receiveShadow castShadow>
         <meshStandardMaterial color="#151515" roughness={0.6} metalness={0.2} />
       </mesh>
-      {seams.map((p, i) => (
-        <mesh key={i} position={p} rotation={[-Math.PI / 2, 0, 0]}>
-          <ringGeometry args={[BELT.plateR + 0.12, BELT.plateR + 0.135, 24, 1, 0, Math.PI]} />
-          <meshBasicMaterial color="#3a3a3a" transparent opacity={0.35} />
-        </mesh>
-      ))}
+      <ZebraStripes w={w} />
     </group>
   );
 }
 
-/** Label chip floating over the centre island: name + price of the hovered plate. */
-function IslandChip({ id }: { id: string | null }) {
+/** Label chip floating just above the hovered plate (review 13.4: label always belongs to the plate under the mouse). */
+function HoverChip({ id, groups }: { id: string | null; groups: MutableRefObject<(THREE.Group | null)[]> }) {
   const item = id ? getItem(id) : undefined;
+  const anchor = useRef<THREE.Group>(null);
+  useFrame(() => {
+    const i = MENU.findIndex((m) => m.id === id);
+    const g = groups.current[i];
+    if (anchor.current && g) anchor.current.position.set(g.position.x, g.position.y + 1.15, g.position.z);
+  });
   return (
-    <Html position={[0, 0.75, 0]} center zIndexRange={[20, 0]} style={{ pointerEvents: 'none' }}>
-      <div aria-live="polite"
-        className={`whitespace-nowrap rounded-full border border-white/10 bg-black/70 px-4 py-2 text-sm text-white backdrop-blur transition-all duration-300 ${item ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}>
-        {item && (<><span className="mr-2 inline-block h-2 w-2 rounded-full" style={{ background: item.accentColor }} />{item.name}<span className="ml-2 font-mono text-white/60">${item.price.toFixed(2)}</span></>)}
-      </div>
-    </Html>
+    <group ref={anchor}>
+      <Html center zIndexRange={[20, 0]} style={{ pointerEvents: 'none' }}>
+        <div aria-live="polite"
+          className={`whitespace-nowrap rounded-full border border-white/10 bg-black/75 px-4 py-2 text-sm text-white backdrop-blur transition-opacity duration-200 ${item ? 'opacity-100' : 'opacity-0'}`}>
+          {item && (<><span className="mr-2 inline-block h-2 w-2 rounded-full" style={{ background: item.accentColor }} />{item.name}<span className="ml-2 font-mono text-white/60">${item.price.toFixed(2)}</span></>)}
+        </div>
+      </Html>
+    </group>
   );
 }
 
@@ -92,7 +115,7 @@ export default function KaitenTable() {
     groups.current.forEach((g, i) => {
       if (!g) return;
       const [x, z] = stadiumPoint(plateS(i));
-      g.position.set(x, 0.2, z);
+      g.position.set(x, 0.05, z);
     });
     const fid = MENU[frontIndex()]?.id; if (fid) setFront(fid);
   });
@@ -100,12 +123,12 @@ export default function KaitenTable() {
   return (
     <group>
       <TableBody />
-      <IslandChip id={hoverId} />
+      <HoverChip id={hoverId} groups={groups} />
       {MENU.slice(0, BELT.count).map((item, i) => (
         <Plate key={item.id} ref={(g) => { groups.current[i] = g; }} item={item}
           active={hoverId === item.id || (!hoverId && frontId === item.id && paused)}
           onOver={() => { setHover(item.id); document.body.style.cursor = 'pointer'; }}
-          onOut={() => { setHover(null); document.body.style.cursor = ''; }}
+          onOut={() => { if (useStore.getState().hoverId === item.id) { setHover(null); document.body.style.cursor = ''; } }}
           onClick={() => open(item.id)} />
       ))}
     </group>
