@@ -8,7 +8,7 @@
 - Last action: S38 fixed build-s37 type error in src/lib/belt.ts:8 (curve() default params typed as number)
 - NEXT ACTION: npm run dev + node "Spice Lane Website Progress Save/scripts/hero-shot.mjs" /tmp/s39 → compare with PDF p1 blue mark; adjust camera (HeroCanvas.tsx:51) so table fills blue area
 - Project runs?: S43 dev server runs, hero renders, no page errors (output/preview/hero-s43.jpg = S42 radial oval, looks right)
-- Last updated: 2026-11-16 20:25 (Asia/Dhaka) by Session #59 (resumed at 14.1)
+- Last updated: 2026-11-16 20:30 (Asia/Dhaka) by Session #60 (resumed at 14.1)
 - S42 plan: rewrite belt.ts as radial superellipse (outer/inner = curve(θ, A±H, B±H)), steeper+closer camera so table fills blue mark, 16 curved zebra slats (alternating tone), plateR up, verify hover single chip by screenshot
 
 ## Task
@@ -76,6 +76,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S60 (2026-11-16): resumed at 14.1. User repeated same 4 requests; push after every small task.
 - S59 (2026-11-16): resumed at 14.1. User repeated: blue-mark shape (no fixed rect), reference-like zebra (not linear, fewer lines), smaller middle gap, bigger items, hover shows 2 names.
 - S58 (2026-11-16): resumed at 14.1. User repeated: blue-mark shape (not fixed rect), reference-like zebra (not linear, fewer lines), smaller middle gap, bigger items, hover shows 2 names.
 - S57 (2026-11-16): resumed at 14.1. User repeated same 4 requests (blue-mark shape not fixed rect; reference-like zebra, fewer, not linear; smaller middle gap + bigger items; hover shows 2 names). Push after each small task.
@@ -127,6 +128,7 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - User chat (session #3): save everything only in this folder; push fast after small tasks; repo token given in chat (never stored in repo).
 
 ## Session History
+- S60 (2026-11-16): resumed at 14.1. User repeated same 4 requests; push after every small task.
 - S59 (2026-11-16): resumed at 14.1. User repeated: blue-mark shape (no fixed rect), reference-like zebra (not linear, fewer lines), smaller middle gap, bigger items, hover shows 2 names.
 - S58 (2026-11-16): resumed at 14.1. User repeated: blue-mark shape (not fixed rect), reference-like zebra (not linear, fewer lines), smaller middle gap, bigger items, hover shows 2 names.
 - S56 (2026-11-16): resumed at 14.1. User repeated: blue-mark oval (not rect), reference-like zebra (fewer, not linear), smaller middle gap, bigger items, hover shows 2 names. Push after each small task.
