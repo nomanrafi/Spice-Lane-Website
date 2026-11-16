@@ -1,8 +1,9 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS (Step 14, S38)
-- Current: 14.1–14.3 retune S39: belt.ts BELT={A:3.7,B:2.45,n:2 (true ellipse),plateR:1.0,H:1.25}; KaitenTable zebra = 10 light/dark crescent slat pairs (was 29 thin seams)
+- Overall: IN PROGRESS (Step 14, S45)
+- S45 change: belt.ts BELT={A:4.0,B:2.35,n:2.4,asym:0.07 (right end fuller),plateR:1.12,H:1.3}; KaitenTable Zebra = 24 crescent grooves (bulge 0.22·pitch)+glint+very soft alt tone; camera [0,9.4,8.4] fov33 (tsc OK)
+- Older: 14.1–14.3 retune S39: belt.ts BELT={A:3.7,B:2.45,n:2 (true ellipse),plateR:1.0,H:1.25}; KaitenTable zebra = 10 light/dark crescent slat pairs (was 29 thin seams)
 - Last action: S38 fixed build-s37 type error in src/lib/belt.ts:8 (curve() default params typed as number)
 - NEXT ACTION: npm run dev + node "Spice Lane Website Progress Save/scripts/hero-shot.mjs" /tmp/s39 → compare with PDF p1 blue mark; adjust camera (HeroCanvas.tsx:51) so table fills blue area
 - Project runs?: S43 dev server runs, hero renders, no page errors (output/preview/hero-s43.jpg = S42 radial oval, looks right)
@@ -74,6 +75,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S45 (2026-11-16): resumed at 14.1. User repeated 4 requests again. Rewrote shape (asym organic oval), zebra (crescent grooves), camera.
 - S44 (2026-11-16): resumed at 14.1. User repeated same 4 requests (shape like blue mark, reference-like zebra w/ fewer lines, smaller middle gap + bigger items, hover shows 2 names).
 - S43 (2026-11-16): resumed at 14.1 (S42 auto-pushed radial belt.ts+KaitenTable WIP, unverified). User repeated same 4 requests.
 - S42 (2026-11-16): resumed at 14.1. Viewed PDF p1 crop: reference = tight band, plates fill band, thin island, subtle curved radial seams; blue mark = big wide oval (~2.15:1 on screen) filling right 60% of hero.
@@ -110,6 +112,7 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - User chat (session #3): save everything only in this folder; push fast after small tasks; repo token given in chat (never stored in repo).
 
 ## Session History
+- S45 (2026-11-16): resumed at 14.1. User repeated 4 requests again. Rewrote shape (asym organic oval), zebra (crescent grooves), camera.
 - S42 (2026-11-16): resumed at 14.1. Viewed PDF p1 crop: reference = tight band, plates fill band, thin island, subtle curved radial seams; blue mark = big wide oval (~2.15:1 on screen) filling right 60% of hero.
 - S38 (2026-11-16): resumed at 14.5; same user requests repeated (shape=blue mark, zebra like reference w/ fewer lines, smaller gap, bigger items, single hover name)
 - S37 (2026-11-16): resumed at 14.1 verify. User repeated: shape ≠ blue mark, zebra too linear/many lines, gap smaller, items bigger, hover shows 2 names

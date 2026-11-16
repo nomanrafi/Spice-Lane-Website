@@ -13,13 +13,8 @@ import Plate from './Plate';
  * src/lib/belt.ts: outer = curve(A+H, B+H), island hole = curve(A−H, B−H)). Plates fill most of the band width,
  * so the middle island is small, like the reference kaiten table.
  */
-const ZEBRA = 16;          // slats around the loop = 2 per plate (reference: a few soft slats, not dozens of lines)
-const ACROSS = 12;         // segments across the band (makes the seams curved)
-const ALONG = 6;           // segments along one slat
-const TAU = Math.PI * 2;
-/** Crescent bend of a seam: the middle of the seam leads, both ends trail (reference slat look). */
-const bend = (u: number) => 0.075 * (1 - u * u) - 0.02 * u;
-
+const SEAMS = 24;          // S45: reference-like groove count = 3 per plate (not dozens of straight stripes)
+const ACROSS = 14;         // segments across the band (makes each seam a smooth crescent)
 /** Reusable dynamic triangle-strip grid (rows × cols quads per patch), refilled every frame. */
 function useGrid(patches: number, cols: number, rows: number) {
   return useMemo(() => {
@@ -35,51 +30,54 @@ function useGrid(patches: number, cols: number, rows: number) {
   }, [patches, cols, rows]);
 }
 
-/** Zebra slats + curved seams that travel with the plates (driven by beltMotion.offset). */
+/**
+ * Zebra grooves like the reference kaiten table (Optional you can use/… slatPath): each seam is a CRESCENT
+ * across the band — its middle bulges forward along the belt by 0.2·pitch, both ends trail — drawn as a dark
+ * groove plus a thin light glint just behind it. Seams travel with the plates (driven by beltMotion.offset).
+ */
 function Zebra() {
-  const pitch = PERIMETER / ZEBRA;
-  const slats = useGrid(ZEBRA / 2, ACROSS, ALONG);
-  const seams = useGrid(ZEBRA, ACROSS, 1);
-  const glints = useGrid(ZEBRA, ACROSS, 1);
+  const pitch = PERIMETER / SEAMS;
+  const bulge = pitch * 0.22;
+  const seams = useGrid(SEAMS, ACROSS, 1);
+  const glints = useGrid(SEAMS, ACROSS, 1);
+  const shades = useGrid(SEAMS / 2, ACROSS, 4);
   useFrame(() => {
-    const off = beltMotion.offset + pitch / 2; // seams sit between plates and halfway under them
-    const sp = slats.attributes.position as THREE.BufferAttribute;
-    let o = 0;
-    for (let j = 0; j < ZEBRA; j += 2) {
-      const t0 = beltTheta(off + j * pitch), t1 = beltTheta(off + (j + 1) * pitch);
-      const d = ((t1 - t0) % TAU + TAU) % TAU;
-      for (let r = 0; r <= ALONG; r++) for (let c = 0; c <= ACROSS; c++) {
-        const u = (c / ACROSS) * 2 - 1, th = t0 + d * (r / ALONG) + bend(u);
-        const [x, z] = bandPoint(th, u * 0.985); sp.setXYZ(o++, x, 0.053, z);
-      }
-    }
-    sp.needsUpdate = true;
+    const off = beltMotion.offset + pitch / 2;
+    const at = (s: number, u: number) => bandPoint(beltTheta(s + bulge * (1 - u * u)), u * 0.93);
     const line = (geo: THREE.BufferGeometry, shift: number, w: number, y: number) => {
       const lp = geo.attributes.position as THREE.BufferAttribute; let k = 0;
-      for (let j = 0; j < ZEBRA; j++) {
-        const t = beltTheta(off + j * pitch + shift);
+      for (let j = 0; j < SEAMS; j++) {
+        const s0 = off + j * pitch + shift;
         for (let r = 0; r <= 1; r++) for (let c = 0; c <= ACROSS; c++) {
-          const u = (c / ACROSS) * 2 - 1, th = t + bend(u);
-          const [ax, az] = bandPoint(th - 0.004, u * 0.985), [bx, bz] = bandPoint(th + 0.004, u * 0.985);
-          const l = Math.hypot(bx - ax, bz - az) || 1, side = r ? w : -w;
-          lp.setXYZ(k++, (ax + bx) / 2 + ((bx - ax) / l) * side, y, (az + bz) / 2 + ((bz - az) / l) * side);
+          const u = (c / ACROSS) * 2 - 1;
+          const [x, z] = at(s0 + (r ? w : -w), u);
+          lp.setXYZ(k++, x, y, z);
         }
       }
       lp.needsUpdate = true;
     };
-    line(seams, 0, 0.018, 0.055);
-    line(glints, 0.06, 0.008, 0.056);
+    line(seams, 0, 0.022, 0.055);
+    line(glints, 0.07, 0.01, 0.056);
+    // very soft alternate tone between every other pair of seams (subtle zebra, not hard stripes)
+    const sp = shades.attributes.position as THREE.BufferAttribute; let o = 0;
+    for (let j = 0; j < SEAMS; j += 2) {
+      const s0 = off + j * pitch;
+      for (let r = 0; r <= 4; r++) for (let c = 0; c <= ACROSS; c++) {
+        const u = (c / ACROSS) * 2 - 1; const [x, z] = at(s0 + pitch * (r / 4), u); sp.setXYZ(o++, x, 0.054, z);
+      }
+    }
+    sp.needsUpdate = true;
   });
   return (
     <group raycast={() => null}>
-      <mesh geometry={slats} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.045} depthWrite={false} side={THREE.DoubleSide} />
+      <mesh geometry={shades} frustumCulled={false} raycast={() => null}>
+        <meshBasicMaterial color="#ffffff" transparent opacity={0.025} depthWrite={false} side={THREE.DoubleSide} />
       </mesh>
       <mesh geometry={seams} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#000000" transparent opacity={0.6} depthWrite={false} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#000000" transparent opacity={0.5} depthWrite={false} side={THREE.DoubleSide} />
       </mesh>
       <mesh geometry={glints} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.09} depthWrite={false} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#ffffff" transparent opacity={0.12} depthWrite={false} side={THREE.DoubleSide} />
       </mesh>
     </group>
   );

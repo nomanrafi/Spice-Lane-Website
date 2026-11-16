@@ -2,13 +2,15 @@
 // Centre-line |x/A|^n + |z/B|^n = 1 in the XZ plane. The band is built RADIALLY: for curve parameter θ the
 // inner edge is curve(θ, A−H, B−H) and the outer edge curve(θ, A+H, B+H) — no offset-curve cusps, small island.
 // Front lane = +Z (closest to camera), moving RIGHT → LEFT as arc-length s grows. s = 0 is the front-centre point.
-export const BELT = { A: 4.35, B: 2.4, n: 2.25, plateR: 1.1, H: 1.3, count: 8 } as const;
+// S45: asymmetric organic oval like the blue mark (right end fuller, left end a bit narrower), thin band gap, big plates.
+export const BELT = { A: 4.0, B: 2.35, n: 2.4, asym: 0.07, plateR: 1.12, H: 1.3, count: 8 } as const;
 
 const LUT_N = 1440;
 type P = [number, number];
 const curve = (th: number, a: number = BELT.A, b: number = BELT.B): P => {
   const c = Math.cos(th), s = Math.sin(th), e = 2 / BELT.n;
-  return [a * Math.sign(c) * Math.abs(c) ** e, b * Math.sign(s) * Math.abs(s) ** e];
+  const k = 1 + BELT.asym * c; // fuller right end, narrower left end (organic, not a fixed rectangle/ellipse)
+  return [a * Math.sign(c) * Math.abs(c) ** e, b * k * Math.sign(s) * Math.abs(s) ** e];
 };
 /** Closed outline of a superellipse with semi-axes (a, b) — used for table rim / island shapes. */
 export function outline(a: number, b: number, steps = 192): P[] {
