@@ -2,11 +2,11 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS — Step 13: fixes from repo-root `Update Review.pdf` (user review, Bengali comments)
-- Current: Step 13 → 13.5 back-side drag direction (S28)
+- Current: Step 13 → 13.12 build + screenshots verify (S29)
 - Last action: 13.9 SpotlightCanvas: removed extra plate mesh, ring fits GLB rim (D=1.5), centred framing; Spotlight.tsx shows only frontId (removed hover/pick switcher, pairings open modal). tsconfig exclude progress+optional folders (archive broke tsc)
 - NEXT ACTION: 13.12 npm run build + screenshots (hero, spotlight)
 - Project runs?: YES — build PASS S23
-- Last updated: 2026-11-16 13:40 (Asia/Dhaka) by Session #28
+- Last updated: 2026-11-16 13:40 (Asia/Dhaka) by Session #29
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -65,6 +65,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S29 (2026-11-16): resumed at 13.12 (S28 stopped by usage policy during production build after pushing 13.9)
 - S28 (2026-11-16): resumed at 13.5 (S27 stopped by usage policy while fixing back-side drag; 13.1–13.4/13.6 were pushed)
 - S27 (2026-11-16): resumed at 13.11 build-verify + 13.1–13.6 hero (S26 stopped by usage policy while rewriting Plate/belt; that work was NOT pushed)
 - S26 (2026-11-16): resumed at 13.7 verify (S25 stopped by usage policy while reading useStore/Footer code)
