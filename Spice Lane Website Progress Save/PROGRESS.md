@@ -1,7 +1,8 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS (Step 14, S70)
+- Overall: IN PROGRESS (Step 14, S71)
+- S71: resumed; autopush 30s running; plan = port reference stadium geometry (r=0.95d, band 1.22d, 32 slats bulge .2) into belt.ts + bigger camera framing to fill blue mark (PDF p1 = big organic oval on right half of hero)
 - S70: resumed; autopush 30s; dev server + screenshot of current S68 table, then tune shape/zebra/camera to blue mark
 - S68: belt.ts BELT={A:5,B:2.3,n:2.1,plateR:1.5,H:1.8} (island B−H=0.5, plates Ø3); Zebra rewritten = 16 thin quadratic crescent seams + glint, NO tone bands. NEXT: check canvas does not clip table sides (clipping = "rectangle" look), runtime hover test counting visible names
 - S57 pushed: belt.ts BELT={A:4.8,B:2.3,n:2.3,asym:0.03,dip:0,plateR:1.22,H:1.62} (smooth oval, no overlap, island B−H=0.68); Zebra = 24 thin crescent seams + glint (reference slatPath), no shade blocks; belt #3a3a3a + inner rail. NEXT: screenshot hero, tune camera (HeroCanvas.tsx) to fill blue mark, test hover single name
