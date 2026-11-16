@@ -1,7 +1,8 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS (Step 14, S78)
+- Overall: IN PROGRESS (Step 14, S79)
+- S79: resumed at 14.1 (S78 pushed fitCamera.ts fix, stopped while re-probing). User: 'table ta to dekha jacche na' + same 4 requests. Plan: verify table visible (pixel probe), then zebra/gap/hover, push each.
 - S78: resumed at 14.1. User NEW: 'table ta to dekha jacche na' (table NOT VISIBLE now!) + same 4 requests. Priority: make table visible, then shape/zebra/gap/hover. NO image viewing.
 - S78 DONE-1: ROOT CAUSE table invisible = HeroCanvas CameraFit loop diverged (D→0, tgt.z→−3700). New src/lib/fitCamera.ts (bisection + damped centring, tested offline node_modules/.fit2.ts). Probe = pixel stats only (/data/probe.mjs copy in node_modules/.probe.mjs). NEXT: re-probe mobile 390x844 + desktop, then zebra/hover.
 - S77: resumed at 14.1. User (chat): shape must match blue mark (not fixed rectangle), zebra like reference (not linear, fewer lines), smaller middle gap, bigger items, hover shows 2 names. Push small.
