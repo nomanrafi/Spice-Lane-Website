@@ -41,8 +41,11 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" aria-label="Spice Lane tasting belt" className="relative isolate mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-8 px-6 pt-28 pb-12 lg:grid-cols-[minmax(0,36%)_1fr]">
+    <section id="hero" aria-label="Spice Lane tasting belt" className="relative isolate min-h-[100svh] overflow-hidden">
       <AmbientGlow />
+      {/* S72: text column stays in the max-w container; the table canvas is a FULL-BLEED layer on the right (lg) so the
+          big oval (user's blue mark: ~35%→96% of the viewport width) is never clipped into a rectangle */}
+      <div className="relative mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-8 px-6 pt-28 pb-12 lg:grid-cols-[minmax(0,34%)_1fr]">
       <div className="relative z-10">
         <p className="text-xs uppercase tracking-[0.3em] text-muted">Spice Lane · Tasting belt</p>
         <h1 className="mt-5 text-4xl font-medium leading-[1.05] tracking-tight text-white sm:text-5xl">
@@ -67,8 +70,8 @@ export default function Hero() {
         <a href="#menu" className="mt-6 inline-flex rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/90">See full menu</a>
       </div>
 
-      <div className="relative">
-        <div className="relative aspect-[16/10] w-full lg:-mx-8 lg:w-[calc(100%+4rem)]">
+      <div className="relative lg:absolute lg:inset-y-0 lg:left-[35.5vw] lg:right-0 lg:flex lg:flex-col lg:pt-[13svh] lg:pb-[4svh]">
+        <div className="relative aspect-[16/11] w-full lg:aspect-auto lg:min-h-0 lg:flex-1">
           <HeroCanvas />
           {/* S49 (14.4): the ONLY hover name label; KaitenTable.tsx HoverChip moves it over the hovered plate */}
           {(() => { const h = hoverId ? getItem(hoverId) : undefined; return (
@@ -77,7 +80,7 @@ export default function Hero() {
               {h && (<><span className="mr-2 inline-block h-2 w-2 rounded-full" style={{ background: h.accentColor }} />{h.name}<span className="ml-2 font-mono text-white/60">{formatPrice(h.price)}</span></>)}
             </div>); })()}
         </div>
-        <div className="mt-4 flex items-center justify-center gap-3">
+        <div className="relative z-10 mt-4 flex items-center justify-center gap-3 lg:mt-1">
           <RoundBtn label="Previous plate" onClick={() => seekSlot(-1)}>‹</RoundBtn>
           <RoundBtn label={paused ? 'Play belt' : 'Pause belt'} onClick={togglePause}>{paused ? (<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" fill="currentColor"><path d="M4 2.5v9a.5.5 0 0 0 .77.42l7-4.5a.5.5 0 0 0 0-.84l-7-4.5A.5.5 0 0 0 4 2.5Z"/></svg>) : (<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" fill="currentColor"><rect x="3" y="2" width="3" height="10" rx="1"/><rect x="8" y="2" width="3" height="10" rx="1"/></svg>)}</RoundBtn>
           <RoundBtn label="Next plate" onClick={() => seekSlot(1)}>›</RoundBtn>
@@ -86,6 +89,7 @@ export default function Hero() {
         <ul className="sr-only">
           {MENU.map((m) => (<li key={m.id}><button type="button" onClick={() => open(m.id)}>{m.name}, {formatPrice(m.price)}</button></li>))}
         </ul>
+      </div>
       </div>
     </section>
   );
