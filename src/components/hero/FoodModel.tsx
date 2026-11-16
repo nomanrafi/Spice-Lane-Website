@@ -23,7 +23,7 @@ class ModelBoundary extends Component<{ children: ReactNode; fallback: ReactNode
   render() { return this.state.failed ? this.props.fallback : this.props.children; }
 }
 
-function Model({ src, size }: { src: string; size: number }) {
+function Model({ src, size, noRaycast }: { src: string; size: number; noRaycast?: boolean }) {
   const { scene } = useGLTF(src, true, true, (loader) => loader.setMeshoptDecoder(MeshoptDecoder));
   // Clone + normalise: fit the model's largest horizontal extent to `size`, centre it, sit it on y=0.
   const obj = useMemo(() => {
@@ -35,17 +35,17 @@ function Model({ src, size }: { src: string; size: number }) {
     const b2 = new THREE.Box3().setFromObject(c);
     const ctr = b2.getCenter(new THREE.Vector3());
     c.position.set(-ctr.x, -b2.min.y, -ctr.z);
-    c.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; } });
+    c.traverse((o) => { const m = o as THREE.Mesh; if (m.isMesh) { m.castShadow = true; m.receiveShadow = true; if (noRaycast) m.raycast = () => {}; } });
     const g = new THREE.Group(); g.add(c); return g;
-  }, [scene, size]);
+  }, [scene, size, noRaycast]);
   return <primitive object={obj} />;
 }
 
-export default function FoodModel({ src, size = 0.8, color }: { src: string; size?: number; color?: string }) {
+export default function FoodModel({ src, size = 0.8, color, noRaycast }: { src: string; size?: number; color?: string; noRaycast?: boolean }) {
   const fb = <PlaceholderFood color={color} />;
   return (
     <ModelBoundary fallback={fb} src={src}>
-      <Suspense fallback={fb}><Model src={src} size={size} /></Suspense>
+      <Suspense fallback={fb}><Model src={src} size={size} noRaycast={noRaycast} /></Suspense>
     </ModelBoundary>
   );
 }

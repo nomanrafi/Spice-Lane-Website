@@ -1,6 +1,6 @@
 // Stadium (pill) path math + shared belt motion state for the hero kaiten table.
 // Path lies in the XZ plane, centred at origin. Front lane = +Z (closest to camera), moving RIGHT → LEFT.
-export const BELT = { R: 1.5, L: 3.0, plateR: 0.55, count: 8 } as const;
+export const BELT = { R: 1.95, L: 4.2, plateR: 0.7, count: 8 } as const;
 export const PERIMETER = 2 * BELT.L + 2 * Math.PI * BELT.R;
 export const SLOT = PERIMETER / BELT.count;
 
