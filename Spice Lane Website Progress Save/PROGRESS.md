@@ -2,9 +2,9 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS (Step 14, S38)
-- Current: 14.5 build + screenshot verify of S36 table (organic oval + crescent seams)
+- Current: 14.1–14.3 retune S39: belt.ts BELT={A:3.7,B:2.45,n:2 (true ellipse),plateR:1.0,H:1.25}; KaitenTable zebra = 10 light/dark crescent slat pairs (was 29 thin seams)
 - Last action: S38 fixed build-s37 type error in src/lib/belt.ts:8 (curve() default params typed as number)
-- NEXT ACTION: npm run build → hero screenshot (scripts/hero-shot.mjs) → compare with Update Review.pdf p1 blue mark; then tune egg shape/size
+- NEXT ACTION: npm run dev + node "Spice Lane Website Progress Save/scripts/hero-shot.mjs" /tmp/s39 → compare with PDF p1 blue mark; adjust camera (HeroCanvas.tsx:51) so table fills blue area
 - Project runs?: build FAILED S37 (type error, fixed S38, re-verify)
 - Last updated: 2026-11-16 14:35 (Asia/Dhaka) by Session #39 (resumed)
 

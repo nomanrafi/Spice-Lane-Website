@@ -27,9 +27,10 @@ function offsetLoop(d: number): THREE.Vector2[] {
  * curved groove from inner to outer edge bulging in the travel direction, plus a faint white glint just behind it.
  * Rebuilt every frame from beltMotion.offset, so they travel with the plates and bend round the curves.
  */
-const SEAMS = Math.max(10, Math.round(PERIMETER / (0.34 * 2 * BELT.plateR)));
+// S39: user — fewer, curvier lines. Zebra = 10 light/dark slat PAIRS (pitch ≈ plate Ø), crescent-curved edges.
+const SEAMS = 10;
 const SEG = 10;
-function Seams({ shift, width, color, opacity, y }: { shift: number; width: number; color: string; opacity: number; y: number }) {
+function Seams({ shift, width, color, opacity, y, bulgeK = 0.22 }: { shift: number; width: number; color: string; opacity: number; y: number; bulgeK?: number }) {
   const geo = useMemo(() => {
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.BufferAttribute(new Float32Array(SEAMS * (SEG + 1) * 2 * 3), 3));
@@ -41,7 +42,7 @@ function Seams({ shift, width, color, opacity, y }: { shift: number; width: numb
   }, []);
   useFrame(() => {
     const pos = geo.attributes.position as THREE.BufferAttribute;
-    const pitch = PERIMETER / SEAMS, half = BELT.H * 0.9, bulge = pitch * 0.2;
+    const pitch = PERIMETER / SEAMS, half = BELT.H * 0.97, bulge = pitch * bulgeK;
     for (let j = 0; j < SEAMS; j++) {
       const s0 = beltMotion.offset + shift + j * pitch + pitch / 2;
       for (let k = 0; k <= SEG; k++) {
@@ -88,8 +89,11 @@ function TableBody() {
       <mesh geometry={island} rotation={[Math.PI / 2, 0, 0]} position={[0, 0.14, 0]} receiveShadow castShadow>
         <meshStandardMaterial color="#141414" roughness={0.6} metalness={0.2} />
       </mesh>
-      <Seams shift={0} width={0.018} color="#000000" opacity={0.6} y={0.053} />
-      <Seams shift={-0.045} width={0.01} color="#ffffff" opacity={0.12} y={0.054} />
+      {/* light slat (half of each pitch) → zebra; then dark grooves on both slat edges + faint glint */}
+      <Seams shift={0} width={PERIMETER / SEAMS / 4} color="#ffffff" opacity={0.07} y={0.053} />
+      <Seams shift={-PERIMETER / SEAMS / 4} width={0.022} color="#000000" opacity={0.55} y={0.054} />
+      <Seams shift={PERIMETER / SEAMS / 4} width={0.022} color="#000000" opacity={0.55} y={0.054} />
+      <Seams shift={PERIMETER / SEAMS / 4 + 0.05} width={0.01} color="#ffffff" opacity={0.1} y={0.055} />
     </group>
   );
 }

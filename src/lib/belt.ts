@@ -1,7 +1,7 @@
 // Superellipse ("organic oval") path + shared belt motion state for the hero kaiten table (review S34).
 // Centre-line |x/A|^n + |z/B|^n = 1 in the XZ plane. Plates ride the centre-line; the table band is ±H around it.
 // Front lane = +Z (closest to camera), moving RIGHT → LEFT as arc-length s grows. s = 0 is the front-centre point.
-export const BELT = { A: 3.55, B: 2.05, n: 2.5, plateR: 0.95, H: 1.16, count: 8 } as const;
+export const BELT = { A: 3.7, B: 2.45, n: 2.0, plateR: 1.0, H: 1.25, count: 8 } as const;
 
 const LUT_N = 1440;
 type P = [number, number];
