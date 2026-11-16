@@ -2,11 +2,11 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS — Step 13: fixes from repo-root `Update Review.pdf` (user review, Bengali comments)
-- Current: Step 13 → 13.7+13.8 scroll lock code written (not built yet)
-- Last action: 13.11 footer credit 'Made by NOMAN-RAFI' added in Footer.tsx above social row (build s25a PASS covered 13.7/13.8/13.10)
-- NEXT ACTION: build-verify 13.11, then 13.3 (remove extra plate in Plate.tsx) + 13.4 hover label
+- Current: Step 13 → 13.5 back-side drag direction (S28)
+- Last action: S27 pushed 13.1 zebra stripes, 13.2/13.3/13.6 belt+plate rewrite, 13.4 hover chip fix (commits dfeec30, 09b93e4) — build not yet verified
+- NEXT ACTION: 13.5 invert drag on far half (HeroCanvas.tsx), then 13.9 Spotlight framing, then 13.12 build+screenshots
 - Project runs?: YES — build PASS S23
-- Last updated: 2026-11-16 13:35 (Asia/Dhaka) by Session #27
+- Last updated: 2026-11-16 13:40 (Asia/Dhaka) by Session #28
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -43,12 +43,12 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [x] Step 10: Final build, screenshots in output/preview, README — 10.1 screenshots ✓ · 10.2 README ✓ · 10.3 acceptance audit ✓ · 10.3a IslandChip (KaitenTable.tsx) build PASS S18 (logs/build-s18.log)
 
 - [ ] Step 13 (S24): Update Review.pdf fixes (repo root PDF, 4 pages, comment under each screenshot)
-  - [ ] 13.1 Table top = zebra stripes (like reference kaiten table) that rotate with the food plates
-  - [ ] 13.2 Table shape/size = wide flat ellipse like user's blue marking (bigger, wider); front items look bigger, back smaller (perspective)
-  - [ ] 13.3 Remove extra plate mesh under each food (GLB already has round plate); tier colour ring must fit the GLB plate's circle
-  - [ ] 13.4 Hover on an item shows WRONG item's name → fix hover label mapping
+  - [x] 13.1 Table top = zebra stripes (like reference kaiten table) that rotate with the food plates
+  - [x] 13.2 Table shape/size = wide flat ellipse like user's blue marking (bigger, wider); front items look bigger, back smaller (perspective)
+  - [x] 13.3 Remove extra plate mesh under each food (GLB already has round plate); tier colour ring must fit the GLB plate's circle
+  - [x] 13.4 Hover on an item shows WRONG item's name → fix hover label mapping
   - [ ] 13.5 Dragging on the BACK side of table rotates the wrong way → invert drag direction when pointer is on far half
-  - [ ] 13.6 Table food items a bit bigger
+  - [x] 13.6 Table food items a bit bigger
   - [x] 13.7 Product popup bigger; while popup open, wheel zooms model, page behind must NOT scroll (scroll lock)
   - [x] 13.8 Cart drawer: list must scroll inside; page behind must NOT scroll while open
   - [ ] 13.9 Spotlight/next section: products look cropped/falling below → fix framing; show ONLY the front-selected product there
@@ -65,6 +65,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S28 (2026-11-16): resumed at 13.5 (S27 stopped by usage policy while fixing back-side drag; 13.1–13.4/13.6 were pushed)
 - S27 (2026-11-16): resumed at 13.11 build-verify + 13.1–13.6 hero (S26 stopped by usage policy while rewriting Plate/belt; that work was NOT pushed)
 - S26 (2026-11-16): resumed at 13.7 verify (S25 stopped by usage policy while reading useStore/Footer code)
 - S25 (2026-11-16): resumed at 13.7 verify; prior session S24 was stopped by usage limit before pushing footer credit
