@@ -11,12 +11,11 @@ const SpotlightCanvas = dynamic(() => import('./SpotlightCanvas'), { ssr: false 
 
 /** 8.1 "Meet your plate": 300vh sticky section, scroll progress (GSAP ScrollTrigger scrub) drives 5 stages. */
 export default function Spotlight() {
-  const hoverId = useStore((s) => s.hoverId);
   const frontId = useStore((s) => s.frontId);
   const add = useStore((s) => s.add);
   const open = useStore((s) => s.open);
-  const [pick, setPick] = useState<string | null>(null);
-  const item = getItem(pick ?? hoverId ?? frontId) ?? MENU[0];
+  // review 13.9: show ONLY the item that is front-selected on the hero belt
+  const item = getItem(frontId) ?? MENU[0];
   const sec = useRef<HTMLElement>(null);
   const progress = useRef(0);
   const [stage, setStage] = useState(0);
@@ -68,7 +67,7 @@ export default function Spotlight() {
               return (
                 <motion.span key={item.id + ing.name} initial={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ delay: i * 0.08 }}
                   className="absolute flex items-center gap-2 rounded-full border border-line bg-black/60 px-3 py-1 text-xs text-white backdrop-blur"
-                  style={{ left: `${50 + Math.cos(a) * 38}%`, top: `${50 + Math.sin(a) * 36}%`, transform: 'translate(-50%,-50%)' }}>
+                  style={{ left: `${50 + Math.cos(a) * 44}%`, top: `${48 + Math.sin(a) * 40}%`, transform: 'translate(-50%,-50%)' }}>
                   <span className="h-2 w-2 rounded-full" style={{ background: ing.color }} />{ing.name}
                 </motion.span>);
             })}</AnimatePresence>
@@ -93,18 +92,12 @@ export default function Spotlight() {
                 </div>
                 {!!item.pairing?.length && <p className="text-xs uppercase tracking-widest text-muted">You might also like</p>}
                 <div className="flex flex-wrap gap-2">{item.pairing?.map((id) => { const p = getItem(id); return p && (
-                  <button key={id} type="button" onClick={() => setPick(id)} className="rounded-full border border-line px-3 py-1 text-xs text-white hover:bg-white/10">{p.name}</button>); })}</div>
+                  <button key={id} type="button" onClick={() => open(id)} className="rounded-full border border-line px-3 py-1 text-xs text-white hover:bg-white/10">{p.name}</button>); })}</div>
               </motion.div>)}
             </AnimatePresence>
           </div>
         </div>
 
-        <nav aria-label="Spotlight item switcher" className="absolute right-4 top-1/2 hidden -translate-y-1/2 flex-col gap-2 md:flex">
-          {MENU.map((m) => (
-            <button key={m.id} type="button" aria-label={`Spotlight ${m.name}`} aria-pressed={m.id === item.id} onClick={() => setPick(m.id)}
-              className="h-7 w-7 rounded-full border-2 transition hover:scale-110" style={{ background: m.accentColor, borderColor: m.id === item.id ? '#fff' : TIERS[m.tier].color }} />
-          ))}
-        </nav>
       </div>
     </section>
   );

@@ -16,21 +16,20 @@ function Rig({ item, progress }: { item: MenuItem; progress: MutableRefObject<nu
     const p = Math.min(progress.current / 0.35, 1);
     born.current = Math.min(born.current + dt * 2.5, 1);
     const e = 1 - Math.pow(1 - born.current, 3);
-    g.current.position.y = -0.35 + p * 0.35;
+    // review 13.9: model stays centred in frame (no "falling below"), gentle rise + 180° turn
+    g.current.position.y = -0.12 + p * 0.12;
     g.current.rotation.y = p * Math.PI + st.clock.elapsedTime * 0.15;
     g.current.scale.setScalar(0.6 + 0.4 * e);
   });
+  // GLB already contains its round plate → no extra plate mesh; only a thin tier ring hugging the rim.
+  const D = 1.5;
   return (
     <group ref={g}>
-      <mesh position={[0, 0.03, 0]} castShadow receiveShadow>
-        <cylinderGeometry args={[0.8, 0.58, 0.06, 64]} />
-        <meshStandardMaterial color={item.plateColor} roughness={0.35} />
+      <mesh position={[0, 0.012, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[D / 2 * 0.98, D / 2 * 1.06, 72]} />
+        <meshBasicMaterial color={TIERS[item.tier].color} toneMapped={false} transparent opacity={0.85} />
       </mesh>
-      <mesh position={[0, 0.02, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[0.83, 0.88, 64]} />
-        <meshBasicMaterial color={TIERS[item.tier].color} toneMapped={false} />
-      </mesh>
-      <group position={[0, 0.065, 0]}><FoodModel src={item.model} size={1.15} color={item.accentColor} /></group>
+      <FoodModel src={item.model} size={D} color={item.accentColor} />
     </group>
   );
 }
@@ -38,7 +37,7 @@ function Rig({ item, progress }: { item: MenuItem; progress: MutableRefObject<nu
 export default function SpotlightCanvas({ item, progress }: { item: MenuItem; progress: MutableRefObject<number> }) {
   return (
     <CanvasBoundary>
-      <Canvas dpr={[1, 2]} camera={{ position: [0, 1.5, 2.8], fov: 35 }} shadows onCreated={({ camera }) => camera.lookAt(0, 0.2, 0)}>
+      <Canvas dpr={[1, 2]} camera={{ position: [0, 1.9, 3.3], fov: 36 }} shadows onCreated={({ camera }) => camera.lookAt(0, 0.1, 0)}>
         <ambientLight intensity={0.3} />
         <directionalLight position={[2, 4, 3]} intensity={1.6} castShadow />
         <directionalLight position={[-3, 2, -3]} intensity={0.6} color={item.accentColor} />
@@ -46,7 +45,7 @@ export default function SpotlightCanvas({ item, progress }: { item: MenuItem; pr
           <Lightformer form="rect" intensity={3} position={[0, 4, -2]} scale={[8, 3, 1]} />
         </Environment>
         <Rig key={item.id} item={item} progress={progress} />
-        <ContactShadows position={[0, -0.36, 0]} opacity={0.5} scale={4} blur={2.4} far={1.5} />
+        <ContactShadows position={[0, -0.13, 0]} opacity={0.5} scale={4} blur={2.4} far={1.5} />
       </Canvas>
     </CanvasBoundary>
   );

@@ -3,8 +3,8 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS — Step 13: fixes from repo-root `Update Review.pdf` (user review, Bengali comments)
 - Current: Step 13 → 13.5 back-side drag direction (S28)
-- Last action: 13.5 HeroCanvas.tsx: side ref (-1 when drag starts in top 47% of canvas = back lane) multiplies dx + fling velocity
-- NEXT ACTION: 13.9 Spotlight framing + only front product; then 13.12 build+screenshots
+- Last action: 13.9 SpotlightCanvas: removed extra plate mesh, ring fits GLB rim (D=1.5), centred framing; Spotlight.tsx shows only frontId (removed hover/pick switcher, pairings open modal). tsconfig exclude progress+optional folders (archive broke tsc)
+- NEXT ACTION: 13.12 npm run build + screenshots (hero, spotlight)
 - Project runs?: YES — build PASS S23
 - Last updated: 2026-11-16 13:40 (Asia/Dhaka) by Session #28
 
@@ -51,7 +51,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
   - [x] 13.6 Table food items a bit bigger
   - [x] 13.7 Product popup bigger; while popup open, wheel zooms model, page behind must NOT scroll (scroll lock)
   - [x] 13.8 Cart drawer: list must scroll inside; page behind must NOT scroll while open
-  - [ ] 13.9 Spotlight/next section: products look cropped/falling below → fix framing; show ONLY the front-selected product there
+  - [x] 13.9 Spotlight/next section: products look cropped/falling below → fix framing; show ONLY the front-selected product there
   - [x] 13.10 Blank-looking sections (PDF p3 second image) → add meaningful content/visuals
   - [x] 13.11 Footer (blue mark, PDF p4): add "MADE BY NOMAN-RAFI"
   - [ ] 13.12 build + screenshots + push
