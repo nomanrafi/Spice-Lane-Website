@@ -75,6 +75,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S46 (2026-11-16): resumed at 14.1 (S45 stopped by usage policy while screenshotting hero after pushing organic oval+crescent grooves). User repeated same 4 requests (shape=blue mark not fixed rect, zebra like reference not linear/fewer lines, smaller middle gap + bigger items, hover shows 2 names).
 - S45 (2026-11-16): resumed at 14.1. User repeated 4 requests again. Rewrote shape (asym organic oval), zebra (crescent grooves), camera.
 - S44 (2026-11-16): resumed at 14.1. User repeated same 4 requests (shape like blue mark, reference-like zebra w/ fewer lines, smaller middle gap + bigger items, hover shows 2 names).
 - S43 (2026-11-16): resumed at 14.1 (S42 auto-pushed radial belt.ts+KaitenTable WIP, unverified). User repeated same 4 requests.
