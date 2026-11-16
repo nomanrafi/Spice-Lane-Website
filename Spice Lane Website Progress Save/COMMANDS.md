@@ -72,3 +72,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S27: Configured git credentials (token hidden); git clone; autopush started; npm ci; pdftoppm review PDF
 - S29: Configured git credentials (token hidden); git clone; autopush started; npm ci (bg)
 - S29: npm ci OK; verified 13.10 gallery code in Reviews.tsx (posters + captions)
+- S29: npm run build → PASS (scripts/logs/build-s29.log)
