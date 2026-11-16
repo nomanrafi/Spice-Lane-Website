@@ -6,7 +6,8 @@
 - Last action: S38 fixed build-s37 type error in src/lib/belt.ts:8 (curve() default params typed as number)
 - NEXT ACTION: npm run dev + node "Spice Lane Website Progress Save/scripts/hero-shot.mjs" /tmp/s39 → compare with PDF p1 blue mark; adjust camera (HeroCanvas.tsx:51) so table fills blue area
 - Project runs?: build FAILED S37 (type error, fixed S38, re-verify)
-- Last updated: 2026-11-16 17:45 (Asia/Dhaka) by Session #41 (resumed)
+- Last updated: 2026-11-16 17:55 (Asia/Dhaka) by Session #42 (resumed)
+- S42 plan: rewrite belt.ts as radial superellipse (outer/inner = curve(θ, A±H, B±H)), steeper+closer camera so table fills blue mark, 16 curved zebra slats (alternating tone), plateR up, verify hover single chip by screenshot
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -73,6 +74,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S42 (2026-11-16): resumed at 14.1. Viewed PDF p1 crop: reference = tight band, plates fill band, thin island, subtle curved radial seams; blue mark = big wide oval (~2.15:1 on screen) filling right 60% of hero.
 - S41 (2026-11-16): resumed at 14.1–14.5 verify. User repeated same 4 requests (shape=blue mark not fixed rect, zebra like reference fewer/curved, smaller gap + bigger items, single hover name).
 - S40 (2026-11-16): resumed at 14.1–14.5 verify (S39 stopped by usage policy while taking hero screenshots after pushing ellipse+10-pair zebra). User repeated same 4 requests.
 - S39 (2026-11-16): resumed at 14.5 verify; user repeated same 4 requests (shape=blue mark not fixed rect, zebra like reference fewer/curved, smaller gap + bigger items, single hover name)
@@ -106,6 +108,7 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - User chat (session #3): save everything only in this folder; push fast after small tasks; repo token given in chat (never stored in repo).
 
 ## Session History
+- S42 (2026-11-16): resumed at 14.1. Viewed PDF p1 crop: reference = tight band, plates fill band, thin island, subtle curved radial seams; blue mark = big wide oval (~2.15:1 on screen) filling right 60% of hero.
 - S38 (2026-11-16): resumed at 14.5; same user requests repeated (shape=blue mark, zebra like reference w/ fewer lines, smaller gap, bigger items, single hover name)
 - S37 (2026-11-16): resumed at 14.1 verify. User repeated: shape ≠ blue mark, zebra too linear/many lines, gap smaller, items bigger, hover shows 2 names
 - S34 (2026-11-16): resumed at 14.1. User repeated: table shape ≠ blue mark (why fixed rectangle?), zebra too linear & too many lines; NEW: centre gap smaller, items bigger, hover shows 2 names
