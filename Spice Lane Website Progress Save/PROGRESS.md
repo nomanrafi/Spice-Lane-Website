@@ -3,6 +3,7 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS (Step 14, S73)
 - S74: resumed at 14.1 (S73 pushed true ellipse OUT 4.5x2.75 IN 2.0x0.25; stopped while making zebra seams fewer+curved). Answer: table NOT complete. Autopush 30s. NO image viewing.
+- S74 DONE-1: KaitenTable.tsx Zebra SEAMS 28→16, bulge 0.22→0.34·pitch (fewer, curved). NEXT: npm install, tsc, DOM hover test (count visible names), build.
 - S73: resumed at 14.1 (S72 stopped while making full-bleed canvas + auto camera; belt.ts 4-arc oval was pushed). Answer to user: table NOT complete. Autopush 30s. AVOID viewing images.
 - S72: resumed at 14.1 (S71 auto-pushed belt A6.2/B2.25/n2.4/plateR1.4/H1.7, unverified). User asked first: is table done? Answer = NO (14.1-14.3 unverified, hover 2 names still reported). Autopush 30s.
 - S72 DONE-1: belt.ts = 4-arc smooth oval BELT={A:3.7,B:1.75,R1:1.5,plateR:1,H:1.2} (offset band, thin island 0.55, no rect corners); outline(off) API. Found root cause of 'rectangle': canvas box too small → table clipped at canvas edges + superellipse n>2 corners. NEXT: full-bleed canvas layer (left 35.5vw,w 64.5vw, top 14svh,h 78svh) + auto camera fit, elevation 53°, fov 32.

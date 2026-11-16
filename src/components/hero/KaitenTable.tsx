@@ -12,7 +12,7 @@ import Plate from './Plate';
  * src/lib/belt.ts: outer = curve(A+H, B+H), island hole = curve(A−H, B−H)). Plates fill most of the band width,
  * so the middle island is small, like the reference kaiten table.
  */
-const SEAMS = 28; // S71: reference slat pitch ≈ PERIMETER/28 // S68: 2 seams per plate slot (reference: thin crescent seam + glint, NO stripe/tone bands)
+const SEAMS = 16; // S74: user: fewer lines + not linear → 2 seams per plate slot, strongly curved crescents (was 28)
 const ACROSS = 24; // points across the band → smooth curve, not a straight line
 
 /** Thin ribbon strips (one per seam) refilled every frame. */
@@ -36,7 +36,7 @@ function useStrips(n: number, cols: number) {
  */
 function Zebra() {
   const pitch = PERIMETER / SEAMS;
-  const bulge = pitch * 0.22;
+  const bulge = pitch * 0.34; // S74: deeper crescent so seams read as curved, not straight (was 0.22)
   const seams = useStrips(SEAMS, ACROSS);
   const glints = useStrips(SEAMS, ACROSS);
   useFrame(() => {
@@ -54,8 +54,8 @@ function Zebra() {
       }
       lp.needsUpdate = true;
     };
-    fill(seams, 0, 0.022, 0.056);
-    fill(glints, -0.07, 0.012, 0.057);
+    fill(seams, 0, 0.018, 0.056);
+    fill(glints, -0.06, 0.01, 0.057);
   });
   return (
     <group raycast={() => null}>
