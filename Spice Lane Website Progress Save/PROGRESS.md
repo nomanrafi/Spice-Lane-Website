@@ -5,7 +5,7 @@
 - Current: 13.13 (S32 user chat) header logo 'Spice Lane' bigger: src/components/Header.tsx text-[15px]→text-[22px] md:text-[26px], header h-16 md:h-20
 - Last action: 13.9 SpotlightCanvas: removed extra plate mesh, ring fits GLB rim (D=1.5), centred framing; Spotlight.tsx shows only frontId (removed hover/pick switcher, pairings open modal). tsconfig exclude progress+optional folders (archive broke tsc)
 - NEXT ACTION: npm ci; npm run build; next start :3000; screenshot hero (logo + spotlight ring 13.12c); then mark 13.12/13.13 + Step 13 done
-- Project runs?: YES — build PASS S23
+- Project runs?: YES — build PASS S32
 - Last updated: 2026-11-16 14:00 (Asia/Dhaka) by Session #32
 
 ## Task
