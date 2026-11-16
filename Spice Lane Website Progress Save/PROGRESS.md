@@ -7,7 +7,7 @@
 - Last action: S38 fixed build-s37 type error in src/lib/belt.ts:8 (curve() default params typed as number)
 - NEXT ACTION: npm run dev + node "Spice Lane Website Progress Save/scripts/hero-shot.mjs" /tmp/s39 → compare with PDF p1 blue mark; adjust camera (HeroCanvas.tsx:51) so table fills blue area
 - Project runs?: S43 dev server runs, hero renders, no page errors (output/preview/hero-s43.jpg = S42 radial oval, looks right)
-- Last updated: 2026-11-16 19:20 (Asia/Dhaka) by Session #52 (resumed)
+- Last updated: 2026-11-16 19:30 (Asia/Dhaka) by Session #53 (resumed)
 - S42 plan: rewrite belt.ts as radial superellipse (outer/inner = curve(θ, A±H, B±H)), steeper+closer camera so table fills blue mark, 16 curved zebra slats (alternating tone), plateR up, verify hover single chip by screenshot
 
 ## Task
@@ -75,6 +75,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S53 (2026-11-16): resumed at 14.1. User OK'd plan: shape→push, zebra→push, gap/items→push, hover check→push (push BEFORE screenshot).
 - S52 (2026-11-16): resumed at 14.1. User repeated same 4 requests (blue-mark shape not fixed rect; zebra like reference, not linear, fewer lines; smaller middle gap + bigger items; hover shows 2 names) + PUSH after every small task. NOTE: many sessions (S39,S45,S47,S51) were stopped right after viewing/taking screenshots → push code BEFORE any screenshot.
 - S51 (2026-11-16): resumed at 14.1 (S50 stopped by usage policy while 'rewriting zebra seams, typecheck, push' — that zebra rewrite NOT pushed). User repeated: shape must match blue mark (not fixed rectangle), zebra like reference (not linear, fewer lines), smaller middle gap, bigger items, hover shows 2 names. PUSH after each small task.
 - S50 (2026-11-16): resumed at 14.1 (S49 stopped by usage policy while 'adjusting camera and pushing', its hover-label change NOT pushed). User repeated same 4 requests + 'push after small tasks'.
