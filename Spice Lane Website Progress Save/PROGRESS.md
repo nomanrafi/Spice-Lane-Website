@@ -1,9 +1,9 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS (Step 14, S34)
+- Overall: IN PROGRESS (Step 14, S35)
 - Current: 14.1 hero table shape → smooth organic oval like user's blue marking (no straight 'rectangle' sides), bigger
-- Last action: S34 resumed (S33 stopped by usage policy before any code). Archived old files to archive/s34/
+- Last action: S35 resumed (S34 stopped by usage policy after pushing belt.ts superellipse, while fixing normal direction)
 - NEXT ACTION: rewrite src/lib/belt.ts (superellipse path, arc-length LUT) + KaitenTable.tsx (offset-curve table, ~34 crescent seams like reference)
 - Project runs?: YES — build PASS S32
 - Last updated: 2026-11-16 14:30 (Asia/Dhaka) by Session #34
@@ -73,6 +73,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S35 (2026-11-16): resumed at 14.1 (belt.ts pushed by S34; KaitenTable not yet). User repeated same 4 requests (shape, zebra, gap smaller/items bigger, double hover name)
 - S34 (2026-11-16): resumed at 14.1. User repeated: table shape ≠ blue mark (why fixed rectangle?), zebra too linear & too many lines; NEW: centre gap smaller, items bigger, hover shows 2 names
 - S33 (2026-11-16): resumed after DONE. User: table shape doesn't match blue marking (fixed rectangle), zebra too linear/too many lines
 - S32 (2026-11-16): resumed at 13.12 verify (S31 stopped by usage policy while rebuilding/screenshotting after 13.12c ring push). User asked: logo 'Spice Lane' bigger
