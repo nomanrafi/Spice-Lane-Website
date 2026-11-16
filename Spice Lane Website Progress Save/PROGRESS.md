@@ -1,12 +1,12 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: DONE (incl. optional follow-ups 11.1 + 11.2)
-- Current: ALL DONE — Step 12 deploy audit complete (S23). Site is deploy-ready.
-- Last action: S23: lint+tsc+build PASS (logs/build-s23.log); prod smoke test: / /checkout /order/x robots sitemap icon = 200, models served, POST /api/order valid=200 invalid=400, /api/reserve invalid=400; all menu.ts models/posters exist; added .env.example (NEXT_PUBLIC_SITE_URL), package.json engines node>=18.17, README ## Deploy
-- NEXT ACTION: none required. User may deploy on Vercel (set NEXT_PUBLIC_SITE_URL). Optional: real payments + DB (TODO in src/app/api/order/route.ts)
-- Project runs?: YES — npm run build passes from repo root (session 5)
-- Last updated: 2026-11-15 23:50 (Asia/Dhaka) by Session #23
+- Overall: IN PROGRESS — Step 13: fixes from repo-root `Update Review.pdf` (user review, Bengali comments)
+- Current: Step 13 → 13.1 zebra table
+- Last action: S24 read Update Review.pdf (text: /data/pdf via pdftotext; list of fixes below in Step 13)
+- NEXT ACTION: do 13.1 (zebra stripes on table top that rotate with belt) in src/components/hero/KaitenTable.tsx
+- Project runs?: YES — build PASS S23
+- Last updated: 2026-11-16 13:15 (Asia/Dhaka) by Session #24
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -42,6 +42,19 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [x] Step 9: Perf/a11y/SEO — 9.1 robots+sitemap · 9.2 JSON-LD+metadata · 9.3 reduced-motion · 9.4 posters (public/posters, MenuGrid cards + ModelViewer fallback) — build PASS S16 (logs/build-s16.log)
 - [x] Step 10: Final build, screenshots in output/preview, README — 10.1 screenshots ✓ · 10.2 README ✓ · 10.3 acceptance audit ✓ · 10.3a IslandChip (KaitenTable.tsx) build PASS S18 (logs/build-s18.log)
 
+- [ ] Step 13 (S24): Update Review.pdf fixes (repo root PDF, 4 pages, comment under each screenshot)
+  - [ ] 13.1 Table top = zebra stripes (like reference kaiten table) that rotate with the food plates
+  - [ ] 13.2 Table shape/size = wide flat ellipse like user's blue marking (bigger, wider); front items look bigger, back smaller (perspective)
+  - [ ] 13.3 Remove extra plate mesh under each food (GLB already has round plate); tier colour ring must fit the GLB plate's circle
+  - [ ] 13.4 Hover on an item shows WRONG item's name → fix hover label mapping
+  - [ ] 13.5 Dragging on the BACK side of table rotates the wrong way → invert drag direction when pointer is on far half
+  - [ ] 13.6 Table food items a bit bigger
+  - [ ] 13.7 Product popup bigger; while popup open, wheel zooms model, page behind must NOT scroll (scroll lock)
+  - [ ] 13.8 Cart drawer: list must scroll inside; page behind must NOT scroll while open
+  - [ ] 13.9 Spotlight/next section: products look cropped/falling below → fix framing; show ONLY the front-selected product there
+  - [ ] 13.10 Blank-looking sections (PDF p3 second image) → add meaningful content/visuals
+  - [ ] 13.11 Footer (blue mark, PDF p4): add "MADE BY NOMAN-RAFI"
+  - [ ] 13.12 build + screenshots + push
 - [x] Step 12 (S21–S23): deploy-readiness audit — 12.1 install+build ✓ · 12.2 lint+typecheck ✓ · 12.3 runtime smoke test ✓ (found: canvas edge clip, pause glyph) · 12.4 fix issues ✓ (S22, verified S23) · 12.5 deploy notes in README ✓ (S23)
 - [x] Step 11 (S19–S20, optional follow-ups): 11.1 bundle cart line ✓ build PASS · 11.2 /api/order mock payment ✓ build PASS S20
 
@@ -66,6 +79,7 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - User chat (session #3): save everything only in this folder; push fast after small tasks; repo token given in chat (never stored in repo).
 
 ## Session History
+- Session #24 (2026-11-16): new request — apply fixes from `Update Review.pdf` (repo root). User: push fast, small tasks; website code outside progress folder.
 - Session #1 (2026-11-15): Created PROGRESS.md + reference details doc.
 - Session #2 (2026-11-15): Video analysed; VIDEO_OBSERVATIONS.md + key frames.
 - Session #3 (2026-11-15): resumed at "scaffold app"; added scripts, logs, plan.

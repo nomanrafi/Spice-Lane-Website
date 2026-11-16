@@ -64,3 +64,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S23: Configured git credentials (token hidden); git clone; npm ci → OK
 - S23: npx next lint → 0 warnings; npx tsc --noEmit → 0; npm run build → PASS (scripts/logs/build-s23.log)
 - S23: PORT=3123 npx next start + curl smoke test → all pages 200, POST /api/order 200/400, /api/reserve 400 on invalid
+- S24: Configured git credentials (token hidden); git clone; npm ci (bg); autopush started; pdftotext/pdfimages on Update Review.pdf
