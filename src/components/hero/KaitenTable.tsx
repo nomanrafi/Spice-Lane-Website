@@ -12,8 +12,8 @@ import Plate from './Plate';
  * src/lib/belt.ts: outer = curve(A+H, B+H), island hole = curve(A−H, B−H)). Plates fill most of the band width,
  * so the middle island is small, like the reference kaiten table.
  */
-const SEAMS = 24;          // S57: reference look = thin crescent seams, 3 per plate slot, no stripe blocks
-const ACROSS = 14;         // segments across the band (makes each seam a smooth crescent)
+const SEAMS = 16;          // S64: fewer seams (2 per plate slot) like the reference, user: "ato line keno"
+const ACROSS = 20;         // segments across the band (smooth curved crescent)
 /** Reusable dynamic triangle-strip grid (rows × cols quads per patch), refilled every frame. */
 function useGrid(patches: number, cols: number, rows: number) {
   return useMemo(() => {
@@ -30,19 +30,20 @@ function useGrid(patches: number, cols: number, rows: number) {
 }
 
 /**
- * Zebra grooves like the reference kaiten table (Optional you can use/… slatPath): each seam is a CRESCENT
- * across the band — its middle bulges forward along the belt by 0.2·pitch, both ends trail — drawn as a dark
- * groove plus a thin light glint just behind it. Seams travel with the plates (driven by beltMotion.offset).
+ * S64 zebra = real kaiten "crescent-top" slats (reference table): every slat edge is a strongly CURVED crescent
+ * (middle of the band leads, both edges trail — not a straight/linear radial line). Alternate slats get a very soft
+ * lighter tone (zebra), each slat edge = dark seam + thin glint. Everything travels with the plates.
  */
 function Zebra() {
   const pitch = PERIMETER / SEAMS;
-  const bulge = pitch * 0.2;               // reference slatPath: middle of each seam bulges forward 0.2·pitch
+  const bulge = BELT.H * 0.62;             // strong crescent curvature (was 0.2·pitch ≈ straight)
   const seams = useGrid(SEAMS, ACROSS, 1);
   const glints = useGrid(SEAMS, ACROSS, 1);
+  const tones = useGrid(SEAMS / 2, ACROSS, 6);
   useFrame(() => {
     const off = beltMotion.offset + pitch / 2;
-    // smooth crescent across the band: ends trail, middle leads (quadratic like the reference SVG path)
-    const at = (s: number, u: number) => bandPoint(beltTheta(s + bulge * (1 - u * u)), u * 0.92);
+    // crescent across the band: ends trail, middle leads (smooth cosine profile, rounder than a parabola)
+    const at = (s: number, u: number) => bandPoint(beltTheta(s + bulge * Math.cos((u * Math.PI) / 2)), u * 0.95);
     const line = (geo: THREE.BufferGeometry, shift: number, w: number, y: number) => {
       const lp = geo.attributes.position as THREE.BufferAttribute; let k = 0;
       for (let j = 0; j < SEAMS; j++) {
@@ -55,16 +56,29 @@ function Zebra() {
       }
       lp.needsUpdate = true;
     };
-    line(seams, 0, 0.018, 0.055);
-    line(glints, -0.06, 0.008, 0.056);
+    line(seams, 0, 0.022, 0.056);
+    line(glints, -0.07, 0.01, 0.057);
+    const tp = tones.attributes.position as THREE.BufferAttribute; let k = 0;
+    for (let j = 0; j < SEAMS / 2; j++) {
+      const s0 = off + j * 2 * pitch;
+      for (let r = 0; r <= 6; r++) for (let c = 0; c <= ACROSS; c++) {
+        const u = (c / ACROSS) * 2 - 1;
+        const [x, z] = at(s0 + (r / 6) * pitch, u);
+        tp.setXYZ(k++, x, 0.054, z);
+      }
+    }
+    tp.needsUpdate = true;
   });
   return (
     <group raycast={() => null}>
+      <mesh geometry={tones} frustumCulled={false} raycast={() => null}>
+        <meshBasicMaterial color="#ffffff" transparent opacity={0.035} depthWrite={false} side={THREE.DoubleSide} />
+      </mesh>
       <mesh geometry={seams} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#000000" transparent opacity={0.42} depthWrite={false} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#000000" transparent opacity={0.5} depthWrite={false} side={THREE.DoubleSide} />
       </mesh>
       <mesh geometry={glints} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.14} depthWrite={false} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#ffffff" transparent opacity={0.16} depthWrite={false} side={THREE.DoubleSide} />
       </mesh>
     </group>
   );
