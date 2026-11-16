@@ -6,7 +6,7 @@
 // S49: smooth symmetric oval (no straight sides), thin island like the reference (inner minor semi-axis B−H = 0.75), bigger plates.
 // S50: organic shape traced from the user's blue mark: wide, round ends, right end fuller (asym), soft dip in the
 // middle of the back edge (dip). Thin island (B−H = 0.5) and big plates (plateR 1.3) like the reference.
-export const BELT = { A: 4.7, B: 2.05, n: 2.2, asym: 0.08, dip: 0.14, plateR: 1.3, H: 1.55, count: 8 } as const;
+export const BELT = { A: 4.6, B: 2.0, n: 2.3, asym: 0.06, dip: 0.08, plateR: 1.05, H: 1.25, count: 8 } as const; // S53: whole table visible, plates big but not overlapping, thin island (B−H=0.75)
 
 const LUT_N = 1440;
 type P = [number, number];
