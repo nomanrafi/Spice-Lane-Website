@@ -1,31 +1,52 @@
-// Stadium (pill) path math + shared belt motion state for the hero kaiten table.
-// Path lies in the XZ plane, centred at origin. Front lane = +Z (closest to camera), moving RIGHT → LEFT.
-export const BELT = { R: 1.95, L: 4.2, plateR: 0.7, count: 8 } as const;
-export const PERIMETER = 2 * BELT.L + 2 * Math.PI * BELT.R;
-export const SLOT = PERIMETER / BELT.count;
+// Superellipse ("organic oval") path + shared belt motion state for the hero kaiten table (review S34).
+// Centre-line |x/A|^n + |z/B|^n = 1 in the XZ plane. Plates ride the centre-line; the table band is ±H around it.
+// Front lane = +Z (closest to camera), moving RIGHT → LEFT as arc-length s grows. s = 0 is the front-centre point.
+export const BELT = { A: 3.55, B: 2.05, n: 2.5, plateR: 0.95, H: 1.16, count: 8 } as const;
 
-/** Point on the stadium path for arc-length s (any real number, wraps). Returns [x, z]. */
-export function stadiumPoint(s: number): [number, number] {
-  const { R, L } = BELT;
-  const P = PERIMETER;
-  let t = ((s % P) + P) % P;
-  const hl = L / 2;
-  // segment 1: front straight, x from +hl → -hl at z = +R (moves right → left)
-  if (t < L) return [hl - t, R];
-  t -= L;
-  // segment 2: left semicircle, centre (-hl, 0), angle from 90° → 270°
-  if (t < Math.PI * R) { const a = Math.PI / 2 + t / R; return [-hl + R * Math.cos(a), R * Math.sin(a)]; }
-  t -= Math.PI * R;
-  // segment 3: back straight, x from -hl → +hl at z = -R
-  if (t < L) return [-hl + t, -R];
-  t -= L;
-  // segment 4: right semicircle, centre (+hl, 0), angle from 270° → 450°
-  const a = (3 * Math.PI) / 2 + t / R;
-  return [hl + R * Math.cos(a), R * Math.sin(a)];
+const LUT_N = 1440;
+type P = [number, number];
+const curve = (th: number, a = BELT.A, b = BELT.B): P => {
+  const c = Math.cos(th), s = Math.sin(th), e = 2 / BELT.n;
+  return [a * Math.sign(c) * Math.abs(c) ** e, b * Math.sign(s) * Math.abs(s) ** e];
+};
+/** Closed outline of a superellipse with semi-axes (a, b) — used for table rim / island shapes. */
+export function outline(a: number, b: number, steps = 192): P[] {
+  return Array.from({ length: steps }, (_, i) => curve((i / steps) * Math.PI * 2, a, b));
 }
 
-/** Arc-length position of the front-centre point (x=0, z=+R). */
-export const FRONT_S = BELT.L / 2;
+// Build a uniform-arc-length lookup table, starting at θ = π/2 (front-centre) with θ increasing (moves left).
+const dense: P[] = []; const cum: number[] = [0];
+for (let i = 0; i <= 8192; i++) dense.push(curve(Math.PI / 2 + (i / 8192) * Math.PI * 2));
+for (let i = 1; i < dense.length; i++) cum.push(cum[i - 1] + Math.hypot(dense[i][0] - dense[i - 1][0], dense[i][1] - dense[i - 1][1]));
+export const PERIMETER = cum[cum.length - 1];
+export const SLOT = PERIMETER / BELT.count;
+const LUT: P[] = [];
+for (let k = 0, j = 0; k < LUT_N; k++) {
+  const target = (k / LUT_N) * PERIMETER;
+  while (cum[j + 1] < target) j++;
+  const f = (target - cum[j]) / (cum[j + 1] - cum[j] || 1);
+  LUT.push([dense[j][0] + (dense[j + 1][0] - dense[j][0]) * f, dense[j][1] + (dense[j + 1][1] - dense[j][1]) * f]);
+}
+
+/** Point on the belt centre-line for arc-length s (any real number, wraps). Returns [x, z]. */
+export function beltPoint(s: number): P {
+  const u = ((((s % PERIMETER) + PERIMETER) % PERIMETER) / PERIMETER) * LUT_N;
+  const i = Math.floor(u) % LUT_N, f = u - Math.floor(u);
+  const a = LUT[i], b = LUT[(i + 1) % LUT_N];
+  return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
+}
+/** Unit tangent (direction of travel) and outward normal at arc-length s. */
+export function beltFrame(s: number) {
+  const [x1, z1] = beltPoint(s - 0.02), [x2, z2] = beltPoint(s + 0.02);
+  const l = Math.hypot(x2 - x1, z2 - z1) || 1;
+  const tx = (x2 - x1) / l, tz = (z2 - z1) / l;
+  return { tx, tz, nx: -tz, nz: tx }; // travel is counter-clockwise seen from +Y… normal (−tz, tx) points outward
+}
+/** @deprecated old name kept so older imports keep working */
+export const stadiumPoint = beltPoint;
+
+/** Arc-length position of the front-centre point (x=0, z=+B). */
+export const FRONT_S = 0;
 
 /** Mutable, non-reactive motion state (read/written every frame, never triggers renders). */
 export const beltMotion = {
