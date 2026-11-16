@@ -1,12 +1,12 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS (Step 14, S36)
-- Current: 14.1 hero table shape → smooth organic oval like user's blue marking (no straight 'rectangle' sides), bigger
-- Last action: S37 resumed; found S36 pushed KaitenTable organic oval + crescent seams (21c6c59), not yet built/verified
-- NEXT ACTION: verify 14.1-14.4 visually (build + screenshot), compare with Update Review.pdf p1 blue mark + reference zebra
-- Project runs?: YES — build PASS S32
-- Last updated: 2026-11-16 14:25 (Asia/Dhaka) by Session #37
+- Overall: IN PROGRESS (Step 14, S38)
+- Current: 14.5 build + screenshot verify of S36 table (organic oval + crescent seams)
+- Last action: S38 fixed build-s37 type error in src/lib/belt.ts:8 (curve() default params typed as number)
+- NEXT ACTION: npm run build → hero screenshot (scripts/hero-shot.mjs) → compare with Update Review.pdf p1 blue mark; then tune egg shape/size
+- Project runs?: build FAILED S37 (type error, fixed S38, re-verify)
+- Last updated: 2026-11-16 14:35 (Asia/Dhaka) by Session #38
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -73,6 +73,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S38 (2026-11-16): resumed at 14.5; same user requests repeated (shape=blue mark, zebra like reference w/ fewer lines, smaller gap, bigger items, single hover name)
 - S37 (2026-11-16): resumed at 14.1 verify. User repeated: shape ≠ blue mark, zebra too linear/many lines, gap smaller, items bigger, hover shows 2 names
 - S36 (2026-11-16): resumed at 14.1; S35 stopped by usage policy before pushing 14.4. User repeated same requests (shape, zebra, gap/items, double name)
 - S35 (2026-11-16): resumed at 14.1 (belt.ts pushed by S34; KaitenTable not yet). User repeated same 4 requests (shape, zebra, gap smaller/items bigger, double hover name)
@@ -102,6 +103,7 @@ Restart auto-push: nohup "./Spice Lane Website Progress Save/scripts/autopush.sh
 - User chat (session #3): save everything only in this folder; push fast after small tasks; repo token given in chat (never stored in repo).
 
 ## Session History
+- S38 (2026-11-16): resumed at 14.5; same user requests repeated (shape=blue mark, zebra like reference w/ fewer lines, smaller gap, bigger items, single hover name)
 - S37 (2026-11-16): resumed at 14.1 verify. User repeated: shape ≠ blue mark, zebra too linear/many lines, gap smaller, items bigger, hover shows 2 names
 - S34 (2026-11-16): resumed at 14.1. User repeated: table shape ≠ blue mark (why fixed rectangle?), zebra too linear & too many lines; NEW: centre gap smaller, items bigger, hover shows 2 names
 - S30 (2026-11-16): resumed at 13.12 review screenshots vs PDF + verify 13.10 (S29 stopped after viewing hero-s29/spotlight-s29)

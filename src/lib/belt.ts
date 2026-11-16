@@ -5,7 +5,7 @@ export const BELT = { A: 3.55, B: 2.05, n: 2.5, plateR: 0.95, H: 1.16, count: 8 
 
 const LUT_N = 1440;
 type P = [number, number];
-const curve = (th: number, a = BELT.A, b = BELT.B): P => {
+const curve = (th: number, a: number = BELT.A, b: number = BELT.B): P => {
   const c = Math.cos(th), s = Math.sin(th), e = 2 / BELT.n;
   return [a * Math.sign(c) * Math.abs(c) ** e, b * Math.sign(s) * Math.abs(s) ** e];
 };
