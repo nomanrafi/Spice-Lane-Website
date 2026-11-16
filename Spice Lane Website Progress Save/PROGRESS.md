@@ -2,9 +2,9 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS — Step 13: fixes from repo-root `Update Review.pdf` (user review, Bengali comments)
-- Current: Step 13 → 13.1 zebra table
+- Current: Step 13 → 13.7+13.8 scroll lock code written (not built yet)
 - Last action: S24 read Update Review.pdf (text: /data/pdf via pdftotext; list of fixes below in Step 13)
-- NEXT ACTION: do 13.1 (zebra stripes on table top that rotate with belt) in src/components/hero/KaitenTable.tsx
+- NEXT ACTION: build-verify 13.7/13.8, then 13.4 remove duplicate hover chip in src/components/hero/Hero.tsx (the motion.div chip at top-[44%]), then 13.3 plates
 - Project runs?: YES — build PASS S23
 - Last updated: 2026-11-16 13:15 (Asia/Dhaka) by Session #24
 

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { MENU, TIERS, formatPrice, getItem } from '@/data/menu';
 import { useStore } from '@/store/useStore';
+import { lockScroll, unlockScroll } from '@/lib/scrollLock';
 
 const ModelViewer = dynamic(() => import('@/components/three/ModelViewer'), { ssr: false, loading: () => <div className="h-full w-full animate-pulse bg-white/5" /> });
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -25,7 +26,7 @@ export default function ProductModal() {
   useEffect(() => {
     if (!item) return;
     const prevFocus = document.activeElement as HTMLElement | null;
-    document.body.style.overflow = 'hidden';
+    lockScroll();
     setTimeout(() => card.current?.querySelector<HTMLElement>('[data-autofocus]')?.focus(), 50);
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') open(null);
@@ -37,7 +38,7 @@ export default function ProductModal() {
       }
     };
     window.addEventListener('keydown', onKey);
-    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = ''; prevFocus?.focus?.(); };
+    return () => { window.removeEventListener('keydown', onKey); unlockScroll(); prevFocus?.focus?.(); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!item]);
 
@@ -46,15 +47,15 @@ export default function ProductModal() {
   return (
     <AnimatePresence>
       {item && (
-        <motion.div key="backdrop" className="fixed inset-0 z-[60] flex items-end justify-center bg-black/60 backdrop-blur-md md:items-center md:p-6"
+        <motion.div key="backdrop" data-lenis-prevent className="fixed inset-0 z-[60] flex overscroll-contain items-end justify-center bg-black/60 backdrop-blur-md md:items-center md:p-6"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}
           onMouseDown={(e) => { if (e.target === e.currentTarget) open(null); }}>
           <motion.div ref={card} role="dialog" aria-modal="true" aria-labelledby="pm-title"
             initial={{ opacity: 0, y: 60, scale: 0.94 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 40, scale: 0.96 }}
             transition={{ duration: 0.55, ease }}
-            className="relative grid max-h-[92svh] w-full max-w-[760px] grid-cols-1 overflow-hidden rounded-t-card border border-line bg-card md:grid-cols-2 md:rounded-card">
+            className="relative grid max-h-[94svh] w-full max-w-[1120px] grid-cols-1 overflow-hidden rounded-t-card border border-line bg-card md:grid-cols-[1.15fr_1fr] md:rounded-card">
             <button type="button" onClick={() => open(null)} className="pill-glass absolute right-4 top-4 z-10 !px-3 !py-1.5 text-xs">Close ✕</button>
-            <div className="relative h-[300px] md:h-[440px]" style={{ background: `radial-gradient(closest-side, ${item.accentColor}33, transparent)` }}>
+            <div className="relative h-[340px] md:h-[600px]" style={{ background: `radial-gradient(closest-side, ${item.accentColor}33, transparent)` }}>
               <AnimatePresence mode="wait">
                 <motion.div key={item.id} className="h-full w-full" initial={{ opacity: 0, rotate: -8, scale: 0.9 }} animate={{ opacity: 1, rotate: 0, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }} transition={{ duration: 0.45, ease }}>
                   <ModelViewer item={item} />
@@ -62,15 +63,15 @@ export default function ProductModal() {
               </AnimatePresence>
               <span className="pointer-events-none absolute bottom-4 left-4 rounded-full border border-line bg-black/50 px-3 py-1 text-xs text-muted backdrop-blur">Drag to rotate</span>
             </div>
-            <div className="flex flex-col gap-5 overflow-y-auto p-7 pt-14 md:pt-16">
+            <div className="flex flex-col gap-5 overflow-y-auto overscroll-contain p-7 pt-14 md:p-10 md:pt-16">
               <p className="flex items-center gap-2 font-mono text-xs text-muted">
                 <span className="h-2 w-2 rounded-full" style={{ background: TIERS[item.tier].color }} />
                 {String(idx + 1).padStart(2, '0')} / {String(MENU.length).padStart(2, '0')}
               </p>
               <AnimatePresence mode="wait">
                 <motion.div key={item.id} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.35, ease }}>
-                  <h2 id="pm-title" className="text-3xl font-medium tracking-tight">{item.name}</h2>
-                  <p className="mt-3 text-sm leading-relaxed text-muted">{item.longDescription}</p>
+                  <h2 id="pm-title" className="text-3xl font-medium tracking-tight md:text-4xl">{item.name}</h2>
+                  <p className="mt-3 text-sm leading-relaxed text-muted md:text-base">{item.longDescription}</p>
                   <ul className="mt-4 flex flex-wrap gap-2">
                     {item.tags.map((t) => <li key={t} className="rounded-full border border-line px-3 py-1 text-xs text-white/80">{t}</li>)}
                   </ul>

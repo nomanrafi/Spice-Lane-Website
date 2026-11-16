@@ -5,6 +5,7 @@ import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { beltMotion } from '@/lib/belt';
+import { registerLenis } from '@/lib/scrollLock';
 
 /** Step 9.3: Lenis smooth scroll synced with GSAP ScrollTrigger; everything respects prefers-reduced-motion. */
 export default function Providers({ children }: { children: React.ReactNode }) {
@@ -19,10 +20,11 @@ export default function Providers({ children }: { children: React.ReactNode }) {
     gsap.registerPlugin(ScrollTrigger);
     const lenis = new Lenis({ duration: 1.1, easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)) });
     lenis.on('scroll', ScrollTrigger.update);
+    registerLenis(lenis);
     const tick = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
-    return () => { mq.removeEventListener('change', applyBelt); gsap.ticker.remove(tick); lenis.destroy(); };
+    return () => { mq.removeEventListener('change', applyBelt); gsap.ticker.remove(tick); registerLenis(null); lenis.destroy(); };
   }, []);
   return <MotionConfig reducedMotion="user">{children}</MotionConfig>;
 }

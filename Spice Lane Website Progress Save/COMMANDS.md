@@ -65,3 +65,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S23: npx next lint → 0 warnings; npx tsc --noEmit → 0; npm run build → PASS (scripts/logs/build-s23.log)
 - S23: PORT=3123 npx next start + curl smoke test → all pages 200, POST /api/order 200/400, /api/reserve 400 on invalid
 - S24: Configured git credentials (token hidden); git clone; npm ci (bg); autopush started; pdftotext/pdfimages on Update Review.pdf
+- S24 13.7/13.8: added src/lib/scrollLock.ts (lenis.stop + overflow hidden, ref-counted); Providers registers lenis; ProductModal + CartDrawer use lockScroll/unlockScroll + data-lenis-prevent; modal max-w 760→1120, viewer h 440→600

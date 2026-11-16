@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { formatPrice } from '@/data/menu';
+import { lockScroll, unlockScroll } from '@/lib/scrollLock';
 import { useStore, cartCount, cartTotal, lineInfo } from '@/store/useStore';
 
 const ease = [0.16, 1, 0.3, 1] as const;
@@ -19,10 +20,10 @@ export default function CartDrawer() {
 
   useEffect(() => {
     if (!open) return;
-    document.body.style.overflow = 'hidden';
+    lockScroll();
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false);
     window.addEventListener('keydown', onKey);
-    return () => { document.body.style.overflow = ''; window.removeEventListener('keydown', onKey); };
+    return () => { unlockScroll(); window.removeEventListener('keydown', onKey); };
   }, [open, setOpen]);
 
   if (!mounted) return null;
@@ -32,10 +33,10 @@ export default function CartDrawer() {
   return (
     <AnimatePresence>
       {open && (
-        <motion.div key="cart" className="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+        <motion.div key="cart" data-lenis-prevent className="fixed inset-0 z-[70] bg-black/60 backdrop-blur-sm" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
           onMouseDown={(e) => { if (e.target === e.currentTarget) setOpen(false); }}>
           <motion.aside role="dialog" aria-modal="true" aria-label="Your order" initial={{ x: '100%' }} animate={{ x: 0 }} exit={{ x: '100%' }} transition={{ duration: 0.5, ease }}
-            className="absolute right-0 top-0 flex h-full w-full max-w-[420px] flex-col border-l border-line bg-card">
+            className="absolute right-0 top-0 flex h-full max-h-[100dvh] w-full max-w-[420px] flex-col border-l border-line bg-card">
             <div className="flex items-center justify-between border-b border-line p-6">
               <h2 className="text-xl font-medium tracking-tight">Your order <span className="font-mono text-sm text-muted">({cartCount(cart)})</span></h2>
               <button type="button" onClick={() => setOpen(false)} className="pill-glass !px-3 !py-1.5 text-xs">Close ✕</button>
@@ -47,7 +48,7 @@ export default function CartDrawer() {
               </div>
             ) : (
               <>
-                <ul className="flex-1 space-y-3 overflow-y-auto p-6">
+                <ul data-lenis-prevent className="min-h-0 flex-1 space-y-3 overflow-y-auto overscroll-contain p-6">
                   <AnimatePresence initial={false}>
                     {cart.map((l) => {
                       const it = lineInfo(l);
