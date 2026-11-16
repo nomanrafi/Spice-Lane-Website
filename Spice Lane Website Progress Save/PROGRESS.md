@@ -1,12 +1,12 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: DONE (Step 13 review fixes complete, S32)
-- Current: nothing in progress. Optional polish: spotlight tier ring (SpotlightCanvas.tsx) still shows slightly below the plate rim in spotlight-s32.jpg
-- Last action: S32 logo bigger (Header.tsx text-[22px] md:text-[26px]), build PASS, screenshots reviewed
-- NEXT ACTION: wait for new user feedback
+- Overall: IN PROGRESS (Step 14, S33)
+- Current: 14.1 hero table shape → smooth organic oval like user's blue marking (no straight 'rectangle' sides), bigger
+- Last action: S33 resumed; read Update Review.pdf p1 + reference slatPath() in `Optional you can use/`
+- NEXT ACTION: rewrite src/lib/belt.ts (superellipse path, arc-length LUT) + KaitenTable.tsx (offset-curve table, ~34 crescent seams like reference)
 - Project runs?: YES — build PASS S32
-- Last updated: 2026-11-16 14:00 (Asia/Dhaka) by Session #32
+- Last updated: 2026-11-16 14:20 (Asia/Dhaka) by Session #33
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -59,6 +59,11 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [x] Step 12 (S21–S23): deploy-readiness audit — 12.1 install+build ✓ · 12.2 lint+typecheck ✓ · 12.3 runtime smoke test ✓ (found: canvas edge clip, pause glyph) · 12.4 fix issues ✓ (S22, verified S23) · 12.5 deploy notes in README ✓ (S23)
 - [x] Step 11 (S19–S20, optional follow-ups): 11.1 bundle cart line ✓ build PASS · 11.2 /api/order mock payment ✓ build PASS S20
 
+- [ ] Step 14 (S33 user chat): table still wrong
+  - [ ] 14.1 Table shape = user's blue marking (smooth wide oval, NOT fixed rectangle/stadium with straight sides), bigger  ← IN PROGRESS
+  - [ ] 14.2 Zebra = like reference (few curved crescent seams + glint, pitch ≈ 0.34·plate Ø, ~34 seams) instead of 112 dense straight stripes
+  - [ ] 14.3 build + screenshot + push
+
 ## How to use the result
 - From repo root: `npm install` → `npm run dev` (http://localhost:3000) or `npm run build && npm start`.
 - Add a dish: drop GLB in `assets/`, run `npm run optimize-models`, add an entry to `src/data/menu.ts` (see README).
@@ -66,6 +71,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S33 (2026-11-16): resumed after DONE. User: table shape doesn't match blue marking (fixed rectangle), zebra too linear/too many lines
 - S32 (2026-11-16): resumed at 13.12 verify (S31 stopped by usage policy while rebuilding/screenshotting after 13.12c ring push). User asked: logo 'Spice Lane' bigger
 - S31 (2026-11-16): resumed at 13.12b verify (S30 stopped by usage policy while rebuilding/screenshotting hero after pushing camera fix)
 - S30 (2026-11-16): resumed at 13.12 review screenshots vs PDF + verify 13.10 (S29 stopped after viewing hero-s29/spotlight-s29)
