@@ -76,6 +76,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S65 (2026-11-16): resumed at 14.1. User (chat, Bangla): table shape must match blue mark (not fixed rectangle), zebra like reference (not linear, fewer lines), smaller middle gap, bigger items, hover shows 2 names; push every ~30s / every small task. Autopush 30s running.
 - S64 (2026-11-16): resumed at 14.1. Same 4 user requests. Autopush interval 30s (AUTOPUSH_INTERVAL=30).
 - S63 (2026-11-16): resumed at 14.1. User asked first: how much work left? Same 4 requests (blue-mark shape not fixed rect, reference zebra curved/fewer, smaller gap + bigger items, hover shows 2 names). Answered: only Step 14 left (14.1–14.3 code pushed S57 but unverified, 14.4 hover re-check, 14.5 build+push).
 - S62 (2026-11-16): resumed at 14.1. User asked first: how much work left? Same 4 requests (blue-mark shape, reference zebra fewer/curved, smaller gap + bigger items, hover 2 names). S61 stopped after viewing blue.png (nothing pushed). Avoid viewing many images.
