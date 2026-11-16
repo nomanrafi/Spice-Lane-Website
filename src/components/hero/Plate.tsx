@@ -34,7 +34,7 @@ const Plate = forwardRef<THREE.Group, Props>(function Plate({ item, active, onOv
         onPointerOver={(e) => { e.stopPropagation(); onOver(); }}
         onPointerOut={(e) => { e.stopPropagation(); onOut(); }}
         onClick={(e) => { e.stopPropagation(); onClick(); }}>
-        <cylinderGeometry args={[r * 0.9, r * 0.9, 0.24, 32]} />
+        <cylinderGeometry args={[r * 1.0, r * 1.0, 0.24, 32]} />
         <meshBasicMaterial transparent opacity={0} depthWrite={false} colorWrite={false} />
       </mesh>
       <group ref={lift}>

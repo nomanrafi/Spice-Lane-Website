@@ -12,7 +12,7 @@ import Plate from './Plate';
  * src/lib/belt.ts: outer = curve(A+H, B+H), island hole = curve(A−H, B−H)). Plates fill most of the band width,
  * so the middle island is small, like the reference kaiten table.
  */
-const SEAMS = 16; // S68: 2 seams per plate slot (reference: thin crescent seam + glint, NO stripe/tone bands)
+const SEAMS = 28; // S71: reference slat pitch ≈ PERIMETER/28 // S68: 2 seams per plate slot (reference: thin crescent seam + glint, NO stripe/tone bands)
 const ACROSS = 24; // points across the band → smooth curve, not a straight line
 
 /** Thin ribbon strips (one per seam) refilled every frame. */
@@ -36,12 +36,12 @@ function useStrips(n: number, cols: number) {
  */
 function Zebra() {
   const pitch = PERIMETER / SEAMS;
-  const bulge = pitch * 0.32;
+  const bulge = pitch * 0.22;
   const seams = useStrips(SEAMS, ACROSS);
   const glints = useStrips(SEAMS, ACROSS);
   useFrame(() => {
     const off = beltMotion.offset + pitch / 2;
-    const at = (s: number, u: number) => bandPoint(beltTheta(s + bulge * (1 - u * u)), u * 0.96);
+    const at = (s: number, u: number) => bandPoint(beltTheta(s + bulge * (1 - u * u)), u * 0.92);
     const fill = (geo: THREE.BufferGeometry, shift: number, w: number, y: number) => {
       const lp = geo.attributes.position as THREE.BufferAttribute; let k = 0;
       for (let j = 0; j < SEAMS; j++) {
@@ -54,13 +54,13 @@ function Zebra() {
       }
       lp.needsUpdate = true;
     };
-    fill(seams, 0, 0.016, 0.056);
-    fill(glints, -0.06, 0.008, 0.057);
+    fill(seams, 0, 0.022, 0.056);
+    fill(glints, -0.07, 0.012, 0.057);
   });
   return (
     <group raycast={() => null}>
       <mesh geometry={seams} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#000000" transparent opacity={0.5} depthWrite={false} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#000000" transparent opacity={0.6} depthWrite={false} side={THREE.DoubleSide} />
       </mesh>
       <mesh geometry={glints} frustumCulled={false} raycast={() => null}>
         <meshBasicMaterial color="#ffffff" transparent opacity={0.16} depthWrite={false} side={THREE.DoubleSide} />
@@ -91,7 +91,7 @@ function TableBody() {
   return (
     <group>
       <mesh geometry={top} rotation={[Math.PI / 2, 0, 0]} receiveShadow castShadow>
-        <meshStandardMaterial color="#3a3a3a" roughness={0.6} metalness={0.15} />
+        <meshStandardMaterial color="#333333" roughness={0.6} metalness={0.15} />
       </mesh>
       {/* thin light rail along the outer edge (reference: white rim highlight) */}
       <mesh geometry={rim} rotation={[Math.PI / 2, 0, 0]} position={[0, 0.052, 0]} raycast={() => null}>
