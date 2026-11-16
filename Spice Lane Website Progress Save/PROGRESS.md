@@ -6,7 +6,7 @@
 - Last action: 13.11 footer credit 'Made by NOMAN-RAFI' added in Footer.tsx above social row (build s25a PASS covered 13.7/13.8/13.10)
 - NEXT ACTION: build-verify 13.11, then 13.3 (remove extra plate in Plate.tsx) + 13.4 hover label
 - Project runs?: YES — build PASS S23
-- Last updated: 2026-11-16 13:22 (Asia/Dhaka) by Session #26
+- Last updated: 2026-11-16 13:35 (Asia/Dhaka) by Session #27
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -65,6 +65,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S27 (2026-11-16): resumed at 13.11 build-verify + 13.1–13.6 hero (S26 stopped by usage policy while rewriting Plate/belt; that work was NOT pushed)
 - S26 (2026-11-16): resumed at 13.7 verify (S25 stopped by usage policy while reading useStore/Footer code)
 - S25 (2026-11-16): resumed at 13.7 verify; prior session S24 was stopped by usage limit before pushing footer credit
 
