@@ -2,7 +2,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { MENU } from '@/data/menu';
+import { MENU, TIERS, formatPrice } from '@/data/menu';
+import { useStore } from '@/store/useStore';
+
+const ORDERS = [412, 368, 341, 297, 264, 238, 205, 187];
+const RATING = ['4.9', '4.8', '4.9', '4.7', '4.8', '4.9', '4.6', '4.8'];
 
 const REVIEWS = [
   { n: 'Aisha R.', r: 5, t: 'Dragging plates straight into the cart is ridiculously fun. Food arrived hot and beautiful.' },
@@ -27,6 +31,7 @@ function Stars({ value }: { value: number }) {
 /** 8.6 Social proof: rating count-up + animated stars, hover-pausing marquee, parallax gallery. */
 export default function Reviews() {
   const root = useRef<HTMLElement>(null);
+  const open = useStore((st) => st.open);
   const [avg, setAvg] = useState(0);
   const [count, setCount] = useState(0);
 
@@ -41,12 +46,12 @@ export default function Reviews() {
     return () => ctx.revert();
   }, []);
 
-  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const onMove = (e: React.MouseEvent<HTMLElement>) => {
     const el = e.currentTarget; const b = el.getBoundingClientRect();
     const x = (e.clientX - b.left) / b.width - 0.5; const y = (e.clientY - b.top) / b.height - 0.5;
     el.style.setProperty('--px', `${x * -18}px`); el.style.setProperty('--py', `${y * -18}px`);
   };
-  const onLeave = (e: React.MouseEvent<HTMLDivElement>) => { e.currentTarget.style.setProperty('--px', '0px'); e.currentTarget.style.setProperty('--py', '0px'); };
+  const onLeave = (e: React.MouseEvent<HTMLElement>) => { e.currentTarget.style.setProperty('--px', '0px'); e.currentTarget.style.setProperty('--py', '0px'); };
 
   return (
     <section ref={root} id="reviews" aria-labelledby="rv-h" className="relative overflow-hidden py-24">
@@ -72,16 +77,32 @@ export default function Reviews() {
         </ul>
       </div>
 
-      <div className="mx-auto mt-16 grid max-w-7xl grid-cols-2 gap-3 px-6 md:grid-cols-4">
-        {MENU.slice(0, 8).map((m, i) => (
-          <div key={m.id} onMouseMove={onMove} onMouseLeave={onLeave}
-            className={`group/g relative aspect-square overflow-hidden rounded-card border border-line ${i === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}>
-            <div className="absolute -inset-6 transition-transform duration-500 ease-out [transform:translate(var(--px,0),var(--py,0))]"
-              style={{ background: `radial-gradient(circle at 35% 30%, ${m.accentColor}cc, ${m.accentColor}33 45%, #0d0d0d 80%)` }} />
-            <div className="absolute inset-0 flex items-end p-4 opacity-0 transition-opacity duration-300 group-hover/g:opacity-100 bg-gradient-to-t from-black/70 to-transparent">
-              <span className="text-sm font-medium text-white">@spicelane · {m.name}</span>
-            </div>
-          </div>))}
+      {/* 13.10: guest gallery — real dish renders (posters of the GLBs) + always-visible captions, not empty gradients */}
+      <div className="mx-auto mt-16 max-w-7xl px-6">
+        <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="font-mono text-xs uppercase tracking-widest text-muted">From the guest wall</p>
+            <h3 className="mt-1 text-2xl font-semibold tracking-tight text-white md:text-3xl">Most-ordered plates this week</h3>
+          </div>
+          <a href="#menu" className="rounded-full border border-line bg-white/5 px-4 py-2 text-sm text-white hover:bg-white/10">Browse the menu →</a>
+        </div>
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4">
+          {MENU.slice(0, 8).map((m, i) => (
+            <button type="button" key={m.id} onMouseMove={onMove} onMouseLeave={onLeave} onClick={() => open(m.id)} aria-label={`Open ${m.name}`}
+              className={`group/g relative aspect-square overflow-hidden rounded-card border border-line text-left ${i === 0 ? 'md:col-span-2 md:row-span-2' : ''}`}>
+              <div className="absolute -inset-6 transition-transform duration-500 ease-out [transform:translate(var(--px,0),var(--py,0))]"
+                style={{ background: `radial-gradient(circle at 50% 42%, ${m.accentColor}99, ${m.accentColor}22 45%, #0d0d0d 80%)` }} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={m.poster} alt="" loading="lazy" decoding="async" width={768} height={768}
+                className={`absolute left-1/2 top-[42%] w-[78%] -translate-x-1/2 -translate-y-1/2 object-contain drop-shadow-[0_24px_30px_rgba(0,0,0,.6)] transition-transform duration-700 ease-out group-hover/g:scale-110 ${i === 0 ? 'md:w-[70%]' : ''}`} />
+              <span className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/50 px-2.5 py-1 font-mono text-[11px] text-white/80 backdrop-blur">#{String(i + 1).padStart(2, '0')} · {ORDERS[i]} orders</span>
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent p-4 pt-10">
+                <p className={`font-medium text-white ${i === 0 ? 'text-lg md:text-2xl' : 'text-sm'}`}>{m.name}</p>
+                <p className="mt-0.5 flex items-center gap-2 font-mono text-xs text-white/70"><span className="h-2 w-2 rounded-full" style={{ background: TIERS[m.tier].color }} />{formatPrice(m.price)}<span className="text-amber-400">★ {RATING[i]}</span></p>
+                {i === 0 && <p className="mt-2 hidden max-w-md text-sm text-white/70 md:block">“{m.chefNote ?? m.description}” — Chef</p>}
+              </div>
+            </button>))}
+        </div>
       </div>
     </section>
   );
