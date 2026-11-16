@@ -77,6 +77,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S69 (2026-11-16): resumed at 14.1. User (Bangla): same 4 table requests (blue-mark shape not fixed rect, reference zebra not linear/too many lines, smaller middle gap + bigger items, hover shows 2 names); push every ~30s. Plan: port reference geometry (stadium r=0.95d, band 1.22d, slats every 0.34d bulge 0.2 pitch) into 3D; check canvas clipping.
 - S68 (2026-11-16): resumed at 14.1. User repeated same 4 table requests (blue-mark shape not fixed rect, reference zebra not linear/fewer lines, smaller middle gap + bigger items, hover 2 names); push every ~30s. No image viewing.
 - S67 (2026-11-16): resumed at 14.1. User repeated same 4 table requests (blue-mark shape not fixed rect, reference zebra not linear/fewer lines, smaller middle gap + bigger items, hover 2 names); push every ~30s.
 - S66 (2026-11-16): resumed at 14.1. User repeated: blue-mark shape (no fixed rect), reference zebra (not linear, fewer lines), smaller middle gap, bigger items, hover 2 names; push every ~30s. Avoid viewing images (sessions die after screenshots).
