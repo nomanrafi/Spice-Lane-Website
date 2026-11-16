@@ -4,14 +4,17 @@
 // Front lane = +Z (closest to camera), moving RIGHT → LEFT as arc-length s grows. s = 0 is the front-centre point.
 // S45: asymmetric organic oval like the blue mark (right end fuller, left end a bit narrower), thin band gap, big plates.
 // S49: smooth symmetric oval (no straight sides), thin island like the reference (inner minor semi-axis B−H = 0.75), bigger plates.
-export const BELT = { A: 4.3, B: 2.15, n: 2.3, asym: 0, plateR: 1.2, H: 1.4, count: 8 } as const;
+// S50: organic shape traced from the user's blue mark: wide, round ends, right end fuller (asym), soft dip in the
+// middle of the back edge (dip). Thin island (B−H = 0.5) and big plates (plateR 1.3) like the reference.
+export const BELT = { A: 4.7, B: 2.05, n: 2.2, asym: 0.08, dip: 0.14, plateR: 1.3, H: 1.55, count: 8 } as const;
 
 const LUT_N = 1440;
 type P = [number, number];
 const curve = (th: number, a: number = BELT.A, b: number = BELT.B): P => {
   const c = Math.cos(th), s = Math.sin(th), e = 2 / BELT.n;
   const k = 1 + BELT.asym * c; // fuller right end, narrower left end (organic, not a fixed rectangle/ellipse)
-  return [a * Math.sign(c) * Math.abs(c) ** e, b * k * Math.sign(s) * Math.abs(s) ** e];
+  const d = s < 0 ? 1 - BELT.dip * Math.exp(-((c / 0.5) ** 2)) * -s : 1; // soft dent in the back edge (blue mark)
+  return [a * Math.sign(c) * Math.abs(c) ** e, b * k * d * Math.sign(s) * Math.abs(s) ** e];
 };
 /** Closed outline of a superellipse with semi-axes (a, b) — used for table rim / island shapes. */
 export function outline(a: number, b: number, steps = 192): P[] {
