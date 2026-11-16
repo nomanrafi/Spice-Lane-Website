@@ -6,7 +6,7 @@
 - Last action: 13.9 SpotlightCanvas: removed extra plate mesh, ring fits GLB rim (D=1.5), centred framing; Spotlight.tsx shows only frontId (removed hover/pick switcher, pairings open modal). tsconfig exclude progress+optional folders (archive broke tsc)
 - NEXT ACTION: 13.12 npm run build + screenshots (hero, spotlight)
 - Project runs?: YES — build PASS S23
-- Last updated: 2026-11-16 13:45 (Asia/Dhaka) by Session #30
+- Last updated: 2026-11-16 13:50 (Asia/Dhaka) by Session #31
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -65,6 +65,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S31 (2026-11-16): resumed at 13.12b verify (S30 stopped by usage policy while rebuilding/screenshotting hero after pushing camera fix)
 - S30 (2026-11-16): resumed at 13.12 review screenshots vs PDF + verify 13.10 (S29 stopped after viewing hero-s29/spotlight-s29)
 - S29 (2026-11-16): resumed at 13.12 (S28 stopped by usage policy during production build after pushing 13.9)
 - S28 (2026-11-16): resumed at 13.5 (S27 stopped by usage policy while fixing back-side drag; 13.1–13.4/13.6 were pushed)
