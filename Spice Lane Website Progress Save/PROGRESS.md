@@ -1,7 +1,8 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS (Step 14, S73)
+- Overall: IN PROGRESS (Step 14, S75)
+- S75: resumed at 14.1-14.5 (S74 pushed zebra 16 curved seams, stopped during npm install). Answer to user: table NOT complete (shape/zebra/gap/hover not verified). Autopush 30s. NO image viewing (sessions die after viewing images).
 - S74: resumed at 14.1 (S73 pushed true ellipse OUT 4.5x2.75 IN 2.0x0.25; stopped while making zebra seams fewer+curved). Answer: table NOT complete. Autopush 30s. NO image viewing.
 - S74 DONE-1: KaitenTable.tsx Zebra SEAMS 28→16, bulge 0.22→0.34·pitch (fewer, curved). NEXT: npm install, tsc, DOM hover test (count visible names), build.
 - S73: resumed at 14.1 (S72 stopped while making full-bleed canvas + auto camera; belt.ts 4-arc oval was pushed). Answer to user: table NOT complete. Autopush 30s. AVOID viewing images.
@@ -84,6 +85,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S75 (2026-11-16): resumed at 14.1. User (Bangla) same 4 table requests (blue-mark shape not fixed rect; zebra like reference not linear/fewer lines; smaller middle gap + bigger items; hover shows 2 names) + push every 30s. Asked first: is table done? -> NO.
 - S72 (2026-11-16): resumed at 14.1. User asked 'is table work complete?' -> answered NO. Same 4 requests; push every 30s.
 - S69 (2026-11-16): resumed at 14.1. User (Bangla): same 4 table requests (blue-mark shape not fixed rect, reference zebra not linear/too many lines, smaller middle gap + bigger items, hover shows 2 names); push every ~30s. Plan: port reference geometry (stadium r=0.95d, band 1.22d, slats every 0.34d bulge 0.2 pitch) into 3D; check canvas clipping.
 - S68 (2026-11-16): resumed at 14.1. User repeated same 4 table requests (blue-mark shape not fixed rect, reference zebra not linear/fewer lines, smaller middle gap + bigger items, hover 2 names); push every ~30s. No image viewing.
