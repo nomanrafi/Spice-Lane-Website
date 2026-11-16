@@ -1,0 +1,28 @@
+
+> spice-lane-website@0.1.0 build
+> next build
+
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+  ▲ Next.js 14.2.35
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Linting and checking validity of types ...
+Failed to compile.
+
+./src/lib/belt.ts:14:83
+Type error: Argument of type 'number' is not assignable to parameter of type '3.55'.
+
+[0m [90m 12 |[39m [90m/** Closed outline of a superellipse with semi-axes (a, b) — used for table rim / island shapes. */[39m[0m
+[0m [90m 13 |[39m [36mexport[39m [36mfunction[39m outline(a[33m:[39m number[33m,[39m b[33m:[39m number[33m,[39m steps [33m=[39m [35m192[39m)[33m:[39m [33mP[39m[] {[0m
+[0m[31m[1m>[22m[39m[90m 14 |[39m   [36mreturn[39m [33mArray[39m[33m.[39m[36mfrom[39m({ length[33m:[39m steps }[33m,[39m (_[33m,[39m i) [33m=>[39m curve((i [33m/[39m steps) [33m*[39m [33mMath[39m[33m.[39m[33mPI[39m [33m*[39m [35m2[39m[33m,[39m a[33m,[39m b))[33m;[39m[0m
+[0m [90m    |[39m                                                                                   [31m[1m^[22m[39m[0m
+[0m [90m 15 |[39m }[0m
+[0m [90m 16 |[39m[0m
+[0m [90m 17 |[39m [90m// Build a uniform-arc-length lookup table, starting at θ = π/2 (front-centre) with θ increasing (moves left).[39m[0m
+Next.js build worker exited with code: 1 and signal: null
+EXIT 1

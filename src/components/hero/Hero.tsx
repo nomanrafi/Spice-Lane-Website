@@ -26,7 +26,8 @@ export default function Hero() {
   const paused = useStore((s) => s.paused);
   const togglePause = useStore((s) => s.togglePause);
   const open = useStore((s) => s.open);
-  const active = getItem(hoverId ?? '') ?? (paused ? getItem(frontId) : undefined);
+  // S37 (14.4b): hover name shows ONLY in the 3D HoverChip (KaitenTable.tsx); this copy follows the paused front plate, not hover
+  const active = paused && !hoverId ? getItem(frontId) : undefined;
 
   // keyboard: ←/→ rotate one slot, Space pause, Enter open front item (only when hero focused)
   useEffect(() => {

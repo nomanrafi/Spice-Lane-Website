@@ -1,0 +1,12 @@
+import { chromium } from 'playwright';
+const [out] = process.argv.slice(2);
+const b = await chromium.launch({ executablePath: process.env.CHROME, args: ['--use-gl=angle','--use-angle=swiftshader','--enable-unsafe-swiftshader'] });
+const p = await b.newPage({ viewport: { width: 1440, height: 900 } });
+const errs=[]; p.on('pageerror', e=>errs.push(String(e)));
+await p.goto('http://localhost:3000', { waitUntil: 'networkidle', timeout: 90000 });
+await p.waitForTimeout(14000);
+await p.screenshot({ path: `${out}-a.png` });
+const c = await p.$('canvas'); const r = await c.boundingBox();
+await p.mouse.move(r.x + r.width*0.5, r.y + r.height*0.72); await p.waitForTimeout(2500);
+await p.screenshot({ path: `${out}-hover.png` });
+console.log('errors', errs.slice(0,3)); await b.close(); process.exit(0);
