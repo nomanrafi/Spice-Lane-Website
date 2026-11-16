@@ -1,10 +1,10 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS — Step 13: fixes from repo-root `Update Review.pdf` (user review, Bengali comments)
-- Current: 13.13 (S32 user chat) header logo 'Spice Lane' bigger: src/components/Header.tsx text-[15px]→text-[22px] md:text-[26px], header h-16 md:h-20
-- Last action: 13.9 SpotlightCanvas: removed extra plate mesh, ring fits GLB rim (D=1.5), centred framing; Spotlight.tsx shows only frontId (removed hover/pick switcher, pairings open modal). tsconfig exclude progress+optional folders (archive broke tsc)
-- NEXT ACTION: npm ci; npm run build; next start :3000; screenshot hero (logo + spotlight ring 13.12c); then mark 13.12/13.13 + Step 13 done
+- Overall: DONE (Step 13 review fixes complete, S32)
+- Current: nothing in progress. Optional polish: spotlight tier ring (SpotlightCanvas.tsx) still shows slightly below the plate rim in spotlight-s32.jpg
+- Last action: S32 logo bigger (Header.tsx text-[22px] md:text-[26px]), build PASS, screenshots reviewed
+- NEXT ACTION: wait for new user feedback
 - Project runs?: YES — build PASS S32
 - Last updated: 2026-11-16 14:00 (Asia/Dhaka) by Session #32
 
@@ -42,7 +42,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - [x] Step 9: Perf/a11y/SEO — 9.1 robots+sitemap · 9.2 JSON-LD+metadata · 9.3 reduced-motion · 9.4 posters (public/posters, MenuGrid cards + ModelViewer fallback) — build PASS S16 (logs/build-s16.log)
 - [x] Step 10: Final build, screenshots in output/preview, README — 10.1 screenshots ✓ · 10.2 README ✓ · 10.3 acceptance audit ✓ · 10.3a IslandChip (KaitenTable.tsx) build PASS S18 (logs/build-s18.log)
 
-- [ ] Step 13 (S24): Update Review.pdf fixes (repo root PDF, 4 pages, comment under each screenshot)
+- [x] Step 13 (S24–S32): Update Review.pdf fixes (repo root PDF, 4 pages, comment under each screenshot)
   - [x] 13.1 Table top = zebra stripes (like reference kaiten table) that rotate with the food plates
   - [x] 13.2 Table shape/size = wide flat ellipse like user's blue marking (bigger, wider); front items look bigger, back smaller (perspective)
   - [x] 13.3 Remove extra plate mesh under each food (GLB already has round plate); tier colour ring must fit the GLB plate's circle
@@ -54,8 +54,8 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
   - [x] 13.9 Spotlight/next section: products look cropped/falling below → fix framing; show ONLY the front-selected product there
   - [x] 13.10 Blank-looking sections (PDF p3 second image) → add meaningful content/visuals
   - [x] 13.11 Footer (blue mark, PDF p4): add "MADE BY NOMAN-RAFI"
-  - [ ] 13.12 build + screenshots + push
-  - [ ] 13.13 (S32 user chat) make header logo text 'Spice Lane' bigger — edited, needs build verify
+  - [x] 13.12 build + screenshots + push (S32: build PASS, hero-s32.jpg / spotlight-s32.jpg, no console errors)
+  - [x] 13.13 (S32 user chat) header logo 'Spice Lane' bigger — verified in hero-s32.jpg
 - [x] Step 12 (S21–S23): deploy-readiness audit — 12.1 install+build ✓ · 12.2 lint+typecheck ✓ · 12.3 runtime smoke test ✓ (found: canvas edge clip, pause glyph) · 12.4 fix issues ✓ (S22, verified S23) · 12.5 deploy notes in README ✓ (S23)
 - [x] Step 11 (S19–S20, optional follow-ups): 11.1 bundle cart line ✓ build PASS · 11.2 /api/order mock payment ✓ build PASS S20
 
