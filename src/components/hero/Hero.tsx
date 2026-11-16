@@ -67,7 +67,7 @@ export default function Hero() {
       </div>
 
       <div className="relative">
-        <div className="relative aspect-[4/3] w-full">
+        <div className="relative aspect-[16/10] w-full lg:-mx-8 lg:w-[calc(100%+4rem)]">
           <HeroCanvas />
           <AnimatePresence>
             {active && (

@@ -2,7 +2,7 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS — Step 13: fixes from repo-root `Update Review.pdf` (user review, Bengali comments)
-- Current: Step 13 → 13.12 build + screenshots verify (S29)
+- Current: 13.12b hero table was clipped at canvas edges (S30 screenshot) → camera farther [0,8,9.6] + canvas 16/10 wider; verifying
 - Last action: 13.9 SpotlightCanvas: removed extra plate mesh, ring fits GLB rim (D=1.5), centred framing; Spotlight.tsx shows only frontId (removed hover/pick switcher, pairings open modal). tsconfig exclude progress+optional folders (archive broke tsc)
 - NEXT ACTION: 13.12 npm run build + screenshots (hero, spotlight)
 - Project runs?: YES — build PASS S23
