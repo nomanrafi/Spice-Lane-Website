@@ -12,7 +12,8 @@ import Plate from './Plate';
  * src/lib/belt.ts: outer = curve(A+H, B+H), island hole = curve(A−H, B−H)). Plates fill most of the band width,
  * so the middle island is small, like the reference kaiten table.
  */
-const SEAMS = 16;          // S64: fewer seams (2 per plate slot) like the reference, user: "ato line keno"
+const SEAMS = 24; // S65: 3 slats per plate slot, alternating light/dark bands = zebra like reference
+//         // S64: fewer seams (2 per plate slot) like the reference, user: "ato line keno"
 const ACROSS = 20;         // segments across the band (smooth curved crescent)
 /** Reusable dynamic triangle-strip grid (rows × cols quads per patch), refilled every frame. */
 function useGrid(patches: number, cols: number, rows: number) {
@@ -36,7 +37,7 @@ function useGrid(patches: number, cols: number, rows: number) {
  */
 function Zebra() {
   const pitch = PERIMETER / SEAMS;
-  const bulge = BELT.H * 0.62;             // strong crescent curvature (was 0.2·pitch ≈ straight)
+  const bulge = pitch * 0.38; // S65: gentle crescent like reference slatPath (not straight, not extreme)             // strong crescent curvature (was 0.2·pitch ≈ straight)
   const seams = useGrid(SEAMS, ACROSS, 1);
   const glints = useGrid(SEAMS, ACROSS, 1);
   const tones = useGrid(SEAMS / 2, ACROSS, 6);
@@ -56,7 +57,7 @@ function Zebra() {
       }
       lp.needsUpdate = true;
     };
-    line(seams, 0, 0.022, 0.056);
+    line(seams, 0, 0.018, 0.056);
     line(glints, -0.07, 0.01, 0.057);
     const tp = tones.attributes.position as THREE.BufferAttribute; let k = 0;
     for (let j = 0; j < SEAMS / 2; j++) {
@@ -72,13 +73,13 @@ function Zebra() {
   return (
     <group raycast={() => null}>
       <mesh geometry={tones} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.035} depthWrite={false} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#ffffff" transparent opacity={0.07} depthWrite={false} side={THREE.DoubleSide} />
       </mesh>
       <mesh geometry={seams} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#000000" transparent opacity={0.5} depthWrite={false} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#000000" transparent opacity={0.42} depthWrite={false} side={THREE.DoubleSide} />
       </mesh>
       <mesh geometry={glints} frustumCulled={false} raycast={() => null}>
-        <meshBasicMaterial color="#ffffff" transparent opacity={0.16} depthWrite={false} side={THREE.DoubleSide} />
+        <meshBasicMaterial color="#ffffff" transparent opacity={0.14} depthWrite={false} side={THREE.DoubleSide} />
       </mesh>
     </group>
   );

@@ -30,11 +30,11 @@ const Plate = forwardRef<THREE.Group, Props>(function Plate({ item, active, onOv
   return (
     <group ref={ref}>
       {/* invisible hit area (cylinder covering plate + food) */}
-      <mesh position={[0, 0.25, 0]}
+      <mesh position={[0, 0.12, 0]}
         onPointerOver={(e) => { e.stopPropagation(); onOver(); }}
         onPointerOut={(e) => { e.stopPropagation(); onOut(); }}
         onClick={(e) => { e.stopPropagation(); onClick(); }}>
-        <cylinderGeometry args={[r * 1.02, r * 1.02, 0.5, 24]} />
+        <cylinderGeometry args={[r * 0.9, r * 0.9, 0.24, 32]} />
         <meshBasicMaterial transparent opacity={0} depthWrite={false} colorWrite={false} />
       </mesh>
       <group ref={lift}>
