@@ -25,8 +25,9 @@ function Rig({ item, progress }: { item: MenuItem; progress: MutableRefObject<nu
   const D = 1.5;
   return (
     <group ref={g}>
-      <mesh position={[0, 0.012, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-        <ringGeometry args={[D / 2 * 0.98, D / 2 * 1.06, 72]} />
+      {/* S31: ring lifted to rim height + thinner so it hugs the plate edge instead of sitting below it */}
+      <mesh position={[0, 0.05, 0]} rotation={[-Math.PI / 2, 0, 0]}>
+        <ringGeometry args={[D / 2 * 0.97, D / 2 * 1.03, 96]} />
         <meshBasicMaterial color={TIERS[item.tier].color} toneMapped={false} transparent opacity={0.85} />
       </mesh>
       <FoodModel src={item.model} size={D} color={item.accentColor} />
