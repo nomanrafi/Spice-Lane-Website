@@ -3,10 +3,10 @@
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS — Step 13: fixes from repo-root `Update Review.pdf` (user review, Bengali comments)
 - Current: Step 13 → 13.7+13.8 scroll lock code written (not built yet)
-- Last action: S25 resumed: npm ci OK; found Reviews.tsx gallery (13.10) auto-pushed by S24; footer credit (13.11) NOT in repo
-- NEXT ACTION: build-verify 13.7/13.8/13.10, then 13.3/13.4 Plate.tsx + Hero.tsx
+- Last action: S26 resumed; npm ci running
+- NEXT ACTION: build-verify 13.7/13.8/13.10, then 13.11 footer, 13.3/13.4
 - Project runs?: YES — build PASS S23
-- Last updated: 2026-11-16 13:15 (Asia/Dhaka) by Session #25
+- Last updated: 2026-11-16 13:20 (Asia/Dhaka) by Session #26
 
 ## Task
 The full build prompt is in `AI_AGENT_INSTRUCTIONS.md` → section 0 → TASK ("Kaiten" interactive 3D conveyor-belt food
@@ -65,6 +65,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S26 (2026-11-16): resumed at 13.7 verify (S25 stopped by usage policy while reading useStore/Footer code)
 - S25 (2026-11-16): resumed at 13.7 verify; prior session S24 was stopped by usage limit before pushing footer credit
 
 ## Problems / Notes
