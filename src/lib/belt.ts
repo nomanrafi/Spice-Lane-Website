@@ -1,30 +1,25 @@
-// S72 (14.1): table = smooth OVAL like the user's blue marking (Update Review.pdf p1): a classic 4-arc oval
-// (two small round end arcs + two big, gently bowed front/back arcs, tangent-continuous). No straight sides, no corners
-// (the old superellipse n>2 looked like a rounded RECTANGLE). The band is a true offset curve (concentric arcs), so the
-// band width is constant and the middle island is a thin smooth oval. Front lane = +Z, moving RIGHT → LEFT as s grows.
-// Sizes follow the reference kaiten (band ≈ 1.2·plate Ø) with a thinner island + bigger plates (user request).
-export const BELT = { A: 3.7, B: 1.75, R1: 1.5, plateR: 1.0, H: 1.2, count: 8 } as const;
+// S73 (14.1/14.3): table = ONE smooth ELLIPSE like the user's blue marking (Update Review.pdf p1). No straight sides,
+// no arcs+flats, no corners. Outer edge = ellipse OUT, middle island = thin ellipse IN (small gap, user request);
+// the band is the radial interpolation between them (same ellipse parameter t), so every slat seam runs cleanly from
+// island to rim. Plates ride the centre-line (u = 0). Ground ratio 1.7:1 looks ≈2.15:1 on screen at 53° camera tilt.
+// Front lane = +Z, moving RIGHT → LEFT as s grows.
+export const OUT = { a: 4.75, b: 2.75 } as const;
+export const IN = { a: 2.05, b: 0.34 } as const;
+export const BELT = { A: (OUT.a + IN.a) / 2, B: (OUT.b + IN.b) / 2, plateR: 1.0, H: (OUT.b - IN.b) / 2, count: 8 } as const;
 
 type P = [number, number];
-const R2 = ((BELT.A - BELT.R1) ** 2 + BELT.B ** 2 - BELT.R1 ** 2) / (2 * (BELT.B - BELT.R1));
-const PHI = Math.asin((BELT.A - BELT.R1) / (R2 - BELT.R1));
-/** Point on the oval whose outward normal has angle t, pushed `off` along that normal. */
-function ovalAt(t: number, off = 0): P {
-  const tt = Math.atan2(Math.sin(t), Math.cos(t)), e = Math.PI / 2 - PHI;
-  let cx = 0, cz = 0, R = R2;
-  if (Math.abs(tt) <= e) { cx = BELT.A - BELT.R1; R = BELT.R1; }
-  else if (Math.abs(tt) >= Math.PI - e) { cx = -(BELT.A - BELT.R1); R = BELT.R1; }
-  else cz = tt > 0 ? -(R2 - BELT.B) : R2 - BELT.B;
-  return [cx + (R + off) * Math.cos(t), cz + (R + off) * Math.sin(t)];
+/** Point across the band at ellipse parameter t: u = −1 island edge … 0 centre-line … +1 outer rim (|u|>1 extrapolates). */
+export function bandPoint(t: number, u: number): P {
+  const f = (u + 1) / 2, a = IN.a + (OUT.a - IN.a) * f, b = IN.b + (OUT.b - IN.b) * f;
+  return [a * Math.cos(t), b * Math.sin(t)];
 }
-/** Closed outline of the oval offset by `off` from the centre-line (− = inward). */
+/** Closed outline offset by `off` (world units, measured like BELT.H across the front lane; − = inward). */
 export function outline(off: number, steps = 240): P[] {
-  return Array.from({ length: steps }, (_, i) => ovalAt((i / steps) * Math.PI * 2, off));
+  return Array.from({ length: steps }, (_, i) => bandPoint((i / steps) * Math.PI * 2, off / BELT.H));
 }
-/** Point across the band at normal-angle θ: u = −1 inner edge … 0 centre-line … +1 outer edge. */
-export function bandPoint(th: number, u: number): P { return ovalAt(th, u * BELT.H); }
+const ovalAt = (t: number): P => bandPoint(t, 0);
 
-// Uniform-arc-length lookup, starting at the front-centre (normal angle π/2) and moving left (θ increasing).
+// Uniform-arc-length lookup, starting at the front-centre (t = π/2) and moving left (t increasing).
 const LUT_N = 2048, DN = 8192;
 const dense: P[] = []; const cum: number[] = [0];
 for (let i = 0; i <= DN; i++) dense.push(ovalAt(Math.PI / 2 + (i / DN) * Math.PI * 2));
