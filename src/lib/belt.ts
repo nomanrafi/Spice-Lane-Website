@@ -1,7 +1,8 @@
-// Superellipse ("organic oval") path + shared belt motion state for the hero kaiten table (review S34).
-// Centre-line |x/A|^n + |z/B|^n = 1 in the XZ plane. Plates ride the centre-line; the table band is ±H around it.
+// S42 (14.1): table = one big smooth oval (superellipse, like the user's blue marking in Update Review.pdf p1).
+// Centre-line |x/A|^n + |z/B|^n = 1 in the XZ plane. The band is built RADIALLY: for curve parameter θ the
+// inner edge is curve(θ, A−H, B−H) and the outer edge curve(θ, A+H, B+H) — no offset-curve cusps, small island.
 // Front lane = +Z (closest to camera), moving RIGHT → LEFT as arc-length s grows. s = 0 is the front-centre point.
-export const BELT = { A: 3.7, B: 2.45, n: 2.0, plateR: 1.0, H: 1.25, count: 8 } as const;
+export const BELT = { A: 4.35, B: 2.4, n: 2.25, plateR: 1.1, H: 1.3, count: 8 } as const;
 
 const LUT_N = 1440;
 type P = [number, number];
@@ -13,34 +14,46 @@ const curve = (th: number, a: number = BELT.A, b: number = BELT.B): P => {
 export function outline(a: number, b: number, steps = 192): P[] {
   return Array.from({ length: steps }, (_, i) => curve((i / steps) * Math.PI * 2, a, b));
 }
+/** Point across the band at curve parameter θ: u = −1 inner edge … 0 centre-line … +1 outer edge. */
+export function bandPoint(th: number, u: number): P {
+  return curve(th, BELT.A + u * BELT.H, BELT.B + u * BELT.H);
+}
 
-// Build a uniform-arc-length lookup table, starting at θ = π/2 (front-centre) with θ increasing (moves left).
+// Uniform-arc-length lookup table, starting at θ = π/2 (front-centre) with θ increasing (moves left).
+const DN = 8192;
 const dense: P[] = []; const cum: number[] = [0];
-for (let i = 0; i <= 8192; i++) dense.push(curve(Math.PI / 2 + (i / 8192) * Math.PI * 2));
+for (let i = 0; i <= DN; i++) dense.push(curve(Math.PI / 2 + (i / DN) * Math.PI * 2));
 for (let i = 1; i < dense.length; i++) cum.push(cum[i - 1] + Math.hypot(dense[i][0] - dense[i - 1][0], dense[i][1] - dense[i - 1][1]));
 export const PERIMETER = cum[cum.length - 1];
 export const SLOT = PERIMETER / BELT.count;
-const LUT: P[] = [];
+const LUT: P[] = []; const LUT_TH: number[] = [];
 for (let k = 0, j = 0; k < LUT_N; k++) {
   const target = (k / LUT_N) * PERIMETER;
   while (cum[j + 1] < target) j++;
   const f = (target - cum[j]) / (cum[j + 1] - cum[j] || 1);
   LUT.push([dense[j][0] + (dense[j + 1][0] - dense[j][0]) * f, dense[j][1] + (dense[j + 1][1] - dense[j][1]) * f]);
+  LUT_TH.push(Math.PI / 2 + ((j + f) / DN) * Math.PI * 2);
 }
+const wrapU = (s: number) => ((((s % PERIMETER) + PERIMETER) % PERIMETER) / PERIMETER) * LUT_N;
 
 /** Point on the belt centre-line for arc-length s (any real number, wraps). Returns [x, z]. */
 export function beltPoint(s: number): P {
-  const u = ((((s % PERIMETER) + PERIMETER) % PERIMETER) / PERIMETER) * LUT_N;
-  const i = Math.floor(u) % LUT_N, f = u - Math.floor(u);
+  const u = wrapU(s), i = Math.floor(u) % LUT_N, f = u - Math.floor(u);
   const a = LUT[i], b = LUT[(i + 1) % LUT_N];
   return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
+}
+/** Curve parameter θ for arc-length s (so things that travel with the plates can use bandPoint). */
+export function beltTheta(s: number): number {
+  const u = wrapU(s), i = Math.floor(u) % LUT_N, f = u - Math.floor(u);
+  const a = LUT_TH[i]; let b = LUT_TH[(i + 1) % LUT_N]; if (b < a) b += Math.PI * 2;
+  return a + (b - a) * f;
 }
 /** Unit tangent (direction of travel) and outward normal at arc-length s. */
 export function beltFrame(s: number) {
   const [x1, z1] = beltPoint(s - 0.02), [x2, z2] = beltPoint(s + 0.02);
   const l = Math.hypot(x2 - x1, z2 - z1) || 1;
   const tx = (x2 - x1) / l, tz = (z2 - z1) / l;
-  return { tx, tz, nx: tz, nz: -tx }; // S36: verified (tz, −tx) points OUTWARD (front point: t=(−1,0) → n=(0,+1))
+  return { tx, tz, nx: tz, nz: -tx }; // (tz, −tx) points OUTWARD (front point: t=(−1,0) → n=(0,+1))
 }
 /** @deprecated old name kept so older imports keep working */
 export const stadiumPoint = beltPoint;
@@ -52,7 +65,7 @@ export const FRONT_S = 0;
 export const beltMotion = {
   offset: 0,        // current belt arc-length offset
   velocity: 0,      // current speed (units/s)
-  autoSpeed: 0.35,  // cruising speed
+  autoSpeed: 0.4,   // cruising speed
   target: null as number | null, // seek target offset (prev/next), null = free running
   dragging: false,
 };

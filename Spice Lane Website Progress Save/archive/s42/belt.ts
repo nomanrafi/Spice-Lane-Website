@@ -1,0 +1,79 @@
+// Superellipse ("organic oval") path + shared belt motion state for the hero kaiten table (review S34).
+// Centre-line |x/A|^n + |z/B|^n = 1 in the XZ plane. Plates ride the centre-line; the table band is ±H around it.
+// Front lane = +Z (closest to camera), moving RIGHT → LEFT as arc-length s grows. s = 0 is the front-centre point.
+export const BELT = { A: 3.7, B: 2.45, n: 2.0, plateR: 1.0, H: 1.25, count: 8 } as const;
+
+const LUT_N = 1440;
+type P = [number, number];
+const curve = (th: number, a: number = BELT.A, b: number = BELT.B): P => {
+  const c = Math.cos(th), s = Math.sin(th), e = 2 / BELT.n;
+  return [a * Math.sign(c) * Math.abs(c) ** e, b * Math.sign(s) * Math.abs(s) ** e];
+};
+/** Closed outline of a superellipse with semi-axes (a, b) — used for table rim / island shapes. */
+export function outline(a: number, b: number, steps = 192): P[] {
+  return Array.from({ length: steps }, (_, i) => curve((i / steps) * Math.PI * 2, a, b));
+}
+
+// Build a uniform-arc-length lookup table, starting at θ = π/2 (front-centre) with θ increasing (moves left).
+const dense: P[] = []; const cum: number[] = [0];
+for (let i = 0; i <= 8192; i++) dense.push(curve(Math.PI / 2 + (i / 8192) * Math.PI * 2));
+for (let i = 1; i < dense.length; i++) cum.push(cum[i - 1] + Math.hypot(dense[i][0] - dense[i - 1][0], dense[i][1] - dense[i - 1][1]));
+export const PERIMETER = cum[cum.length - 1];
+export const SLOT = PERIMETER / BELT.count;
+const LUT: P[] = [];
+for (let k = 0, j = 0; k < LUT_N; k++) {
+  const target = (k / LUT_N) * PERIMETER;
+  while (cum[j + 1] < target) j++;
+  const f = (target - cum[j]) / (cum[j + 1] - cum[j] || 1);
+  LUT.push([dense[j][0] + (dense[j + 1][0] - dense[j][0]) * f, dense[j][1] + (dense[j + 1][1] - dense[j][1]) * f]);
+}
+
+/** Point on the belt centre-line for arc-length s (any real number, wraps). Returns [x, z]. */
+export function beltPoint(s: number): P {
+  const u = ((((s % PERIMETER) + PERIMETER) % PERIMETER) / PERIMETER) * LUT_N;
+  const i = Math.floor(u) % LUT_N, f = u - Math.floor(u);
+  const a = LUT[i], b = LUT[(i + 1) % LUT_N];
+  return [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
+}
+/** Unit tangent (direction of travel) and outward normal at arc-length s. */
+export function beltFrame(s: number) {
+  const [x1, z1] = beltPoint(s - 0.02), [x2, z2] = beltPoint(s + 0.02);
+  const l = Math.hypot(x2 - x1, z2 - z1) || 1;
+  const tx = (x2 - x1) / l, tz = (z2 - z1) / l;
+  return { tx, tz, nx: tz, nz: -tx }; // S36: verified (tz, −tx) points OUTWARD (front point: t=(−1,0) → n=(0,+1))
+}
+/** @deprecated old name kept so older imports keep working */
+export const stadiumPoint = beltPoint;
+
+/** Arc-length position of the front-centre point (x=0, z=+B). */
+export const FRONT_S = 0;
+
+/** Mutable, non-reactive motion state (read/written every frame, never triggers renders). */
+export const beltMotion = {
+  offset: 0,        // current belt arc-length offset
+  velocity: 0,      // current speed (units/s)
+  autoSpeed: 0.35,  // cruising speed
+  target: null as number | null, // seek target offset (prev/next), null = free running
+  dragging: false,
+};
+
+/** Arc-length of plate i given the current offset. */
+export const plateS = (i: number, offset = beltMotion.offset) => i * SLOT + offset;
+
+/** Index of the plate closest to the front-centre. */
+export function frontIndex(offset = beltMotion.offset): number {
+  let best = 0, bestD = Infinity;
+  for (let i = 0; i < BELT.count; i++) {
+    const s = ((plateS(i, offset) % PERIMETER) + PERIMETER) % PERIMETER;
+    let d = Math.abs(s - FRONT_S); d = Math.min(d, PERIMETER - d);
+    if (d < bestD) { bestD = d; best = i; }
+  }
+  return best;
+}
+
+/** Seek exactly one slot (dir = +1 next, -1 prev), snapping to slot grid. */
+export function seekSlot(dir: 1 | -1) {
+  const base = beltMotion.target ?? beltMotion.offset;
+  const snapped = Math.round((base - FRONT_S) / SLOT) * SLOT + FRONT_S;
+  beltMotion.target = snapped + dir * SLOT;
+}
