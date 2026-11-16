@@ -5,7 +5,10 @@
 // Front lane = +Z, moving RIGHT → LEFT as s grows.
 export const OUT = { a: 4.75, b: 2.75 } as const;
 export const IN = { a: 2.05, b: 0.34 } as const;
-export const BELT = { A: (OUT.a + IN.a) / 2, B: (OUT.b + IN.b) / 2, plateR: 1.0, H: (OUT.b - IN.b) / 2, count: 8 } as const;
+/** Plates ride slightly outside the band middle (u = RIDE) so the tight ellipse ends never make plates overlap. */
+export const RIDE = 0.1;
+const lerp = (i: number, o: number, u: number) => i + (o - i) * ((u + 1) / 2);
+export const BELT = { A: lerp(IN.a, OUT.a, RIDE), B: lerp(IN.b, OUT.b, RIDE), plateR: 0.9, H: (OUT.b - IN.b) / 2, count: 8 } as const;
 
 type P = [number, number];
 /** Point across the band at ellipse parameter t: u = −1 island edge … 0 centre-line … +1 outer rim (|u|>1 extrapolates). */
@@ -17,7 +20,7 @@ export function bandPoint(t: number, u: number): P {
 export function outline(off: number, steps = 240): P[] {
   return Array.from({ length: steps }, (_, i) => bandPoint((i / steps) * Math.PI * 2, off / BELT.H));
 }
-const ovalAt = (t: number): P => bandPoint(t, 0);
+const ovalAt = (t: number): P => bandPoint(t, RIDE);
 
 // Uniform-arc-length lookup, starting at the front-centre (t = π/2) and moving left (t increasing).
 const LUT_N = 2048, DN = 8192;
