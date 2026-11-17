@@ -23,9 +23,9 @@ function CameraFit() {
     if (!size.width || !size.height) return; // S80: wait for a real canvas size
     cam.fov = 32; cam.aspect = size.width / size.height; cam.updateProjectionMatrix();
     const pts: THREE.Vector3[] = [];
-    for (const [x, z] of outline(BELT.H + 0.08, 96)) pts.push(new THREE.Vector3(x, 0, z));
-    for (const [x, z] of outline(0, 96)) pts.push(new THREE.Vector3(x, 0.9, z));
-    fitCamera(cam, pts, 53, 0.94, 0.86); // S78: stable fit (old loop diverged → table invisible)
+    // S82: fit ONLY the outer rim, with the blue mark's fill (82% width / 78% height of the canvas box)
+    for (const [x, z] of outline(BELT.H, 128)) pts.push(new THREE.Vector3(x, 0, z));
+    fitCamera(cam, pts, 53, 0.82, 0.78); // S78: stable fit (old loop diverged → table invisible)
   }, [camera, size.width, size.height]);
   return null;
 }

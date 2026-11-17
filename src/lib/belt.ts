@@ -1,20 +1,33 @@
-// S73 (14.1/14.3): table = ONE smooth ELLIPSE like the user's blue marking (Update Review.pdf p1). No straight sides,
+// (history) S73 (14.1/14.3): table was ONE smooth ELLIPSE like the user's blue marking (Update Review.pdf p1). No straight sides,
 // no arcs+flats, no corners. Outer edge = ellipse OUT, middle island = thin ellipse IN (small gap, user request);
 // the band is the radial interpolation between them (same ellipse parameter t), so every slat seam runs cleanly from
 // island to rim. Plates ride the centre-line (u = 0). Ground ratio 1.7:1 looks ≈2.15:1 on screen at 53° camera tilt.
 // Front lane = +Z, moving RIGHT → LEFT as s grows.
-export const OUT = { a: 4.5, b: 2.75 } as const;
-export const IN = { a: 2.0, b: 0.25 } as const;
-/** Plates ride slightly outside the band middle (u = RIDE) so the tight ellipse ends never make plates overlap. */
-export const RIDE = 0.2;
+// S82 (14.1): OUTER EDGE = the user's hand-drawn BLUE outline (screenshot 1280x652), measured from pixels, smoothed
+// (Fourier, 9 terms) and projected from screen onto the table plane with the hero camera (elev 53deg, fov 32).
+// So on screen the table rim follows the blue mark (fuller right end, small dip top-middle, wide front).
+// rOut(phi) = polar radius of the outline around the table centre (x right, z = front). Inner island = thin ellipse.
+const RA = [3.6164, -0.0496, 0.9692, 0.1849, -0.1809, 0.0662, -0.0878, -0.0478, 0.0224];
+const RB = [0, -0.1979, -0.2369, 0.5173, -0.0148, 0.1012, 0.0287, -0.0322, -0.0177];
+const rOut = (phi: number) => { let r = RA[0]; for (let k = 1; k < RA.length; k++) r += RA[k] * Math.cos(k * phi) + RB[k] * Math.sin(k * phi); return r; };
+/** Half extents of the blue outline in world units (x, z). */
+export const OUT = { a: 4.6, b: 3.19 } as const;
+export const IN = { a: 2.1, b: 0.3 } as const;
+/** Plates ride slightly outside the band middle (u = RIDE) so the tight ends never make plates overlap. */
+export const RIDE = 0.05;
 const lerp = (i: number, o: number, u: number) => i + (o - i) * ((u + 1) / 2);
-export const BELT = { A: lerp(IN.a, OUT.a, RIDE), B: lerp(IN.b, OUT.b, RIDE), plateR: 0.92, H: (OUT.b - IN.b) / 2, count: 8 } as const;
+export const BELT = { A: lerp(IN.a, OUT.a, RIDE), B: lerp(IN.b, OUT.b, RIDE), plateR: 0.9, H: (OUT.b - IN.b) / 2, count: 8 } as const;
 
 type P = [number, number];
-/** Point across the band at ellipse parameter t: u = −1 island edge … 0 centre-line … +1 outer rim (|u|>1 extrapolates). */
+/** Outer rim point for curve parameter t (same t as the inner ellipse, so slat seams run island -> rim cleanly). */
+function outerAt(t: number): P {
+  const phi = Math.atan2(OUT.b * Math.sin(t), OUT.a * Math.cos(t)), r = rOut(phi);
+  return [r * Math.cos(phi), r * Math.sin(phi)];
+}
+/** Point across the band at parameter t: u = -1 island edge ... 0 centre-line ... +1 outer rim (|u|>1 extrapolates). */
 export function bandPoint(t: number, u: number): P {
-  const f = (u + 1) / 2, a = IN.a + (OUT.a - IN.a) * f, b = IN.b + (OUT.b - IN.b) * f;
-  return [a * Math.cos(t), b * Math.sin(t)];
+  const f = (u + 1) / 2, [ox, oz] = outerAt(t), ix = IN.a * Math.cos(t), iz = IN.b * Math.sin(t);
+  return [ix + (ox - ix) * f, iz + (oz - iz) * f];
 }
 /** Closed outline offset by `off` (world units, measured like BELT.H across the front lane; − = inward). */
 export function outline(off: number, steps = 240): P[] {
