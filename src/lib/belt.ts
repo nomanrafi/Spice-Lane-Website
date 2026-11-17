@@ -18,7 +18,9 @@ export const OUT = { a: 4.94, b: 3.5 } as const;
 // S90 (user 2026-11-18): middle island must follow the TABLE SHAPE → near-uniform scale (was x 0.5 / z 0.12 = thin pill)
 // S91 (user 2026-11-18): island still looked like a circle → EXACT uniform scale of the rim (same shape as table)
 // S92: front plate overlapped island at the dent → uniform 0.34 (still exact table shape)
-export const KI = { x: 0.34, z: 0.34 } as const;
+// S93 (user 2026-11-18): plates blended into the round island → island shorter front-back, wider left-right.
+// Clearance from plate centre-line (min): island 0.55→0.79, rim 0.53→0.74 (scripts check /tmp/clr.ts, plateR 0.78)
+export const KI = { x: 0.48, z: 0.22 } as const;
 export const IN = { a: OUT.a * KI.x, b: OUT.b * KI.z } as const;
 /** Plates ride slightly outside the band middle (u = RIDE) so the tight ends never make plates overlap. */
 export const RIDE = 0;

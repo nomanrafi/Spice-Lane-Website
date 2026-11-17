@@ -1,6 +1,7 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
+- S93 (2026-11-18): user screenshot: plates blend into round middle island → belt.ts KI 0.34/0.34 → x 0.48 / z 0.22 (island wider L-R, shorter top-bottom, same table outline). Min clearance plate centre-line→island .55→.79, →rim .53→.74. NEXT: wait for user feedback (git pull + restart dev + hard refresh).
 - S92 (2026-11-18): S91 was pushed (cb17450). S91 render showed front plate overlapping island at the dent → belt.ts KI 0.4→0.34 uniform (same table shape). Hero lg:pt 10svh / pb 7svh kept. NEXT: wait for user feedback (user: git pull + restart dev + hard refresh).
 - S91 (2026-11-18): user: middle island looked like a circle → belt.ts KI = {x:.4,z:.4} (EXACT uniform scale of rim = same shape as table). Table lower + buttons higher: Hero.tsx canvas layer lg:pt 6→10svh, lg:pb 2→7svh (table is width-limited so size barely changes). NEXT: render verify.
 - S88 (2026-11-18): VERIFIED S87 on HEAD: render 1280x652 (output/preview/hero-s88-1280.png) → table much bigger (fills right side), all 8 plates inside rim, island thin. User screenshot was S86 build → git pull + restart dev + hard refresh. Minor: table left edge touches price legend at 1280. NEXT: wait for feedback.
