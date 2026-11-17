@@ -6,13 +6,15 @@
 // S82 (14.1): OUTER EDGE = the user's hand-drawn BLUE outline (screenshot 1280x652), measured from pixels, smoothed
 // (Fourier, 9 terms) and projected from screen onto the table plane with the hero camera (elev 53deg, fov 32).
 // So on screen the table rim follows the blue mark (fuller right end, small dip top-middle, wide front).
+// S83: S82 coefficients were MIRRORED (screen-up = -z): bump ended up bottom-left. Re-solved by iterative unprojection
+// through the real fitCamera (canvas 825x493 @1280x652, fill 82%x78%), 12 harmonics, max err 0.08 (solver: node_modules/.solve.ts, see DECISIONS).
 // rOut(phi) = polar radius of the outline around the table centre (x right, z = front). Inner island = thin ellipse.
-const RA = [3.6164, -0.0496, 0.9692, 0.1849, -0.1809, 0.0662, -0.0878, -0.0478, 0.0224];
-const RB = [0, -0.1979, -0.2369, 0.5173, -0.0148, 0.1012, 0.0287, -0.0322, -0.0177];
+const RA = [3.9632, 0.1879, 1.1071, -0.1356, -0.1920, -0.0961, -0.1235, 0.0233, 0.0296, 0.0255, 0.0099, -0.0008];
+const RB = [0.0000, 0.2974, -0.1884, -0.5152, 0.0143, -0.0671, 0.0739, 0.0689, 0.0135, -0.0001, -0.0251, -0.0088];
 const rOut = (phi: number) => { let r = RA[0]; for (let k = 1; k < RA.length; k++) r += RA[k] * Math.cos(k * phi) + RB[k] * Math.sin(k * phi); return r; };
 /** Half extents of the blue outline in world units (x, z). */
-export const OUT = { a: 4.6, b: 3.19 } as const;
-export const IN = { a: 2.1, b: 0.3 } as const;
+export const OUT = { a: 4.94, b: 3.5 } as const;
+export const IN = { a: 2.25, b: 0.3 } as const;
 /** Plates ride slightly outside the band middle (u = RIDE) so the tight ends never make plates overlap. */
 export const RIDE = 0.05;
 const lerp = (i: number, o: number, u: number) => i + (o - i) * ((u + 1) / 2);
