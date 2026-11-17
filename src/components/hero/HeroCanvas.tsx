@@ -24,8 +24,10 @@ function CameraFit() {
     cam.fov = 32; cam.aspect = size.width / size.height; cam.updateProjectionMatrix();
     const pts: THREE.Vector3[] = [];
     // S82: fit ONLY the outer rim, with the blue mark's fill (82% width / 78% height of the canvas box)
-    for (const [x, z] of outline(BELT.H, 128)) pts.push(new THREE.Vector3(x, 0, z));
-    fitCamera(cam, pts, 53, 0.98, 0.98); // S78: stable fit (old loop diverged → table invisible)
+    // S89 fix (user: right/front edge looked cropped): fit the REAL 3D slab, not just y=0 — the extruded top + bevel
+    // reaches ~H+0.06 outward and y −0.3…+0.06, so its lower front-right edge used to fall outside the canvas.
+    for (const [x, z] of outline(BELT.H + 0.08, 128)) { pts.push(new THREE.Vector3(x, 0.08, z)); pts.push(new THREE.Vector3(x, -0.32, z)); }
+    fitCamera(cam, pts, 53, 0.92, 0.9); // S78: stable fit (old loop diverged → table invisible)
   }, [camera, size.width, size.height]);
   return null;
 }
