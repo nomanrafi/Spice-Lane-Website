@@ -2,6 +2,7 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS (Step 14, S81)
+- S81 VERIFIED: headless 1280x652 on HEAD 455daaa → table + 8 plates visible (output/preview/hero-s81-1280.png). tsc OK.
 - S81: resumed. Told user code fix IS pushed (S78 fitCamera root cause + S80 guards). Added WebGL context-loss remount (HeroCanvas glKey). NEXT: tsc check, then zebra/gap/hover. User must git pull + restart dev + hard refresh.
 - S80: resumed. Local headless check (1280x652, 1536x782, 1920x978): table IS visible on current HEAD (output/preview/hero-s80-*.png). User still sees empty canvas → hardening: fitCamera guards (zero size / non-finite → default view), visible loading text, WebGL context-loss remount. Tell user: git pull + restart dev + hard refresh.
 - S79: resumed at 14.1 (S78 pushed fitCamera.ts fix, stopped while re-probing). User: 'table ta to dekha jacche na' + same 4 requests. Plan: verify table visible (pixel probe), then zebra/gap/hover, push each.
