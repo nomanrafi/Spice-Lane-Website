@@ -15,12 +15,12 @@ const rOut = (phi: number) => { let r = RA[0]; for (let k = 1; k < RA.length; k+
 /** Half extents of the blue outline in world units (x, z). */
 export const OUT = { a: 4.94, b: 3.5 } as const;
 /** S86: middle island = the SAME outline as the table rim, scaled down (KI.x wide, KI.z deep) — not a pill/ellipse. */
-export const KI = { x: 0.5, z: 0.22 } as const;
+export const KI = { x: 0.5, z: 0.12 } as const;
 export const IN = { a: OUT.a * KI.x, b: OUT.b * KI.z } as const;
 /** Plates ride slightly outside the band middle (u = RIDE) so the tight ends never make plates overlap. */
-export const RIDE = 0.05;
+export const RIDE = 0;
 const lerp = (i: number, o: number, u: number) => i + (o - i) * ((u + 1) / 2);
-export const BELT = { A: lerp(IN.a, OUT.a, RIDE), B: lerp(IN.b, OUT.b, RIDE), plateR: 0.9, H: (OUT.b - IN.b) / 2, count: 8 } as const;
+export const BELT = { A: lerp(IN.a, OUT.a, RIDE), B: lerp(IN.b, OUT.b, RIDE), plateR: 0.78, H: (OUT.b - IN.b) / 2, count: 8 } as const;
 
 type P = [number, number];
 /** Outer rim point for curve parameter t (same t as the inner ellipse, so slat seams run island -> rim cleanly). */
