@@ -90,3 +90,4 @@ Result: SUCCESS (logs scripts/logs/npm-install-s5.log, build-s5.log)
 - S93: edited src/lib/belt.ts KI → {x:0.48,z:0.22}; npx tsc --noEmit; git push
 - S94: src/lib/belt.ts add IZ=-0.35 island offset; npx tsc --noEmit; git push
 - S94b: Hero.tsx canvas wrapper lg:translate-y-[5svh]; npx tsc --noEmit; git push
+- S95: edited Header.tsx nav size + Hero.tsx controls lg:-translate-y-[5svh]; git push

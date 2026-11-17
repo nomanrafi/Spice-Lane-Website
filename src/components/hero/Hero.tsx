@@ -80,7 +80,7 @@ export default function Hero() {
               {h && (<><span className="mr-2 inline-block h-2 w-2 rounded-full" style={{ background: h.accentColor }} />{h.name}<span className="ml-2 font-mono text-white/60">{formatPrice(h.price)}</span></>)}
             </div>); })()}
         </div>
-        <div className="relative z-10 mt-4 flex items-center justify-center gap-3 lg:mt-1">
+        <div className="relative z-10 mt-4 flex items-center justify-center gap-3 lg:mt-1 lg:-translate-y-[5svh]">{/* S95: user — prev/play/next a bit higher */}
           <RoundBtn label="Previous plate" onClick={() => seekSlot(-1)}>‹</RoundBtn>
           <RoundBtn label={paused ? 'Play belt' : 'Pause belt'} onClick={togglePause}>{paused ? (<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" fill="currentColor"><path d="M4 2.5v9a.5.5 0 0 0 .77.42l7-4.5a.5.5 0 0 0 0-.84l-7-4.5A.5.5 0 0 0 4 2.5Z"/></svg>) : (<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true" fill="currentColor"><rect x="3" y="2" width="3" height="10" rx="1"/><rect x="8" y="2" width="3" height="10" rx="1"/></svg>)}</RoundBtn>
           <RoundBtn label="Next plate" onClick={() => seekSlot(1)}>›</RoundBtn>

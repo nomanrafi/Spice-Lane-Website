@@ -35,9 +35,9 @@ export default function Header() {
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-expo ${scrolled ? 'border-b border-line bg-black/50 backdrop-blur-xl' : ''}`}>
       <div className="mx-auto flex h-16 md:h-20 max-w-[1400px] items-center justify-between px-5 md:px-10">
         <a href="#top" className="text-[22px] md:text-[26px] font-semibold leading-none tracking-tight">Spice<span className="text-muted"> Lane</span></a>
-        <nav className="hidden items-center gap-7 text-sm text-muted md:flex">
+        <nav className="hidden items-center gap-8 text-base font-medium text-muted md:flex">{/* S95: user — nav buttons bigger (was gap-7 text-sm py-1) */}
           {NAV.map(([label, id]) => (
-            <a key={id} href={`#${id}`} className={`relative py-1 transition-colors hover:text-white ${active === id ? 'text-white' : ''}`}>
+            <a key={id} href={`#${id}`} className={`relative px-1 py-2 transition-colors hover:text-white ${active === id ? 'text-white' : ''}`}>
               {label}
               {active === id && <motion.span layoutId="nav-underline" className="absolute inset-x-0 -bottom-0.5 h-px bg-white" />}
             </a>
