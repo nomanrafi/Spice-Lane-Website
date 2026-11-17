@@ -21,6 +21,8 @@ export const OUT = { a: 4.94, b: 3.5 } as const;
 // S93 (user 2026-11-18): plates blended into the round island → island shorter front-back, wider left-right.
 // Clearance from plate centre-line (min): island 0.55→0.79, rim 0.53→0.74 (scripts check /tmp/clr.ts, plateR 0.78)
 export const KI = { x: 0.48, z: 0.22 } as const;
+/** S94 (user 2026-11-18): island moved up on screen (−z = back). Plate path follows (band midpoint); clearance isl .79→.96, rim .74→.90. */
+export const IZ = -0.35;
 export const IN = { a: OUT.a * KI.x, b: OUT.b * KI.z } as const;
 /** Plates ride slightly outside the band middle (u = RIDE) so the tight ends never make plates overlap. */
 export const RIDE = 0;
@@ -35,7 +37,7 @@ function outerAt(t: number): P {
 }
 /** Point across the band at parameter t: u = -1 island edge ... 0 centre-line ... +1 outer rim (|u|>1 extrapolates). */
 export function bandPoint(t: number, u: number): P {
-  const f = (u + 1) / 2, [ox, oz] = outerAt(t), ix = ox * KI.x, iz = oz * KI.z;
+  const f = (u + 1) / 2, [ox, oz] = outerAt(t), ix = ox * KI.x, iz = oz * KI.z + IZ;
   return [ix + (ox - ix) * f, iz + (oz - iz) * f];
 }
 /** Closed outline offset by `off` (world units, measured like BELT.H across the front lane; − = inward). */
