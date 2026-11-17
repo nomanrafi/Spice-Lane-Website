@@ -71,7 +71,7 @@ export default function Hero() {
       </div>
 
       <div className="relative lg:absolute lg:inset-y-0 lg:left-[31vw] lg:right-0 lg:flex lg:flex-col lg:pt-[10svh] lg:pb-[7svh]">
-        <div className="relative aspect-[16/11] w-full lg:aspect-auto lg:min-h-0 lg:flex-1">
+        <div className="relative aspect-[16/11] w-full lg:aspect-auto lg:min-h-0 lg:flex-1 lg:translate-y-[5svh]">{/* S94b: user — table a bit lower (shift only, size unchanged; buttons stay put) */}
           <HeroCanvas />
           {/* S49 (14.4): the ONLY hover name label; KaitenTable.tsx HoverChip moves it over the hovered plate */}
           {(() => { const h = hoverId ? getItem(hoverId) : undefined; return (
