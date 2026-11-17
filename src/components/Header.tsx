@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useStore, cartCount } from '@/store/useStore';
 
-const NAV = [['Menu', 'menu'], ['How it works', 'how'], ['Specials', 'specials'], ['Reservations', 'reservations'], ['Locations', 'locations']];
+const NAV = [['Menu', 'menu'], ['How it works', 'how'], ['Specials', 'specials'], ['Reservations', 'reserve'], ['Locations', 'locations']];
 
 export default function Header() {
   const cart = useStore((s) => s.cart);

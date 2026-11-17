@@ -1,6 +1,7 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
+- S96 (2026-11-18): user: Reservations nav button did nothing → ROOT CAUSE Header.tsx NAV linked #reservations but Reservations.tsx section id="reserve". Fixed NAV id → reserve. NEXT: wait for feedback.
 - S95 (2026-11-18): user: top nav buttons (Menu…Locations) bigger → Header.tsx nav text-sm→text-base font-medium, gap 7→8, links py-1→px-1 py-2. Prev/Play/Next a bit higher → Hero.tsx controls row lg:-translate-y-[5svh] (table unchanged). NEXT: wait for feedback.
 - S94b (2026-11-18): user: table a bit lower → Hero.tsx canvas wrapper lg:translate-y-[5svh] (≈33px @652h; table size + buttons unchanged; table bottom ~470px vs buttons ~568px so no overlap). NEXT: wait for feedback.
 - S94 (2026-11-18): user: move middle island shape a bit up → belt.ts new IZ=-0.35 (island z offset in bandPoint; plates ride band midpoint so they follow). Min clearance island .96, rim .90. NEXT: wait for user feedback.
