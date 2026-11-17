@@ -101,6 +101,7 @@ small task; `Optional you can use/` (repo root) holds the reference site's code 
 - Open idea (not required): real payment provider + DB persistence — TODO(agent) in src/app/api/order/route.ts.
 
 ## Session History
+- S89 (2026-11-18): user: right/front table edge (blue mark) looked cropped. ROOT CAUSE: CameraFit fit only y=0 rim at H, but extruded slab+bevel reaches H+0.05 and y −0.27…+0.05 → right edge projected to NDC x≈1.03 (off canvas). FIX (HeroCanvas.tsx): fit H+0.08 points at y +0.08/−0.32, margins 0.92/0.9 → right edge now NDC ≈0.94 (verified numerically via tsx; headless WebGL screenshot blank). Build passes. NEXT: user visual confirm.
 - S75 (2026-11-16): resumed at 14.1. User (Bangla) same 4 table requests (blue-mark shape not fixed rect; zebra like reference not linear/fewer lines; smaller middle gap + bigger items; hover shows 2 names) + push every 30s. Asked first: is table done? -> NO.
 - S72 (2026-11-16): resumed at 14.1. User asked 'is table work complete?' -> answered NO. Same 4 requests; push every 30s.
 - S69 (2026-11-16): resumed at 14.1. User (Bangla): same 4 table requests (blue-mark shape not fixed rect, reference zebra not linear/too many lines, smaller middle gap + bigger items, hover shows 2 names); push every ~30s. Plan: port reference geometry (stadium r=0.95d, band 1.22d, slats every 0.34d bulge 0.2 pitch) into 3D; check canvas clipping.
