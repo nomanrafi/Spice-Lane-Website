@@ -1,7 +1,7 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- S88 (2026-11-18): resumed. S87 (7d02074) WAS pushed. User again: table bigger + food pokes outside rim (user screenshot = S86 build). NEXT: render 1280x652, check plates inside rim, enlarge, push.
+- S88 (2026-11-18): VERIFIED S87 on HEAD: render 1280x652 (output/preview/hero-s88-1280.png) → table much bigger (fills right side), all 8 plates inside rim, island thin. User screenshot was S86 build → git pull + restart dev + hard refresh. Minor: table left edge touches price legend at 1280. NEXT: wait for feedback.
 - S87 (2026-11-18): user: table a bit bigger + food plates poke outside the rim. PUSHED 7d02074: belt.ts KI z .22→.12, RIDE .05→0, plateR .9→.78 (min centre-line→rim dist .86 ≥ ring 1.07r); fitCamera 0.98x0.98; Hero canvas lg:left 31vw, pt 6svh, pb 2svh. NEXT: render 1280x652 verify, then wait for feedback.
 - Overall: IN PROGRESS (Step 14, S86: table shape flipped + bigger + table-shaped island)
 - S86 DONE (2026-11-17): user said S85 shape was REVERSED (their screenshot = target: smooth top arch, dent at bottom, big lobe bottom-right). belt.ts outerAt uses rOut(-phi) (mirror front<->back). Island = same rim outline scaled KI={x:.5,z:.22} (not ellipse). Bigger: fitCamera fill 0.9x0.9, hero canvas lg:left 33vw, pt 10svh. Verified render output/preview/hero-s86-1280.png. NEXT: wait for user feedback.
