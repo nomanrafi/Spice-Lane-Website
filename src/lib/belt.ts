@@ -17,7 +17,8 @@ export const OUT = { a: 4.94, b: 3.5 } as const;
 /** S86: middle island = the SAME outline as the table rim, scaled down (KI.x wide, KI.z deep) — not a pill/ellipse. */
 // S90 (user 2026-11-18): middle island must follow the TABLE SHAPE → near-uniform scale (was x 0.5 / z 0.12 = thin pill)
 // S91 (user 2026-11-18): island still looked like a circle → EXACT uniform scale of the rim (same shape as table)
-export const KI = { x: 0.4, z: 0.4 } as const;
+// S92: front plate overlapped island at the dent → uniform 0.34 (still exact table shape)
+export const KI = { x: 0.34, z: 0.34 } as const;
 export const IN = { a: OUT.a * KI.x, b: OUT.b * KI.z } as const;
 /** Plates ride slightly outside the band middle (u = RIDE) so the tight ends never make plates overlap. */
 export const RIDE = 0;
