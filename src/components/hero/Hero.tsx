@@ -70,7 +70,7 @@ export default function Hero() {
         <a href="#menu" className="mt-6 inline-flex rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-white/90">See full menu</a>
       </div>
 
-      <div className="relative lg:absolute lg:inset-y-0 lg:left-[35.5vw] lg:right-0 lg:flex lg:flex-col lg:pt-[13svh] lg:pb-[4svh]">
+      <div className="relative lg:absolute lg:inset-y-0 lg:left-[33vw] lg:right-0 lg:flex lg:flex-col lg:pt-[10svh] lg:pb-[4svh]">
         <div className="relative aspect-[16/11] w-full lg:aspect-auto lg:min-h-0 lg:flex-1">
           <HeroCanvas />
           {/* S49 (14.4): the ONLY hover name label; KaitenTable.tsx HoverChip moves it over the hovered plate */}

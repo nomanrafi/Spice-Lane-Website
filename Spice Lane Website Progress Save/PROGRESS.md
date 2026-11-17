@@ -1,7 +1,8 @@
 # PROGRESS — Spice Lane Website
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
-- Overall: IN PROGRESS (Step 14, S85: 14.1 shape VERIFIED)
+- Overall: IN PROGRESS (Step 14, S86: table shape flipped + bigger + table-shaped island)
+- S86 DONE (2026-11-17): user said S85 shape was REVERSED (their screenshot = target: smooth top arch, dent at bottom, big lobe bottom-right). belt.ts outerAt uses rOut(-phi) (mirror front<->back). Island = same rim outline scaled KI={x:.5,z:.22} (not ellipse). Bigger: fitCamera fill 0.9x0.9, hero canvas lg:left 33vw, pt 10svh. Verified render output/preview/hero-s86-1280.png. NEXT: wait for user feedback.
 - S85: resumed. S84 pushed only resume note. User again (with screenshot 1280x652): blue line shape+size = table exactly. NEXT: extract blue pts from user screenshot, render, compare, tune belt.ts, push.
 - S85 VERIFIED: HEAD 5e93b24 render 1280x652 + blue outline overlay → table rim matches blue mark (within ~5px) (output/preview/hero-s85-blue-overlay-1280.png; pts reference/blue-outline-pts-1280x652.json). User screenshot was an OLD build → user must git pull + restart dev + hard refresh. NEXT: zebra/gap/hover only if user asks.
 - S84: resumed. S83 (5e93b24) pushed un-mirrored blue rim. User again: blue line shape+size = table exactly. NEXT: npm ci, render 1280x652, overlay blue outline, tune, push.

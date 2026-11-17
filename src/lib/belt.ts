@@ -14,7 +14,9 @@ const RB = [0.0000, 0.2974, -0.1884, -0.5152, 0.0143, -0.0671, 0.0739, 0.0689, 0
 const rOut = (phi: number) => { let r = RA[0]; for (let k = 1; k < RA.length; k++) r += RA[k] * Math.cos(k * phi) + RB[k] * Math.sin(k * phi); return r; };
 /** Half extents of the blue outline in world units (x, z). */
 export const OUT = { a: 4.94, b: 3.5 } as const;
-export const IN = { a: 2.25, b: 0.3 } as const;
+/** S86: middle island = the SAME outline as the table rim, scaled down (KI.x wide, KI.z deep) — not a pill/ellipse. */
+export const KI = { x: 0.5, z: 0.22 } as const;
+export const IN = { a: OUT.a * KI.x, b: OUT.b * KI.z } as const;
 /** Plates ride slightly outside the band middle (u = RIDE) so the tight ends never make plates overlap. */
 export const RIDE = 0.05;
 const lerp = (i: number, o: number, u: number) => i + (o - i) * ((u + 1) / 2);
@@ -23,12 +25,12 @@ export const BELT = { A: lerp(IN.a, OUT.a, RIDE), B: lerp(IN.b, OUT.b, RIDE), pl
 type P = [number, number];
 /** Outer rim point for curve parameter t (same t as the inner ellipse, so slat seams run island -> rim cleanly). */
 function outerAt(t: number): P {
-  const phi = Math.atan2(OUT.b * Math.sin(t), OUT.a * Math.cos(t)), r = rOut(phi);
+  const phi = Math.atan2(OUT.b * Math.sin(t), OUT.a * Math.cos(t)), r = rOut(-phi); // S86: mirrored front<->back (user screenshot 2026-11-17)
   return [r * Math.cos(phi), r * Math.sin(phi)];
 }
 /** Point across the band at parameter t: u = -1 island edge ... 0 centre-line ... +1 outer rim (|u|>1 extrapolates). */
 export function bandPoint(t: number, u: number): P {
-  const f = (u + 1) / 2, [ox, oz] = outerAt(t), ix = IN.a * Math.cos(t), iz = IN.b * Math.sin(t);
+  const f = (u + 1) / 2, [ox, oz] = outerAt(t), ix = ox * KI.x, iz = oz * KI.z;
   return [ix + (ox - ix) * f, iz + (oz - iz) * f];
 }
 /** Closed outline offset by `off` (world units, measured like BELT.H across the front lane; − = inward). */

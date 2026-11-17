@@ -25,7 +25,7 @@ function CameraFit() {
     const pts: THREE.Vector3[] = [];
     // S82: fit ONLY the outer rim, with the blue mark's fill (82% width / 78% height of the canvas box)
     for (const [x, z] of outline(BELT.H, 128)) pts.push(new THREE.Vector3(x, 0, z));
-    fitCamera(cam, pts, 53, 0.82, 0.78); // S78: stable fit (old loop diverged → table invisible)
+    fitCamera(cam, pts, 53, 0.9, 0.9); // S78: stable fit (old loop diverged → table invisible)
   }, [camera, size.width, size.height]);
   return null;
 }
