@@ -3,7 +3,7 @@ import { Canvas, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import { ContactShadows, Environment, Lightformer } from '@react-three/drei';
 import { useDrag } from '@use-gesture/react';
-import { useLayoutEffect, useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { BELT, beltMotion, outline } from '@/lib/belt';
 import { useStore } from '@/store/useStore';
 import { getItem } from '@/data/menu';
@@ -37,6 +37,8 @@ export default function HeroCanvas() {
   const wrap = useRef<HTMLDivElement>(null);
   // review 13.5: on the far (back) lane the plates move the opposite screen direction, so invert the drag there.
   const side = useRef<1 | -1>(1);
+  // S81: if the browser drops the WebGL context (GPU reset / too many canvases) remount the Canvas so the table comes back.
+  const [glKey, setGlKey] = useState(0);
   // Drag left/right = spin belt (inertia). Drag UP starting on a plate = carry it to the cart (Step 6).
   const bind = useDrag(({ first, last, delta: [dx], movement: [mx, my], velocity: [vx], direction: [dirx], xy: [px, py] }) => {
     const st = useStore.getState();
@@ -69,7 +71,7 @@ export default function HeroCanvas() {
 
   return (
     <div ref={wrap} {...bind()} className="h-full w-full touch-pan-y" aria-hidden>
-      <Canvas shadows dpr={[1, 2]} camera={{ position: [0, 16, 12], fov: 32 }} gl={{ antialias: true }}>
+      <Canvas key={glKey} onCreated={({ gl }) => { gl.domElement.addEventListener('webglcontextlost', (e) => { e.preventDefault(); setTimeout(() => setGlKey((k) => k + 1), 300); }, { once: true }); }} shadows dpr={[1, 2]} camera={{ position: [0, 16, 12], fov: 32 }} gl={{ antialias: true }}>
         <CameraFit />
         <ambientLight intensity={0.25} />
         <directionalLight position={[3, 6, 4]} intensity={1.6} castShadow shadow-mapSize={[1024, 1024]} />
