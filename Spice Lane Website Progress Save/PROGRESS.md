@@ -2,6 +2,7 @@
 
 ## ⚡ QUICK STATE  (read this first; update at EVERY checkpoint)
 - Overall: IN PROGRESS (Step 14, S83)
+- S85: resumed. S84 pushed only resume note. User again (with screenshot 1280x652): blue line shape+size = table exactly. NEXT: extract blue pts from user screenshot, render, compare, tune belt.ts, push.
 - S84: resumed. S83 (5e93b24) pushed un-mirrored blue rim. User again: blue line shape+size = table exactly. NEXT: npm ci, render 1280x652, overlay blue outline, tune, push.
 - S83: resumed. S82 (0defa96) WAS pushed: belt.ts outer rim = blue outline (Fourier rOut), camera fit 82%x78%. User repeats: blue line shape+size must exactly = table. NEXT: render 1280x652, compare rim vs blue outline pixels, tune, push.
 - S83 DONE-1: S82 rim was vertically MIRRORED (bump bottom-left). Re-solved rim from blue outline (scripts/solve-blue-rim.ts, blue pts from user screenshot -> /tmp/blue.json). NEXT: render 1280x652, IoU check.
