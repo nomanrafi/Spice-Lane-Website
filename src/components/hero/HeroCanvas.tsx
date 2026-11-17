@@ -20,6 +20,7 @@ function CameraFit() {
   const { camera, size } = useThree();
   useLayoutEffect(() => {
     const cam = camera as THREE.PerspectiveCamera;
+    if (!size.width || !size.height) return; // S80: wait for a real canvas size
     cam.fov = 32; cam.aspect = size.width / size.height; cam.updateProjectionMatrix();
     const pts: THREE.Vector3[] = [];
     for (const [x, z] of outline(BELT.H + 0.08, 96)) pts.push(new THREE.Vector3(x, 0, z));

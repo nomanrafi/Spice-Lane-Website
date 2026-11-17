@@ -6,6 +6,7 @@ import * as THREE from 'three';
  * bisection on distance D (fit width FW / height FH of NDC) + damped vertical centring of the target.
  */
 export function fitCamera(cam: THREE.PerspectiveCamera, pts: THREE.Vector3[], elevDeg = 53, FW = 0.9, FH = 0.8) {
+  if (!(cam.aspect > 0.05 && cam.aspect < 20)) cam.aspect = 1.6;
   const E = (elevDeg * Math.PI) / 180;
   const v = new THREE.Vector3();
   const tgt = new THREE.Vector3(0, 0, 0);
@@ -33,6 +34,10 @@ export function fitCamera(cam: THREE.PerspectiveCamera, pts: THREE.Vector3[], el
     // positive cy = table sits high on screen → move the look-at point UP the screen (toward the back, −z)
     tgt.z -= cy * D * 0.25;
   }
+  // S80 guard: if the canvas had no size yet (aspect NaN/0) or anything went non-finite, use a safe default view
+  // so the table is ALWAYS on screen (never an empty canvas).
+  const ok = Number.isFinite(D) && Number.isFinite(tgt.z) && Math.abs(tgt.z) < 20 && D > 2 && D < 199;
+  if (!ok) { D = 13; tgt.set(0, 0, 0); }
   place(D);
-  return { D, target: tgt.clone() };
+  return { D, target: tgt.clone(), ok };
 }
